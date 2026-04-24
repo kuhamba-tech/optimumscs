@@ -1,0 +1,183 @@
+.proc-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #021b3a 0%, #00142c 100%);
+  color: #ffffff;
+  padding: 40px 20px;
+  font-family: Inter, Arial, sans-serif;
+}
+
+.proc-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.proc-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.proc-hero h1 {
+  font-size: 52px;
+  font-weight: 900;
+  margin-bottom: 18px;
+}
+
+.proc-hero h2 {
+  font-size: 24px;
+  line-height: 1.4;
+  margin-bottom: 18px;
+}
+
+.proc-hero p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #c4d2df;
+  margin-bottom: 25px;
+}
+
+.proc-btn {
+  padding: 14px 22px;
+  border-radius: 7px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.proc-btn.primary {
+  background: #79d75a;
+  color: #05210b;
+}
+
+.proc-hero-image img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.proc-panel {
+  background: #04244a;
+  border-radius: 12px;
+  padding: 22px;
+  margin-bottom: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.proc-panel h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.proc-section-subtitle {
+  text-align: center;
+  color: #c4d2df;
+  font-size: 14px;
+  margin-bottom: 22px;
+}
+
+.proc-card-grid {
+  display: grid;
+  gap: 15px;
+}
+
+.proc-card-grid.four {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.proc-card-grid.six {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.proc-card,
+.proc-solution-card,
+.proc-impact-card {
+  background: #062a55;
+  padding: 18px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.proc-card h4,
+.proc-solution-card h4 {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.proc-card p,
+.proc-solution-card p {
+  font-size: 12px;
+  color: #c4d2df;
+  line-height: 1.5;
+}
+
+.proc-icon {
+  color: #79d75a;
+  display: flex;
+  justify-content: center;
+}
+
+.proc-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.proc-icon.circle {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  background: rgba(121, 215, 90, 0.1);
+  align-items: center;
+}
+
+.proc-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.proc-impact-card strong {
+  color: #79d75a;
+  font-size: 30px;
+}
+
+.proc-impact-card p {
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.proc-tech-logos {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  text-align: center;
+  font-weight: 900;
+  font-size: 20px;
+}
+
+@media (max-width: 900px) {
+  .proc-hero,
+  .proc-card-grid.four,
+  .proc-card-grid.six,
+  .proc-impact-grid,
+  .proc-tech-logos {
+    grid-template-columns: 1fr;
+  }
+
+  .proc-hero h1 {
+    font-size: 40px;
+  }
+
+  .proc-hero-image img {
+    height: 280px;
+  }
+}

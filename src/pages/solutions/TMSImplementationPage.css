@@ -1,0 +1,119 @@
+.tms-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #021b3a, #00142c);
+  color: white;
+  padding: 40px 20px;
+}
+
+.tms-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* HERO */
+.tms-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.tms-hero h1 {
+  font-size: 50px;
+  font-weight: 900;
+}
+
+.tms-hero h2 {
+  margin: 15px 0;
+}
+
+.tms-hero p {
+  color: #c4d2df;
+}
+
+/* BUTTON */
+.tms-btn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.tms-btn.primary {
+  background: #79d75a;
+  color: black;
+}
+
+/* IMAGE */
+.tms-hero-image img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* PANELS */
+.tms-panel {
+  margin-top: 40px;
+  background: #04244a;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.tms-card-grid {
+  display: grid;
+  gap: 15px;
+}
+
+.tms-card-grid.four {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.tms-card-grid.six {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+/* CARDS */
+.tms-card,
+.tms-solution-card {
+  background: #062a55;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.tms-icon {
+  color: #79d75a;
+}
+
+/* IMPACT */
+.tms-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.tms-impact-card {
+  background: #062a55;
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.tms-impact-card strong {
+  color: #79d75a;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .tms-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .tms-card-grid,
+  .tms-impact-grid {
+    grid-template-columns: 1fr;
+  }
+}

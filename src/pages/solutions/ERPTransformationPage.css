@@ -1,0 +1,433 @@
+.erp-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #021b3a 0%, #00142c 100%);
+  color: #ffffff;
+  padding: 40px 20px;
+  font-family: Inter, sans-serif;
+}
+
+.erp-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.erp-breadcrumb {
+  font-size: 12px;
+  color: #9fb7cf;
+  margin-bottom: 25px;
+}
+
+/* HERO SECTION */
+.erp-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.erp-pill {
+  background: rgba(121, 215, 90, 0.15);
+  color: #7fe35f;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.erp-hero h1 {
+  font-size: 55px;
+  font-weight: 900;
+  margin-bottom: 15px;
+}
+
+.erp-hero h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.erp-hero p {
+  font-size: 14px;
+  color: #c4d2df;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* BUTTONS */
+.erp-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.erp-btn {
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border: none;
+}
+
+.erp-btn.primary {
+  background: #79d75a;
+  color: #02240c;
+}
+
+.erp-btn.secondary {
+  background: transparent;
+  border: 1px solid #4a6c8f;
+  color: #ffffff;
+}
+
+/* IMAGE */
+.erp-hero-image img {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* PANELS */
+.erp-panel {
+  background: #04244a;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.erp-panel h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* CARDS */
+.erp-card-grid {
+  display: grid;
+  gap: 15px;
+}
+
+.erp-card-grid.four {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.erp-card-grid.six {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.erp-card,
+.erp-solution-card {
+  background: #062a55;
+  padding: 18px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.erp-card h4,
+.erp-solution-card h4 {
+  margin: 10px 0;
+  font-size: 13px;
+}
+
+.erp-card p,
+.erp-solution-card p {
+  font-size: 11px;
+  color: #c4d2df;
+}
+
+/* ICONS */
+.erp-icon {
+  display: flex;
+  justify-content: center;
+  color: #79d75a;
+}
+
+.erp-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.erp-icon.circle {
+  width: 50px;
+  height: 50px;
+  margin: auto;
+  border-radius: 50%;
+  background: rgba(121, 215, 90, 0.1);
+  align-items: center;
+}
+
+/* IMPACT */
+.erp-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.erp-impact-card {
+  background: #062a55;
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.erp-impact-card strong {
+  font-size: 30px;
+  color: #79d75a;
+}
+
+.erp-impact-card p {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* TECHNOLOGY */
+.erp-tech-logos {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .erp-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .erp-card-grid.four,
+  .erp-card-grid.six,
+  .erp-impact-grid,
+  .erp-tech-logos {
+    grid-template-columns: 1fr;
+  }
+  /* ===== UI TUNING (ADD THIS AT THE END) ===== */
+
+.erp-hero h1 {
+  font-size: 46px;
+}
+
+.erp-hero-image img {
+  height: 330px;
+  object-fit: cover;
+}
+
+.erp-hero {
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.erp-page {
+  padding: 30px 20px;
+}
+.erp-ui-visual {
+  position: relative;
+  height: 420px;
+  border-radius: 18px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, rgba(0, 180, 255, 0.35), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(45, 120, 255, 0.25), transparent 35%),
+    linear-gradient(135deg, #03152d, #062a55);
+  border: 1px solid rgba(125, 180, 255, 0.25);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+}
+
+.erp-orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 1px solid rgba(110, 220, 255, 0.22);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit-one {
+  width: 210px;
+  height: 210px;
+}
+
+.orbit-two {
+  width: 310px;
+  height: 310px;
+}
+
+.orbit-three {
+  width: 410px;
+  height: 410px;
+}
+
+.erp-center-circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 150px;
+  height: 150px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, #0b7dcc, #021b3a);
+  border: 8px solid rgba(87, 220, 255, 0.35);
+  box-shadow: 0 0 40px rgba(0, 195, 255, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.erp-center-circle span {
+  font-size: 46px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+.erp-floating-card {
+  position: absolute;
+  min-width: 120px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(5, 32, 68, 0.82);
+  border: 1px solid rgba(116, 218, 255, 0.3);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.28);
+}
+
+.erp-floating-card svg {
+  color: #79d75a;
+}
+
+.card-top {
+  top: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.card-left {
+  top: 150px;
+  left: 60px;
+}
+
+.card-right {
+  top: 150px;
+  right: 60px;
+}
+
+.card-bottom-left {
+  bottom: 55px;
+  left: 90px;
+}
+
+.card-bottom-right {
+  bottom: 55px;
+  right: 90px;
+}
+.erp-ui-visual {
+  position: relative;
+  height: 420px;
+  border-radius: 18px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, rgba(0, 180, 255, 0.35), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(45, 120, 255, 0.25), transparent 35%),
+    linear-gradient(135deg, #03152d, #062a55);
+  border: 1px solid rgba(125, 180, 255, 0.25);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+}
+
+.erp-orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 1px solid rgba(110, 220, 255, 0.22);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit-one {
+  width: 210px;
+  height: 210px;
+}
+
+.orbit-two {
+  width: 310px;
+  height: 310px;
+}
+
+.orbit-three {
+  width: 410px;
+  height: 410px;
+}
+
+.erp-center-circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 150px;
+  height: 150px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, #0b7dcc, #021b3a);
+  border: 8px solid rgba(87, 220, 255, 0.35);
+  box-shadow: 0 0 40px rgba(0, 195, 255, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.erp-center-circle span {
+  font-size: 46px;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.erp-floating-card {
+  position: absolute;
+  min-width: 130px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(5, 32, 68, 0.82);
+  border: 1px solid rgba(116, 218, 255, 0.3);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+}
+
+.erp-floating-card svg {
+  color: #79d75a;
+}
+
+.card-top {
+  top: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.card-left {
+  top: 150px;
+  left: 60px;
+}
+
+.card-right {
+  top: 150px;
+  right: 60px;
+}
+
+.card-bottom-left {
+  bottom: 55px;
+  left: 90px;
+}
+
+.card-bottom-right {
+  bottom: 55px;
+  right: 90px;
+}
+}
