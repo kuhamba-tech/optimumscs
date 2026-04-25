@@ -10,7 +10,7 @@ import erpImg from '../assets/erp.png'
 
 export default function HomePage() {
   const solutionSlides = [
-    { title: 'Transport Optimization', image: transportImg },
+    { title: 'Transport Optimizatio', image: transportImg },
     { title: 'Data Analytics', image: analyticsImg },
     { title: 'Warehouse Optimization', image: warehouseImg },
     { title: 'Procurement Systems', image: procurementImg },
