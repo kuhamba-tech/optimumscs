@@ -1,0 +1,129 @@
+.solutions-hero-clean {
+  background: #071b33;
+  color: #ffffff;
+  padding: 72px 44px 78px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.solutions-hero-grid {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.15fr;
+  gap: 72px;
+  align-items: center;
+}
+
+.solutions-hero-text h1 {
+  font-size: 66px;
+  line-height: 1;
+  margin: 0 0 34px;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.solutions-hero-text p {
+  max-width: 650px;
+  font-size: 24px;
+  line-height: 1.65;
+  color: #d7e3f2;
+  font-weight: 500;
+}
+
+.solutions-hero-image img {
+  width: 100%;
+  height: 640px;
+  object-fit: cover;
+  border-radius: 18px;
+  display: block;
+  box-shadow: 0 26px 70px rgba(0,0,0,0.4);
+}
+
+.solutions-content-clean {
+  background: #071b33;
+  color: #ffffff;
+  padding: 70px 44px;
+}
+
+.solutions-container-clean {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.solutions-two-col-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px;
+}
+
+.solution-panel {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 18px;
+  padding: 24px;
+}
+
+.solution-inner-card {
+  background: rgba(1, 13, 29, 0.55);
+  border-radius: 16px;
+  padding: 22px;
+}
+
+.solution-inner-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.solution-copy h4 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.solution-copy p,
+.solution-inner-bottom p {
+  color: #d7e3f2;
+  line-height: 1.5;
+}
+
+.solution-metric {
+  min-width: 90px;
+  text-align: right;
+}
+
+.solution-metric strong {
+  display: block;
+  font-size: 30px;
+  color: #6ee56a;
+}
+
+.solution-metric span {
+  color: #d7e3f2;
+}
+
+.solution-inner-bottom {
+  margin-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .solutions-hero-grid,
+  .solutions-two-col-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .solutions-hero-image img {
+    height: auto;
+  }
+
+  .solutions-hero-text h1 {
+    font-size: 48px;
+  }
+
+  .solutions-hero-text p {
+    font-size: 20px;
+  }
+}

@@ -11,7 +11,7 @@
 }
 
 .about-top {
-  min-height: 380px; /* 🔥 slightly increased */
+  min-height: 380px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -24,10 +24,22 @@
   align-items: center;
 }
 
-.about-hero-text h1 {
+.about-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+  margin: 0 0 20px;
+}
+
+.about-title-top,
+.about-title-bottom {
   font-size: 46px;
-  margin: 0 0 16px;
   font-weight: 900;
+}
+
+.about-title-top {
+  margin-left: 118px;
 }
 
 .about-hero-text p {
@@ -37,26 +49,46 @@
   line-height: 1.6;
 }
 
-/* 🔥 FIXED IMAGE CONTAINER */
 .about-hero-image {
+  position: relative;
   width: 100%;
-  height: 460px; /* ✅ increased height to fit image */
+  height: 460px;
   overflow: hidden;
   border-radius: 10px;
-  display: flex;
-  align-items: center;
 }
 
-/* 🔥 FIXED IMAGE FIT */
-.about-hero-image img {
+.about-slide {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top; /* ✅ keeps face visible */
-  display: block;
+  object-position: center top;
+  opacity: 0;
+  animation: aboutImageFade 10s infinite;
 }
 
-/* ========================= */
+.slide-one {
+  animation-delay: 0s;
+}
+
+.slide-two {
+  animation-delay: 5s;
+}
+
+@keyframes aboutImageFade {
+  0%, 100% {
+    opacity: 0;
+  }
+
+  10%, 45% {
+    opacity: 1;
+  }
+
+  55% {
+    opacity: 0;
+  }
+}
 
 .mission-card {
   margin-top: 36px;
@@ -86,8 +118,9 @@
   font-size: 28px;
 }
 
-.mission-card p {
-  margin: 0;
+.mission-card p,
+.why-card p,
+.journey-item-clean p {
   color: #d8e4f2;
   line-height: 1.6;
 }
@@ -115,12 +148,6 @@
 .why-card h3 {
   margin: 18px 0 8px;
   font-size: 20px;
-}
-
-.why-card p {
-  color: #d8e4f2;
-  line-height: 1.5;
-  min-height: 50px;
 }
 
 .why-card button,
@@ -156,8 +183,6 @@
 }
 
 .journey-item-clean p {
-  color: #d8e4f2;
-  line-height: 1.5;
   font-size: 14px;
 }
 
@@ -192,8 +217,6 @@
   margin-bottom: 20px;
 }
 
-/* ================= MOBILE ================= */
-
 @media (max-width: 900px) {
   .about-hero-grid,
   .why-grid,
@@ -205,16 +228,17 @@
     padding: 50px 0;
   }
 
-  .about-hero-text h1 {
+  .about-title-top,
+  .about-title-bottom {
     font-size: 38px;
   }
 
-  .about-hero-image {
-    height: auto;
+  .about-title-top {
+    margin-left: 0;
   }
 
-  .about-hero-image img {
-    height: auto;
+  .about-hero-image {
+    height: 320px;
   }
 
   .journey-line {

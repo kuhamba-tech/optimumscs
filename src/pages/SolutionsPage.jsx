@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import './SolutionsPage.css'
+import ourSolutionsImg from '../assets/our-solutions.png'
 
 const solutions = [
   {
@@ -61,23 +63,29 @@ const solutions = [
 
 export default function SolutionsPage() {
   return (
-    <section className="section solutions-page first-section">
-      <div className="container">
-        <div className="page-title-row">
-          <h1>Our Solutions</h1>
+    <>
+      <section className="solutions-hero-clean">
+        <div className="solutions-hero-grid">
+          <div className="solutions-hero-text">
+            <h1>Our Solutions</h1>
+            <p>
+              OptimumSCS delivers a comprehensive suite of solutions designed to
+              optimise supply chains, enhance operational efficiency, and drive
+              measurable business performance across industries.
+            </p>
+          </div>
+
+          <div className="solutions-hero-image">
+            <img src={ourSolutionsImg} alt="Our Solutions" />
+          </div>
         </div>
+      </section>
 
-        <p className="solutions-intro">
-          OptimumSCS delivers a comprehensive suite of solutions designed to optimise supply chains,
-          enhance operational efficiency, and drive measurable business performance across industries.
-        </p>
-
-        <div className="glass-card solutions-showcase-card">
+      <section className="solutions-content-clean">
+        <div className="solutions-container-clean">
           <div className="solutions-two-col-grid">
             {solutions.map((item) => (
               <article className="solution-panel" key={item.title}>
-                <h3 className="solution-panel-title">{item.title}</h3>
-
                 <div className="solution-inner-card">
                   <div className="solution-inner-top">
                     <div className="solution-copy">
@@ -95,6 +103,7 @@ export default function SolutionsPage() {
                     <p>
                       Outcome: <strong>{item.outcome}</strong>
                     </p>
+
                     <Link to={item.slug} className="btn btn-primary">
                       View Solution
                     </Link>
@@ -104,7 +113,7 @@ export default function SolutionsPage() {
             ))}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
