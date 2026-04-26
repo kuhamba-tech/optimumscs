@@ -53,8 +53,8 @@ export default function ContactPage() {
               <div className="contact-detail-list">
                 {contactDetails.map((detail) => {
                   const Icon = detail.icon
-                  return (
-                    <div className="contact-detail-row" key={detail.label}>
+                  const content = (
+                    <>
                       <div className="contact-detail-icon">
                         <Icon />
                       </div>
@@ -62,6 +62,26 @@ export default function ContactPage() {
                         <span>{detail.label}</span>
                         <strong>{detail.value}</strong>
                       </div>
+                    </>
+                  )
+
+                  if (detail.url) {
+                    return (
+                      <a
+                        className="contact-detail-row"
+                        key={detail.label}
+                        href={detail.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {content}
+                      </a>
+                    )
+                  }
+
+                  return (
+                    <div className="contact-detail-row" key={detail.label}>
+                      {content}
                     </div>
                   )
                 })}

@@ -43,12 +43,36 @@ export const FilterMini = () => <svg viewBox="0 0 24 24" className="icon-stroke"
 export const PinMini = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M12 21s6-5.33 6-11a6 6 0 1 0-12 0c0 5.67 6 11 6 11Zm0-8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg>
 export const BriefMini = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M4 8h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2ZM9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M4 12h16"/></svg>
 
-export const MailMini = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M4 6h16v12H4zM4 7l8 6 8-6"/></svg>
-export const PhoneMini = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M6 4h4l2 5-2 2a14 14 0 0 0 3 3l2-2 5 2v4c0 1-1 2-2 2A16 16 0 0 1 4 6c0-1 1-2 2-2Z"/></svg>
-export const LinkedinMini = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M7 9v8M7 6.5v.01M12 17V9h4a3 3 0 0 1 3 3v5M12 12a3 3 0 0 1 3-3"/></svg>
-export const XMini = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M4 4l16 16M20 4 4 20"/></svg>
-export const FacebookMini = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M13 20v-7h3l1-3h-4V8.5c0-.93.4-1.5 1.5-1.5H17V4h-2.5C11.8 4 10 5.6 10 8.5V10H7v3h3v7"/></svg>
-export const LocationMini = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M12 21s6-5.4 6-11a6 6 0 1 0-12 0c0 5.6 6 11 6 11Zm0-8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg>
+export const MailMini = () => (
+  <svg viewBox="0 0 24 24" className="icon-modern" aria-hidden="true">
+    <path d="M4.75 6h14.5A1.75 1.75 0 0 1 21 7.75v8.5A1.75 1.75 0 0 1 19.25 18H4.75A1.75 1.75 0 0 1 3 16.25v-8.5A1.75 1.75 0 0 1 4.75 6Zm.6 2.1 6.22 4.66a.72.72 0 0 0 .86 0l6.22-4.66H5.35Zm13.9 1.7-5.62 4.2a2.72 2.72 0 0 1-3.26 0L4.75 9.8v6.45h14.5V9.8Z"/>
+  </svg>
+)
+export const PhoneMini = () => (
+  <svg viewBox="0 0 24 24" className="icon-modern" aria-hidden="true">
+    <path d="M6.34 4.25h3.14c.74 0 1.39.48 1.61 1.18l.82 2.6a1.7 1.7 0 0 1-.43 1.7l-1.33 1.33a10.8 10.8 0 0 0 4.79 4.79l1.33-1.33a1.7 1.7 0 0 1 1.7-.43l2.6.82c.7.22 1.18.87 1.18 1.61v3.14c0 .94-.76 1.7-1.7 1.7A17.4 17.4 0 0 1 2.95 6c0-.97.78-1.75 1.75-1.75h1.64Zm.2 2H4.98A15.4 15.4 0 0 0 19.75 19v-2.25l-2.13-.67-1.72 1.72a1 1 0 0 1-1.08.22A12.8 12.8 0 0 1 5.98 9.18a1 1 0 0 1 .22-1.08l1.72-1.72-.67-2.13h-.71Z"/>
+  </svg>
+)
+export const LinkedinMini = () => (
+  <svg viewBox="0 0 24 24" className="icon-modern" aria-hidden="true">
+    <path d="M5.2 8.9h3.05V19H5.2V8.9Zm1.53-4.9a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5ZM10.1 8.9h2.93v1.38h.04c.41-.78 1.42-1.6 2.92-1.6 3.12 0 3.7 2.05 3.7 4.72V19h-3.05v-4.96c0-1.18-.02-2.7-1.65-2.7-1.65 0-1.9 1.29-1.9 2.62V19H10.1V8.9Z"/>
+  </svg>
+)
+export const XMini = () => (
+  <svg viewBox="0 0 24 24" className="icon-modern" aria-hidden="true">
+    <path d="M13.58 10.62 20.16 3h-2.06l-5.44 6.3L8.31 3H3l6.9 9.97L3 21h2.06l5.76-6.68L15.4 21h5.3l-7.12-10.38Zm-2.04 2.36-.67-.95-5.56-7.4h2.02l4.28 5.69.66.95 5.85 7.78h-2.02l-4.56-6.07Z"/>
+  </svg>
+)
+export const FacebookMini = () => (
+  <svg viewBox="0 0 24 24" className="icon-modern" aria-hidden="true">
+    <path d="M13.35 21v-7.65h2.57l.39-2.98h-2.96V8.47c0-.86.24-1.45 1.48-1.45h1.58V4.36A21.2 21.2 0 0 0 14.1 4c-2.29 0-3.86 1.4-3.86 3.96v2.41H7.65v2.98h2.59V21h3.11Z"/>
+  </svg>
+)
+export const LocationMini = () => (
+  <svg viewBox="0 0 24 24" className="icon-modern" aria-hidden="true">
+    <path d="M12 2.75A7.25 7.25 0 0 0 4.75 10c0 5.08 6.32 10.68 6.59 10.92a1 1 0 0 0 1.32 0c.27-.24 6.59-5.84 6.59-10.92A7.25 7.25 0 0 0 12 2.75Zm0 16.05C10.1 16.96 6.75 12.98 6.75 10a5.25 5.25 0 1 1 10.5 0c0 2.98-3.35 6.96-5.25 8.8ZM12 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm0 4.1a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2Z"/>
+  </svg>
+)
 export const ClockMini = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M12 7v5l3 2"/><circle cx="12" cy="12" r="9"/></svg>
 export const PlaneMini = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M21 3 3 10l7 2 2 7 9-16ZM10 12l11-9"/></svg>
 export const LockMini = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>

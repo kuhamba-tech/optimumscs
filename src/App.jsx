@@ -14,7 +14,7 @@ import LeanMaterialsManagementPage from './pages/solutions/LeanMaterialsManageme
 import WarehouseManagementPage from './pages/solutions/WarehouseManagementPage'
 import DataAnalyticsReportingPage from './pages/solutions/DataAnalyticsReportingPage'
 import ConsultingServicesPage from './pages/solutions/ConsultingServicesPage'
-import AskOptimum from './components/AskOptimum'
+import AskOptimumWidget from './components/AskOptimumWidget'
 
 export default function App() {
   return (
@@ -38,7 +38,7 @@ export default function App() {
         </Route>
       </Routes>
 
-      <AskOptimum />
+      <AskOptimumWidget />
     </>
   )
 }

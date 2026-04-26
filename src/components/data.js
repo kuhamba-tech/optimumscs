@@ -178,7 +178,12 @@ export const contactDetails = [
   { label: 'Our Office', value: '104 A Rabie Street Randburg, Gauteng, South Africa', icon: LocationMini },
   { label: 'Email', value: 'info@optimumscs.com', icon: MailMini },
   { label: 'Phone', value: '+27 73 937 0249', icon: PhoneMini },
-  { label: 'LinkedIn', value: 'Optimum SCS', icon: LinkedinMini },
+  {
+    label: 'LinkedIn',
+    value: 'Optimum SCS',
+    icon: LinkedinMini,
+    url: 'https://www.linkedin.com/company/optimum-supply-chain-consulting/'
+  },
 
 
   

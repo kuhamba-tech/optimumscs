@@ -104,6 +104,7 @@ button, input, textarea { font: inherit; }
 }
 .nav-pill.smaller { padding: 10px 14px; min-height: 42px; font-size: 15px; }
 .icon-stroke { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.icon-modern { width: 22px; height: 22px; fill: currentColor; display: block; }
 
 .hero-section {
   padding: 60px 0 30px;  /* 👈 reduced bottom space */
@@ -1063,6 +1064,7 @@ button, input, textarea { font: inherit; }
   align-items: center;
   padding: 14px 0;
   border-bottom: 1px solid rgba(255,255,255,.06);
+  color: inherit;
 }
 .contact-detail-row:last-child {
   border-bottom: 0;
@@ -3959,5 +3961,221 @@ img {
 
   .nav-link.active {
     border-color: #84d567;
+  }
+}
+
+/* ===== ASK OPTIMUM WIDGET ===== */
+.optimum-widget {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
+  font-family: inherit;
+}
+
+.optimum-widget-launcher {
+  min-height: 58px;
+  padding: 12px 16px 12px 20px;
+  border: 0;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #185da9, #68b36b);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+  cursor: pointer;
+}
+
+.optimum-widget-launcher strong {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  color: #0b4ea2;
+  font-size: 15px;
+}
+
+.optimum-widget-panel {
+  width: min(430px, calc(100vw - 32px));
+  max-height: min(720px, calc(100vh - 110px));
+  margin-bottom: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  border: 1px solid rgba(130, 170, 255, 0.16);
+  background: #071b33;
+  color: #ffffff;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+}
+
+.optimum-widget-header {
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: linear-gradient(135deg, #071b33, #0a274c);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.optimum-widget-header strong,
+.optimum-widget-options span {
+  display: block;
+  font-size: 18px;
+}
+
+.optimum-widget-header span,
+.optimum-widget-options small {
+  display: block;
+  margin-top: 3px;
+  color: #bdd0e6;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.optimum-widget-header button,
+.optimum-widget-toolbar button {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.optimum-widget-header button {
+  width: 34px;
+  height: 34px;
+}
+
+.optimum-widget-content {
+  padding: 18px;
+  overflow-y: auto;
+  background:
+    radial-gradient(circle at 80% 0%, rgba(104, 179, 107, 0.12), transparent 30%),
+    linear-gradient(180deg, #081f3d, #06162c);
+}
+
+.optimum-widget-intro {
+  margin: 0 0 14px;
+  color: #dbe7f7;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.optimum-widget-options,
+.optimum-widget-prompts {
+  display: grid;
+  gap: 10px;
+}
+
+.optimum-widget-options button,
+.optimum-widget-options a,
+.optimum-widget-prompts button {
+  width: 100%;
+  min-width: 0;
+  border-radius: 12px;
+  border: 1px solid rgba(130, 170, 255, 0.18);
+  background: rgba(12, 34, 68, 0.92);
+  color: #ffffff;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.optimum-widget-options button,
+.optimum-widget-options a {
+  padding: 14px;
+}
+
+.optimum-widget-prompts button {
+  padding: 11px 12px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.optimum-widget-options button:hover,
+.optimum-widget-options a:hover,
+.optimum-widget-prompts button:hover,
+.optimum-widget-prompts button.active {
+  border-color: rgba(104, 179, 107, 0.72);
+  background: rgba(19, 52, 94, 0.98);
+}
+
+.optimum-widget-toolbar {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.optimum-widget-toolbar button {
+  min-height: 34px;
+  padding: 0 12px;
+}
+
+.optimum-widget-response {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(104, 179, 107, 0.28);
+  background: rgba(255, 255, 255, 0.96);
+  color: #19304b;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+}
+
+.optimum-widget-response p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.48;
+}
+
+.optimum-widget-response p:last-child {
+  margin-bottom: 0;
+}
+
+.optimum-widget-response strong {
+  color: #0b4ea2;
+}
+
+@media (max-width: 600px) {
+  .optimum-widget {
+    right: 14px;
+    bottom: 14px;
+    left: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .optimum-widget-panel {
+    width: 100%;
+    max-height: calc(100vh - 96px);
+    margin-bottom: 10px;
+  }
+
+  .optimum-widget-launcher {
+    max-width: 100%;
+    min-height: 52px;
+    padding: 10px 12px 10px 16px;
+    font-size: 16px;
+  }
+
+  .optimum-widget-launcher strong {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .optimum-widget-content {
+    padding: 14px;
   }
 }

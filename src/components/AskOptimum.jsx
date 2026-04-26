@@ -18,14 +18,56 @@ const challengeOptions = [
   'ERP/TMS issues',
 ]
 
+const companyProfile = {
+  name: 'Optimum Supply Chain Solutions (OptimumSCS)',
+  founded: '2021',
+  hq: 'Johannesburg, South Africa',
+  positioning:
+    'A future-driven supply chain consulting and technology company specialising in ERP, TMS, warehouse optimisation, procurement systems, analytics platforms, and full digital transformation.',
+  coreStrength:
+    'Combines deep operational expertise with advanced technology implementation to deliver measurable supply chain performance improvements.',
+  technologyStack: [
+    'Microsoft Dynamics 365',
+    'SAP S/4HANA',
+    'Oracle NetSuite',
+    'Infor CloudSuite',
+    'Opsi TMS',
+    'BlueYonder TMS',
+    'Ignition TMS',
+    'Power BI',
+    'Tableau',
+  ],
+  differentiation: [
+    'End-to-end supply chain integration across ERP, TMS, and Analytics',
+    'Strong FMCG and logistics expertise',
+    'Execution-focused consulting',
+    'Pan-African implementation capability',
+    'Data-driven decision-making approach',
+  ],
+  industries: [
+    'FMCG',
+    'Logistics & Transport',
+    'Retail & E-commerce',
+    'Manufacturing',
+    'Agriculture & Agro-logistics',
+    'Healthcare & Pharmaceutical supply chains',
+    'Public sector',
+    'Mining & Energy',
+  ],
+}
+
 const solutionAreas = [
   {
-    name: 'Transport',
+    id: 'transport_optimization',
+    name: 'Transport Optimization',
     path: '/solutions/tms-implementation',
-    keywords: ['transport', 'tms', 'route', 'routes', 'delivery', 'deliveries', 'fleet', 'logistics', 'shipping', 'dispatch'],
-    diagnosis: 'Transport cost, route planning, or delivery performance is likely constraining service reliability.',
-    recommendation: 'Run a TMS and route optimisation assessment focused on cost-to-serve, delivery performance, fleet utilisation, and dispatch visibility.',
-    impact: 'Typical impact: 8-18% lower transport cost, 10-25% better delivery reliability, and stronger daily visibility.',
+    keywords: ['transport', 'tms', 'route', 'routes', 'delivery', 'deliveries', 'fleet', 'logistics', 'shipping', 'dispatch', 'high delivery costs', 'route inefficiency', 'delivery delays'],
+    tools: ['Opsi TMS', 'BlueYonder', 'Ignition TMS'],
+    diagnosis: 'High transport cost, inefficient routing, low fleet utilisation, delivery delays, or manual planning may be reducing service performance.',
+    recommendation: 'Optimise route planning, delivery scheduling, fleet utilisation, and transport operations using TMS and geospatial intelligence.',
+    impact: 'Expected impact: 10-25% reduction in transport costs, improved delivery performance, and increased fleet efficiency.',
+    experience: 'Relevant experience: Value Logistics TMS implementation; Transport Consortium TMS optimisation; Ramco Systems multi-company TMS deployment. FMCG client achieved about 18% cost improvement through route optimisation.',
+    nextStep: 'Request a transport optimization assessment.',
     questions: [
       'Monthly deliveries or trips?',
       'Current transport cost as % of sales or spend per month?',
@@ -33,12 +75,16 @@ const solutionAreas = [
     ],
   },
   {
-    name: 'Warehouse',
+    id: 'warehouse_optimization',
+    name: 'Warehouse Optimization',
     path: '/solutions/warehouse-management',
-    keywords: ['warehouse', 'wms', 'inventory', 'stock', 'picking', 'packing', 'putaway', 'storage', 'accuracy'],
-    diagnosis: 'Warehouse flow, stock accuracy, or picking productivity is likely creating service and cost leakage.',
-    recommendation: 'Assess warehouse layout, picking process, inventory accuracy, labour productivity, and WMS readiness.',
-    impact: 'Typical impact: 15-30% productivity improvement, 20-40% fewer picking errors, and higher stock accuracy.',
+    keywords: ['warehouse', 'wms', 'inventory', 'stock', 'stockouts', 'overstock', 'stock issues', 'picking', 'packing', 'putaway', 'storage', 'accuracy', 'warehouse inefficiency'],
+    tools: ['WMS implementation', 'Inventory accuracy review', 'Warehouse workflow optimisation'],
+    diagnosis: 'Stock inaccuracies, slow picking, warehouse inefficiencies, overstocking, or stockouts may be creating cost and service leakage.',
+    recommendation: 'Improve warehouse layout, picking efficiency, inventory accuracy, and workflow performance.',
+    impact: 'Expected impact: improved fulfilment speed, inventory control, and warehouse efficiency.',
+    experience: 'Relevant experience: Delta Beverages Zimbabwe WMS implementation.',
+    nextStep: 'Request a warehouse efficiency review.',
     questions: [
       'Number of SKUs and monthly order lines?',
       'Current picking accuracy or stock accuracy?',
@@ -46,12 +92,16 @@ const solutionAreas = [
     ],
   },
   {
-    name: 'ERP',
+    id: 'erp_transformation',
+    name: 'ERP Transformation',
     path: '/solutions/erp-transformation',
-    keywords: ['erp', 'system', 'systems', 'finance', 'operations', 'integration', 'manual', 'spreadsheet', 'process'],
-    diagnosis: 'Disconnected systems or manual processes are likely limiting control, speed, and management visibility.',
-    recommendation: 'Map current finance, procurement, inventory, and operational workflows, then define an ERP transformation roadmap.',
-    impact: 'Typical impact: 20-35% faster reporting cycles, fewer manual errors, and better end-to-end control.',
+    keywords: ['erp', 'system', 'systems', 'finance', 'operations', 'integration', 'manual', 'manual processes', 'spreadsheet', 'process', 'disconnected systems', 'duplicate data', 'erp/tms issues'],
+    tools: ['Microsoft Dynamics 365', 'SAP', 'Oracle NetSuite'],
+    diagnosis: 'Disconnected systems, manual processes, duplicate data, poor visibility, or inefficient reporting may be limiting operational control.',
+    recommendation: 'Implement and integrate ERP systems to unify finance, logistics, procurement, inventory, and operations into one digital platform.',
+    impact: 'Expected impact: improved operational control, real-time visibility, and end-to-end process efficiency.',
+    experience: 'Relevant experience: CCBA D365 deployment; Dimension Data ERP implementation; Accenture ERP + Power BI integration.',
+    nextStep: 'Request an ERP readiness assessment.',
     questions: [
       'Which ERP or accounting system do you use now?',
       'Which teams are disconnected: finance, procurement, warehouse, transport, or sales?',
@@ -59,12 +109,16 @@ const solutionAreas = [
     ],
   },
   {
-    name: 'Procurement',
+    id: 'procurement_systems',
+    name: 'Procurement & Sourcing Optimization',
     path: '/solutions/procurement-services',
-    keywords: ['procurement', 'supplier', 'suppliers', 'purchase', 'buying', 'spend', 'sourcing', 'vendor'],
-    diagnosis: 'Supplier performance, unmanaged spend, or weak procurement controls may be increasing cost and supply risk.',
-    recommendation: 'Review spend categories, supplier performance, purchase controls, and sourcing opportunities.',
-    impact: 'Typical impact: 5-15% addressable spend savings, better supplier reliability, and improved purchase visibility.',
+    keywords: ['procurement', 'manual procurement', 'supplier', 'supplier issues', 'suppliers', 'purchase', 'buying', 'spend', 'sourcing', 'vendor'],
+    tools: ['Supplier management', 'Purchasing workflow design', 'Spend visibility'],
+    diagnosis: 'Uncontrolled spend, weak supplier management, or manual procurement processes may be increasing cost and supply risk.',
+    recommendation: 'Improve supplier management, purchasing workflows, cost control, and procurement visibility.',
+    impact: 'Expected impact: improved cost control, supplier performance, and procurement efficiency.',
+    experience: 'Relevant experience: execution-focused procurement and sourcing optimisation across supply chain transformation programmes.',
+    nextStep: 'Request a procurement assessment.',
     questions: [
       'Monthly or annual procurement spend?',
       'Top spend categories?',
@@ -72,12 +126,16 @@ const solutionAreas = [
     ],
   },
   {
-    name: 'Analytics',
+    id: 'data_analytics',
+    name: 'Data Analytics & Reporting',
     path: '/solutions/data-analytics-reporting',
-    keywords: ['analytics', 'data', 'dashboard', 'report', 'reporting', 'visibility', 'kpi', 'forecast', 'forecasting'],
-    diagnosis: 'Limited data visibility is likely slowing decisions and hiding cost, stock, or service exceptions.',
-    recommendation: 'Build a reporting and analytics layer around operational KPIs, exception dashboards, and decision-ready insights.',
-    impact: 'Typical impact: 30-60% faster reporting, clearer performance visibility, and faster exception management.',
+    keywords: ['analytics', 'data', 'dashboard', 'report', 'reporting', 'slow reporting', 'visibility', 'poor visibility', 'kpi', 'forecast', 'forecasting', 'disconnected data'],
+    tools: ['Power BI', 'Tableau'],
+    diagnosis: 'Lack of visibility, manual reporting, slow decision-making, or disconnected data may be hiding operational performance issues.',
+    recommendation: 'Transform operational data into dashboards, insights, predictive models, and decision-support tools.',
+    impact: 'Expected impact: faster decision-making, improved reporting accuracy, and real-time operational visibility.',
+    experience: 'Relevant experience: Accenture Power BI dashboards; CCBA analytics support.',
+    nextStep: 'Request a data visibility assessment.',
     questions: [
       'Which KPIs do you need daily or weekly?',
       'Where is the data stored now?',
@@ -85,6 +143,22 @@ const solutionAreas = [
     ],
   },
 ]
+
+const challengeToSolutionId = {
+  'high delivery costs': 'transport_optimization',
+  'route inefficiency': 'transport_optimization',
+  'delivery delays': 'transport_optimization',
+  'poor visibility': 'data_analytics',
+  'slow reporting': 'data_analytics',
+  'stockouts or overstock': 'warehouse_optimization',
+  'stock issues': 'warehouse_optimization',
+  'warehouse inefficiency': 'warehouse_optimization',
+  'manual procurement': 'procurement_systems',
+  'supplier issues': 'procurement_systems',
+  'disconnected systems': 'erp_transformation',
+  'manual processes': 'erp_transformation',
+  'erp/tms issues': 'erp_transformation',
+}
 
 function hasBusinessContext(text) {
   return (
@@ -96,9 +170,21 @@ function hasBusinessContext(text) {
 }
 
 function findSolutionArea(text) {
+  const mappedId = Object.entries(challengeToSolutionId).find(([challenge]) =>
+    text.includes(challenge)
+  )?.[1]
+
+  if (mappedId) {
+    return solutionAreas.find((area) => area.id === mappedId)
+  }
+
   return solutionAreas.find((area) =>
     area.keywords.some((keyword) => text.includes(keyword))
   )
+}
+
+function formatSolutionReply(area) {
+  return `Diagnosis: ${area.diagnosis}\n\nRecommended Solution: ${area.name}. ${area.recommendation}\n\nExpected Impact: ${area.impact}\n\nRelevant Experience: ${area.experience}\n\nNext Step: ${area.nextStep}`
 }
 
 function getBusinessTypeReply(message) {
@@ -133,63 +219,15 @@ function getBusinessTypeReply(message) {
 
 function getChallengeReply(message) {
   const text = message.toLowerCase()
+  const mappedAreaId = challengeToSolutionId[text]
+  const mappedArea = solutionAreas.find((area) => area.id === mappedAreaId)
 
-  if (text === 'high delivery costs') {
+  if (mappedArea) {
     return {
-      answer: 'Diagnosis: Transport cost-to-serve is likely being driven by route inefficiency, low vehicle utilisation, or weak dispatch control.\n\nRecommendation: Transport solution with TMS and route optimisation assessment.\n\nImpact: 8-18% lower delivery cost and 10-25% better delivery reliability.\n\nNext step: share monthly deliveries, transport spend, and delivery regions.',
+      answer: formatSolutionReply(mappedArea),
       actions: [
-        { label: 'View Transport', path: '/solutions/tms-implementation' },
+        { label: 'View Solution', path: mappedArea.path },
         { label: 'Request Assessment', path: '/fee-quote' },
-      ],
-    }
-  }
-
-  if (text === 'poor visibility') {
-    return {
-      answer: 'Diagnosis: Management visibility is likely limited by disconnected data, manual tracking, or missing operational dashboards.\n\nRecommendation: Analytics solution for KPI dashboards, exception reporting, and supply chain visibility.\n\nImpact: 30-60% faster reporting and quicker exception management.\n\nNext step: share the KPIs you need daily and where the data sits now.',
-      actions: [
-        { label: 'View Analytics', path: '/solutions/data-analytics-reporting' },
-        { label: 'Request Assessment', path: '/fee-quote' },
-      ],
-    }
-  }
-
-  if (text === 'stockouts or overstock') {
-    return {
-      answer: 'Diagnosis: Inventory imbalance is likely caused by poor forecasting, weak replenishment rules, or inaccurate stock records.\n\nRecommendation: Warehouse and Analytics assessment focused on stock accuracy, replenishment, and demand visibility.\n\nImpact: 15-30% better stock productivity and fewer service failures from stockouts.\n\nNext step: share SKU count, stockout rate, and inventory value.',
-      actions: [
-        { label: 'View Warehouse', path: '/solutions/warehouse-management' },
-        { label: 'View Analytics', path: '/solutions/data-analytics-reporting' },
-      ],
-    }
-  }
-
-  if (text === 'manual processes') {
-    return {
-      answer: 'Diagnosis: Manual workflows are likely creating delays, errors, and weak process control.\n\nRecommendation: ERP transformation assessment to map workflows and automate finance, procurement, inventory, and operations handoffs.\n\nImpact: 20-35% faster reporting cycles and fewer manual errors.\n\nNext step: share which processes are manual and which systems are used today.',
-      actions: [
-        { label: 'View ERP', path: '/solutions/erp-transformation' },
-        { label: 'Request Assessment', path: '/fee-quote' },
-      ],
-    }
-  }
-
-  if (text === 'slow reporting') {
-    return {
-      answer: 'Diagnosis: Slow reporting is likely caused by manual data consolidation or fragmented source systems.\n\nRecommendation: Analytics solution for automated dashboards, KPI packs, and exception reporting.\n\nImpact: 30-60% faster reporting and better visibility into cost, service, and inventory performance.\n\nNext step: share reporting frequency, key KPIs, and data sources.',
-      actions: [
-        { label: 'View Analytics', path: '/solutions/data-analytics-reporting' },
-        { label: 'Request Assessment', path: '/fee-quote' },
-      ],
-    }
-  }
-
-  if (text === 'erp/tms issues') {
-    return {
-      answer: 'Diagnosis: ERP/TMS issues may be limiting process control, integration, transport planning, or operational visibility.\n\nRecommendation: ERP/TMS diagnostic to assess system fit, data quality, integrations, and process adoption.\n\nImpact: 10-25% better operational efficiency and stronger end-to-end visibility.\n\nNext step: share current ERP/TMS, pain points, users affected, and failed processes.',
-      actions: [
-        { label: 'View ERP', path: '/solutions/erp-transformation' },
-        { label: 'View TMS', path: '/solutions/tms-implementation' },
       ],
     }
   }
@@ -202,6 +240,31 @@ function getReply(message) {
   const matchedArea = findSolutionArea(text)
   const businessTypeReply = getBusinessTypeReply(message.trim())
   const challengeReply = getChallengeReply(message.trim())
+
+  if (
+    text.includes('company') ||
+    text.includes('optimum') ||
+    text.includes('who are you') ||
+    text.includes('about')
+  ) {
+    return {
+      answer: `Diagnosis: You need to understand whether OptimumSCS fits your supply chain transformation need.\n\nRecommended Solution: ${companyProfile.name} is ${companyProfile.positioning}\n\nExpected Impact: ${companyProfile.coreStrength}\n\nRelevant Experience: Differentiators include ${companyProfile.differentiation.join('; ')}.\n\nNext Step: Share your challenge so I can map it to Transport, Warehouse, ERP, Procurement, or Analytics.`,
+      actions: [
+        { label: 'View Solutions', path: '/solutions' },
+        { label: 'Request Assessment', path: '/fee-quote' },
+      ],
+    }
+  }
+
+  if (text.includes('industry') || text.includes('industries')) {
+    return {
+      answer: `Diagnosis: Industry context is needed to size the right supply chain intervention.\n\nRecommended Solution: OptimumSCS supports ${companyProfile.industries.join(', ')}.\n\nExpected Impact: Better alignment between operating model, technology, and measurable outcomes such as cost, efficiency, and visibility.\n\nRelevant Experience: Strong FMCG, logistics, and Pan-African implementation capability.\n\nNext Step: Select your biggest challenge or share your industry and monthly volume.`,
+      actions: [
+        { label: 'View Industries', path: '/industries' },
+        { label: 'Request Assessment', path: '/fee-quote' },
+      ],
+    }
+  }
 
   if (challengeReply) {
     return challengeReply
@@ -242,7 +305,7 @@ function getReply(message) {
 
   if (matchedArea) {
     return {
-      answer: `Diagnosis: ${matchedArea.diagnosis}\n\nRecommendation: ${matchedArea.name}. ${matchedArea.recommendation}\n\nImpact: ${matchedArea.impact}\n\nNext step: complete a short assessment, then request a quote based on scope and volumes.`,
+      answer: formatSolutionReply(matchedArea),
       actions: [
         { label: 'View Solution', path: matchedArea.path },
         { label: 'Request Quote', path: '/fee-quote' },
@@ -251,7 +314,7 @@ function getReply(message) {
   }
 
   return {
-    answer: 'Discovery required before recommendation.\n\n1. What supply chain area is affected: transport, warehouse, ERP, procurement, or analytics?\n2. What is the measurable problem: cost, efficiency, visibility, service level, or accuracy?\n3. What monthly volume, spend, SKUs, orders, or deliveries are involved?',
+    answer: `Discovery required before recommendation.\n\n1. What supply chain area is affected: transport, warehouse, ERP, procurement, or analytics?\n2. What is the measurable problem: cost, efficiency, visibility, service level, or accuracy?\n3. What monthly volume, spend, SKUs, orders, or deliveries are involved?\n\nContext: ${companyProfile.name} supports ${companyProfile.industries.slice(0, 5).join(', ')} and related supply chains from ${companyProfile.hq}.`,
     actions: [
       { label: 'View Solutions', path: '/solutions' },
       { label: 'Request Assessment', path: '/fee-quote' },
