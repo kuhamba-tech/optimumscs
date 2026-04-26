@@ -14,7 +14,7 @@ import {
   Truck,
 } from "lucide-react";
 
-import tmsImage from "../../assets/tms-implementation.png";
+import tmsImage from "../../assets/tms-implementation.jpg";
 import "./TMSImplementationPage.css";
 
 export default function TMSImplementationPage() {

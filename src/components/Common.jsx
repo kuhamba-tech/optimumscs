@@ -52,6 +52,8 @@ export function Hero({
             src={image ? image : optimumLogo}   /* 🔥 dynamic + fallback */
             alt="Hero visual"
             className={`hero-logo-image ${blendImage ? 'hero-logo-image-blend' : ''}`.trim()}
+            decoding="async"
+            fetchPriority="high"
           />
         </div>
 

@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react'
 import { Hero, FeatureCard, StepBar, IndustryCard, SectionHeading } from '../components/Common'
 import { homeFeatureCards, approachSteps, industrySummaryCards } from '../components/data'
 
-import transportImg from '../assets/transport.png'
-import analyticsImg from '../assets/data.png'
-import warehouseImg from '../assets/warehouse.png'
-import procurementImg from '../assets/procurement.png'
-import erpImg from '../assets/erp.png'
-import homepageOptimumLogo from '../assets/homepage-optimum-logo.png'
+import transportImg from '../assets/transport.jpg'
+import analyticsImg from '../assets/data.jpg'
+import warehouseImg from '../assets/warehouse.jpg'
+import procurementImg from '../assets/procurement.jpg'
+import erpImg from '../assets/erp.jpg'
+import homepageOptimumLogo from '../assets/homepage-optimum-logo.jpg'
 
 export default function HomePage() {
   const solutionSlides = [
@@ -86,6 +86,8 @@ export default function HomePage() {
                 src={solutionSlides[activeSlide].image}
                 alt={solutionSlides[activeSlide].title}
                 className="solution-image"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>

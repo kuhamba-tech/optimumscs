@@ -13,7 +13,7 @@ import {
   Headphones,
 } from "lucide-react";
 
-import erpImage from "../../assets/erp-transformation.png";
+import erpImage from "../../assets/erp-transformation.jpg";
 import "./ERPTransformationPage.css";
 
 export default function ERPTransformationPage() {

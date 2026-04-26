@@ -14,7 +14,7 @@ import {
   Warehouse,
 } from "lucide-react";
 
-import warehouseImage from "../../assets/warehouse-management.png";
+import warehouseImage from "../../assets/warehouse-management.jpg";
 import "./WarehouseManagementPage.css";
 
 export default function WarehouseManagementPage() {

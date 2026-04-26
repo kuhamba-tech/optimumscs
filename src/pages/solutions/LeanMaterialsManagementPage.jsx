@@ -14,7 +14,7 @@ import {
   Boxes,
 } from "lucide-react";
 
-import leanImage from "../../assets/lean-materialmanagement.png";
+import leanImage from "../../assets/lean-materialmanagement.jpg";
 import "./LeanMaterialsManagementPage.css";
 
 export default function LeanMaterialsManagementPage() {

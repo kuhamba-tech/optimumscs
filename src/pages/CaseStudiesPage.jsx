@@ -1,5 +1,5 @@
 import './CaseStudiesPage.css'
-import caseStudiesImg from '../assets/case-studies.png'
+import caseStudiesImg from '../assets/case-studies.jpg'
 import { trustedResultCards } from '../components/data'
 import { ResultCard } from '../components/Common'
 

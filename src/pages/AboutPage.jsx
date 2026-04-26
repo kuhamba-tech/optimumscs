@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Target, Briefcase, Lightbulb, ShieldCheck } from "lucide-react";
-import mosesImg from "../assets/about-moses-quote.png";
-import ceoImg from "../assets/about-ceo-quote.png";
+import mosesImg from "../assets/about-moses-quote.jpg";
+import ceoImg from "../assets/about-ceo-quote.jpg";
 import "./AboutPage.css";
 
 const whyChooseUs = [
