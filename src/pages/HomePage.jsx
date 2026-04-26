@@ -7,10 +7,11 @@ import analyticsImg from '../assets/data.png'
 import warehouseImg from '../assets/warehouse.png'
 import procurementImg from '../assets/procurement.png'
 import erpImg from '../assets/erp.png'
+import homepageOptimumLogo from '../assets/homepage-optimum-logo.png'
 
 export default function HomePage() {
   const solutionSlides = [
-    { title: 'Transport Optimizatio', image: transportImg },
+    { title: 'Transport Optimization', image: transportImg },
     { title: 'Data Analytics', image: analyticsImg },
     { title: 'Warehouse Optimization', image: warehouseImg },
     { title: 'Procurement Systems', image: procurementImg },
@@ -40,6 +41,8 @@ export default function HomePage() {
         subtitle={'Specialists in fast-moving consumer goods supply chains, where scale, speed, and visibility matter most.'}
         primary={'Request Quote'}
         secondary={'View Solutions'}
+        image={homepageOptimumLogo}
+        blendImage
       />
 
       <section className="section home-top-pad">

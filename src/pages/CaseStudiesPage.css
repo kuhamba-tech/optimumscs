@@ -1,65 +1,85 @@
 .case-hero-clean {
   background: #071b33;
   color: #ffffff;
-  padding: 72px 44px 78px;
+  padding: 72px 0 78px; /* 🔥 remove side padding (handled by container) */
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-.case-hero-grid {
-  max-width: 1360px;
+/* CONTAINER (exact match with About page) */
+.case-container-clean {
+  width: min(1200px, calc(100% - 48px)); /* 🔥 critical fix */
   margin: 0 auto;
+}
+
+/* GRID */
+.case-hero-grid {
   display: grid;
-  grid-template-columns: 0.9fr 1.15fr;
-  gap: 72px;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
   align-items: center;
 }
 
+/* TEXT */
 .case-hero-text h1 {
-  font-size: 66px;
+  font-size: 64px;
   line-height: 1;
-  margin: 0 0 34px;
+  margin: 0 0 28px;
   font-weight: 900;
-  letter-spacing: -2px;
+  letter-spacing: -1.5px;
 }
 
 .case-hero-text p {
-  max-width: 650px;
-  font-size: 24px;
-  line-height: 1.65;
-  color: #d7e3f2;
-  font-weight: 500;
+  max-width: 620px;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #d8e4f2;
 }
 
+/* IMAGE WRAPPER */
+.case-hero-image {
+  width: 100%;
+  height: 460px; /* same as About */
+  overflow: hidden;
+  border-radius: 12px;
+
+  display: flex;
+  justify-content: flex-start; /* 🔥 aligns image exactly like About */
+}
+
+/* IMAGE */
 .case-hero-image img {
   width: 100%;
-  height: 640px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 18px;
+  object-position: center;
   display: block;
-  box-shadow: 0 26px 70px rgba(0,0,0,0.4);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.35);
 }
 
+/* CONTENT SECTION */
 .case-content-clean {
   background: #071b33;
   color: #ffffff;
-  padding: 70px 44px;
+  padding: 60px 0; /* 🔥 align with container */
 }
 
-.case-container-clean {
-  max-width: 1360px;
-  margin: 0 auto;
-}
-
+/* RESPONSIVE */
 @media (max-width: 900px) {
   .case-hero-grid {
     grid-template-columns: 1fr;
-  }
-
-  .case-hero-image img {
-    height: auto;
+    gap: 40px;
   }
 
   .case-hero-text h1 {
-    font-size: 48px;
+    font-size: 44px;
+  }
+
+  .case-hero-text p {
+    font-size: 18px;
+  }
+
+  .case-hero-image {
+    height: 320px;
+    justify-content: flex-start;
   }
 }

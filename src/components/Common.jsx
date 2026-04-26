@@ -11,27 +11,50 @@ export function Button({ children, variant = 'primary', to = '#', className = ''
   )
 }
 
-export function Hero({ title, subtitle, primary, secondary, visual = 'globe', compact = false }) {
+/* ✅ UPDATED HERO (dynamic image support) */
+export function Hero({
+  title,
+  subtitle,
+  primary,
+  secondary,
+  visual = 'globe',
+  compact = false,
+  image,
+  blendImage = false
+}) {
   return (
     <section className={`hero-section ${compact ? 'hero-compact' : ''}`}>
       <div className="container hero-grid">
+
         <div className="hero-copy">
           <h1 dangerouslySetInnerHTML={{ __html: title }} />
           <p>{subtitle}</p>
+
           {(primary || secondary) && (
             <div className="hero-actions">
-              {primary && <Button to="/fee-quote" variant="primary">{primary}</Button>}
-        {secondary && <Button to="/solutions" variant="primary">{secondary}</Button>}
+              {primary && (
+                <Button to="/fee-quote" variant="primary">
+                  {primary}
+                </Button>
+              )}
+              {secondary && (
+                <Button to="/solutions" variant="primary">
+                  {secondary}
+                </Button>
+              )}
             </div>
           )}
         </div>
-        <div className="hero-visual-box">
-  <img
-    src={optimumLogo}
-    alt="Optimum Supply Chain Solutions"
-    className="hero-logo-image"
-  />
-</div>
+
+        {/* ✅ THIS IS THE FIX */}
+        <div className={`hero-visual-box ${blendImage ? 'hero-visual-box-blend' : ''}`.trim()}>
+          <img
+            src={image ? image : optimumLogo}   /* 🔥 dynamic + fallback */
+            alt="Hero visual"
+            className={`hero-logo-image ${blendImage ? 'hero-logo-image-blend' : ''}`.trim()}
+          />
+        </div>
+
       </div>
     </section>
   )
@@ -89,14 +112,17 @@ export function ResultCard({ title, problem, solution, result, resultLabel, acce
     <article className="glass-card result-card">
       <div className="result-icon"><Icon /></div>
       <h3>{title}</h3>
+
       <div className={`case-copy accent-text-${accent}`}>
         <strong>Problem:</strong>
         <p>{problem}</p>
       </div>
+
       <div className={`case-copy accent-text-${accent}`}>
         <strong>Solution:</strong>
         <p>{solution}</p>
       </div>
+
       <div className={`result-pill accent-bg-${accent}`}>
         <span>Result:</span>
         <strong>{result}</strong>

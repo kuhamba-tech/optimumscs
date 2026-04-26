@@ -65,18 +65,20 @@ export default function SolutionsPage() {
   return (
     <>
       <section className="solutions-hero-clean">
-        <div className="solutions-hero-grid">
-          <div className="solutions-hero-text">
-            <h1>Our Solutions</h1>
-            <p>
-              OptimumSCS delivers a comprehensive suite of solutions designed to
-              optimise supply chains, enhance operational efficiency, and drive
-              measurable business performance across industries.
-            </p>
-          </div>
+        <div className="solutions-container-clean">
+          <div className="solutions-hero-grid">
+            <div className="solutions-hero-text">
+              <h1>Our Solutions</h1>
+              <p>
+                OptimumSCS delivers a comprehensive suite of solutions designed to
+                optimise supply chains, enhance operational efficiency, and drive
+                measurable business performance across industries.
+              </p>
+            </div>
 
-          <div className="solutions-hero-image">
-            <img src={ourSolutionsImg} alt="Our Solutions" />
+            <div className="solutions-hero-image">
+              <img src={ourSolutionsImg} alt="Our Solutions" />
+            </div>
           </div>
         </div>
       </section>
