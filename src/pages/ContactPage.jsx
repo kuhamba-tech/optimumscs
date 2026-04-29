@@ -31,10 +31,10 @@ export default function ContactPage() {
           </div>
 
           <div className="glass-card contact-hero-actions">
-            <a href="#contact-form" className="btn btn-primary contact-top-btn">
+            <Link to="/book-consultation" className="btn btn-primary contact-top-btn">
               <CalendarMini />
               <span>Book a Consultation</span>
-            </a>
+            </Link>
             <Link to="/fee-quote" className="btn btn-primary contact-top-btn">
               <PlaneMini />
               <span>Request Quote</span>

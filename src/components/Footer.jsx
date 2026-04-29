@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { LinkedinMini, XMini, MailMini } from './Icons'
-import cscLogo from '../assets/csc-logo.png'
+import cscLogo from '../assets/csc-logo-transparent.png'
 
 export default function Footer() {
   return (

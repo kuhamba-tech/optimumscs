@@ -1,6 +1,6 @@
 .erp-page {
   min-height: 100vh;
-  background: linear-gradient(180deg, #021b3a 0%, #00142c 100%);
+  background: var(--primary-bg-gradient);
   color: #ffffff;
   padding: 40px 20px;
   font-family: Inter, sans-serif;
@@ -85,15 +85,21 @@
 }
 
 /* IMAGE */
+.erp-hero-image {
+  background: transparent;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
 .erp-hero-image img {
   width: 100%;
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 0;
 }
 
 /* PANELS */
 .erp-panel {
-  background: #04244a;
+  background: var(--primary-bg-gradient);
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
@@ -121,7 +127,7 @@
 
 .erp-card,
 .erp-solution-card {
-  background: #062a55;
+  background: var(--primary-bg-gradient);
   padding: 18px;
   border-radius: 10px;
   text-align: center;
@@ -168,7 +174,7 @@
 }
 
 .erp-impact-card {
-  background: #062a55;
+  background: var(--primary-bg-gradient);
   padding: 15px;
   text-align: center;
   border-radius: 10px;
@@ -232,7 +238,7 @@
   background:
     radial-gradient(circle at center, rgba(0, 180, 255, 0.35), transparent 35%),
     radial-gradient(circle at bottom right, rgba(45, 120, 255, 0.25), transparent 35%),
-    linear-gradient(135deg, #03152d, #062a55);
+    var(--primary-bg-gradient);
   border: 1px solid rgba(125, 180, 255, 0.25);
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
 }
@@ -269,7 +275,7 @@
   height: 150px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle, #0b7dcc, #021b3a);
+  background: radial-gradient(circle, #0b7dcc, #061832);
   border: 8px solid rgba(87, 220, 255, 0.35);
   box-shadow: 0 0 40px rgba(0, 195, 255, 0.55);
   display: flex;
@@ -336,7 +342,7 @@
   background:
     radial-gradient(circle at center, rgba(0, 180, 255, 0.35), transparent 35%),
     radial-gradient(circle at bottom right, rgba(45, 120, 255, 0.25), transparent 35%),
-    linear-gradient(135deg, #03152d, #062a55);
+    var(--primary-bg-gradient);
   border: 1px solid rgba(125, 180, 255, 0.25);
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
 }
@@ -373,7 +379,7 @@
   height: 150px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle, #0b7dcc, #021b3a);
+  background: radial-gradient(circle, #0b7dcc, #061832);
   border: 8px solid rgba(87, 220, 255, 0.35);
   box-shadow: 0 0 40px rgba(0, 195, 255, 0.55);
   display: flex;

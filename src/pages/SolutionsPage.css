@@ -1,5 +1,5 @@
 .solutions-hero-clean {
-  background: #071b33;
+  background: var(--primary-bg-gradient);
   color: #ffffff;
   padding: 72px 0 78px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -39,6 +39,7 @@
   height: 460px;
   overflow: hidden;
   border-radius: 12px;
+  background: transparent;
 }
 
 .solutions-hero-image img {
@@ -51,7 +52,7 @@
 }
 
 .solutions-content-clean {
-  background: #071b33;
+  background: var(--primary-bg-gradient);
   color: #ffffff;
   padding: 70px 0;
 }
@@ -70,7 +71,7 @@
 }
 
 .solution-inner-card {
-  background: rgba(1, 13, 29, 0.55);
+  background: var(--primary-bg-gradient);
   border-radius: 16px;
   padding: 22px;
 }

@@ -1,6 +1,6 @@
 .about-page-clean {
   min-height: 100vh;
-  background: #061832;
+  background: var(--primary-bg-gradient);
   color: #ffffff;
   padding-bottom: 70px;
 }
@@ -55,6 +55,7 @@
   height: 460px;
   overflow: hidden;
   border-radius: 10px;
+  background: transparent;
 }
 
 .about-slide {
@@ -92,7 +93,7 @@
 
 .mission-card {
   margin-top: 36px;
-  background: #0d2a57;
+  background: var(--primary-bg-gradient);
   border: 1px solid rgba(110,165,255,0.28);
   border-radius: 12px;
   padding: 26px;
@@ -139,7 +140,7 @@
 }
 
 .why-card {
-  background: #0d2a57;
+  background: var(--primary-bg-gradient);
   border: 1px solid rgba(110,165,255,0.28);
   border-radius: 12px;
   padding: 24px;

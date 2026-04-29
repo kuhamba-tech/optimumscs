@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { navItems } from './data'
-import cscLogo from '../assets/csc-logo.png'
+import cscLogo from '../assets/csc-logo-transparent.png'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)

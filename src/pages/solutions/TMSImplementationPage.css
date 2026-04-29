@@ -1,6 +1,6 @@
 .tms-page {
   min-height: 100vh;
-  background: linear-gradient(180deg, #021b3a, #00142c);
+  background: var(--primary-bg-gradient);
   color: white;
   padding: 40px 20px;
 }
@@ -47,6 +47,12 @@
 }
 
 /* IMAGE */
+.tms-hero-image {
+  background: transparent;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
 .tms-hero-image img {
   width: 100%;
   height: 350px;
@@ -57,7 +63,7 @@
 /* PANELS */
 .tms-panel {
   margin-top: 40px;
-  background: #04244a;
+  background: var(--primary-bg-gradient);
   padding: 20px;
   border-radius: 10px;
 }
@@ -78,7 +84,7 @@
 /* CARDS */
 .tms-card,
 .tms-solution-card {
-  background: #062a55;
+  background: var(--primary-bg-gradient);
   padding: 15px;
   border-radius: 10px;
   text-align: center;
@@ -96,7 +102,7 @@
 }
 
 .tms-impact-card {
-  background: #062a55;
+  background: var(--primary-bg-gradient);
   padding: 15px;
   text-align: center;
   border-radius: 10px;

@@ -7,6 +7,7 @@ import AboutPage from './pages/AboutPage'
 import CaseStudiesPage from './pages/CaseStudiesPage'
 import ContactPage from './pages/ContactPage'
 import FeeQuotePage from './pages/FeeQuotePage'
+import BookConsultationPage from './pages/BookConsultationPage'
 import ERPTransformationPage from './pages/solutions/ERPTransformationPage'
 import TMSImplementationPage from './pages/solutions/TMSImplementationPage'
 import ProcurementServicesPage from './pages/solutions/ProcurementServicesPage'
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/case-studies" element={<CaseStudiesPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/fee-quote" element={<FeeQuotePage />} />
+          <Route path="/book-consultation" element={<BookConsultationPage />} />
           <Route path="/solutions/erp-transformation" element={<ERPTransformationPage />} />
           <Route path="/solutions/tms-implementation" element={<TMSImplementationPage />} />
           <Route path="/solutions/procurement-services" element={<ProcurementServicesPage />} />

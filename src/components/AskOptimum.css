@@ -47,7 +47,7 @@
 /* Header */
 .ask-header {
   padding: 18px 20px;
-  background: #071b33;
+  background: var(--primary-bg-gradient);
   color: #ffffff;
   display: flex;
   align-items: center;

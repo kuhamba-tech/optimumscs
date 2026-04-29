@@ -3,13 +3,61 @@ import caseStudiesImg from '../assets/case-studies.jpg'
 import { trustedResultCards } from '../components/data'
 import { ResultCard } from '../components/Common'
 
+const clientTestimonials = [
+  {
+    quote:
+      'OptimumSCS helped us optimise our routes and reduce transport costs significantly. Their team’s expertise and data-driven approach delivered real results.',
+    role: 'Supply Chain Director',
+    industry: 'Beverage Industry',
+  },
+  {
+    quote:
+      'The TMS implementation was seamless and has given us real-time visibility across our operations. Our delivery accuracy has improved remarkably.',
+    role: 'Operations Manager',
+    industry: 'Logistics Industry',
+  },
+  {
+    quote:
+      'Their ERP and BI integration transformed our reporting and decision-making. We now have complete control and visibility across the supply chain.',
+    role: 'IT Director',
+    industry: 'Technology Industry',
+  },
+]
+
+const impactMetrics = [
+  { value: '5+', label: 'Countries', detail: 'Served with integrated solutions', accent: 'green', icon: 'globe' },
+  { value: '100+', label: 'Projects Delivered', detail: 'Across multiple industries', accent: 'blue', icon: 'chart' },
+  { value: '98%', label: 'Client Satisfaction', detail: 'Based on project feedback', accent: 'purple', icon: 'people' },
+  { value: '15%+', label: 'Average Cost Savings', detail: 'Achieved by our clients', accent: 'orange', icon: 'saving' },
+]
+
+const metricIconPaths = {
+  globe: (
+    <>
+      <circle cx="12" cy="12" r="8" />
+      <path d="M4 12h16M12 4c2.4 2.2 3.6 4.9 3.6 8S14.4 17.8 12 20c-2.4-2.2-3.6-4.9-3.6-8S9.6 6.2 12 4Z" />
+    </>
+  ),
+  chart: <path d="M5 19h14M7 15l4-4 3 3 5-7M17 7h2v2" />,
+  people: (
+    <>
+      <path d="M8.5 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM15.5 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+      <path d="M3.5 19a5 5 0 0 1 10 0M10.5 19a5 5 0 0 1 10 0" />
+    </>
+  ),
+  saving: (
+    <>
+      <path d="M12 5v14M8.5 8.5c0-1.8 1.5-3 3.6-3 2 0 3.4 1 3.4 2.7 0 3.8-7 2-7 5.6 0 1.7 1.5 2.7 3.7 2.7 2.1 0 3.8-1.1 3.8-3" />
+      <circle cx="12" cy="12" r="9" />
+    </>
+  ),
+}
+
 export default function CaseStudiesPage() {
   return (
     <>
-      {/* HERO SECTION */}
       <section className="case-hero-clean">
-        <div className="case-container-clean"> {/* ✅ FIX: added container */}
-          
+        <div className="case-container-clean">
           <div className="case-hero-grid">
             <div className="case-hero-text">
               <h1>Case Studies</h1>
@@ -22,20 +70,70 @@ export default function CaseStudiesPage() {
               <img src={caseStudiesImg} alt="Case Studies" />
             </div>
           </div>
-
         </div>
       </section>
 
-      {/* CONTENT SECTION */}
       <section className="case-content-clean">
         <div className="case-container-clean">
-
-          <div className="result-grid case-result-grid"> {/* ✅ safer grid */}
+          <div className="result-grid case-result-grid">
             {trustedResultCards.map((card) => (
               <ResultCard key={card.title} {...card} />
             ))}
           </div>
 
+          <div className="case-proof-grid">
+            <section className="case-proof-panel">
+              <div className="case-proof-heading">
+                <h2>What Our Clients Say</h2>
+              </div>
+
+              <div className="testimonial-grid">
+                {clientTestimonials.map((testimonial) => (
+                  <article className="testimonial-card" key={`${testimonial.role}-${testimonial.industry}`}>
+                    <div className="quote-mark">“</div>
+                    <p>{testimonial.quote}</p>
+                    <div className="testimonial-person">
+                      <div className="testimonial-avatar" aria-hidden="true">
+                        <span />
+                      </div>
+                      <div>
+                        <strong>{testimonial.role}</strong>
+                        <span>{testimonial.industry}</span>
+                        <em>(Name Withheld)</em>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <p className="confidentiality-note">
+                For client confidentiality, specific names have been withheld.
+              </p>
+            </section>
+
+            <section className="case-proof-panel">
+              <div className="case-proof-heading">
+                <h2>Our Impact in Numbers</h2>
+              </div>
+
+              <div className="impact-metric-grid">
+                {impactMetrics.map((metric) => (
+                  <article className="impact-metric-card" key={metric.label}>
+                    <div className={`impact-icon ${metric.accent}`}>
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        {metricIconPaths[metric.icon]}
+                      </svg>
+                    </div>
+                    <div>
+                      <strong>{metric.value}</strong>
+                      <span>{metric.label}</span>
+                      <p>{metric.detail}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          </div>
         </div>
       </section>
     </>

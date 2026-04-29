@@ -1,7 +1,7 @@
 /* ================= CLEAN HOME PAGE HERO ================= */
 
 .home-hero-clean {
-  background: #071b33;
+  background: var(--primary-bg-gradient);
   color: #ffffff;
   padding: 72px 0 78px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -47,7 +47,8 @@
   height: 460px;
   overflow: hidden;
   border-radius: 12px;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+  background: transparent;
+  box-shadow: none;
 }
 
 .home-hero-image img {
@@ -94,8 +95,8 @@
   aspect-ratio: 16 / 10;
   border-radius: 18px;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,.06);
-  background: rgba(7, 18, 37, 0.82);
+  border: 0;
+  background: transparent;
 }
 
 .solution-image {
