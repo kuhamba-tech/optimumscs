@@ -89,7 +89,12 @@ export default function BookConsultationPage() {
             </div>
           </article>
 
-          <form className="glass-card consultation-form-card">
+          <form
+            className="glass-card consultation-form-card"
+            action="mailto:info@optimumscs.com"
+            method="post"
+            encType="text/plain"
+          >
             <div className="section-heading left compact-heading">
               <h2>Consultation Request</h2>
             </div>
@@ -99,42 +104,42 @@ export default function BookConsultationPage() {
                 <span>Full Name</span>
                 <div className="input-with-icon">
                   <UserIcon />
-                  <input type="text" placeholder="Your full name" />
+                  <input name="Full Name" type="text" placeholder="Your full name" />
                 </div>
               </label>
               <label>
                 <span>Company</span>
                 <div className="input-with-icon">
                   <BriefMini />
-                  <input type="text" placeholder="Company name" />
+                  <input name="Company" type="text" placeholder="Company name" />
                 </div>
               </label>
               <label>
                 <span>Email</span>
                 <div className="input-with-icon">
                   <MailMini />
-                  <input type="email" placeholder="name@company.com" />
+                  <input name="Email" type="email" placeholder="name@company.com" />
                 </div>
               </label>
               <label>
                 <span>Phone</span>
                 <div className="input-with-icon">
                   <PhoneMini />
-                  <input type="text" placeholder="+27" />
+                  <input name="Phone" type="text" placeholder="+27" />
                 </div>
               </label>
               <label>
                 <span>Preferred Date</span>
                 <div className="input-with-icon">
                   <CalendarMini />
-                  <input type="date" aria-label="Preferred date" />
+                  <input name="Preferred Date" type="date" aria-label="Preferred date" />
                 </div>
               </label>
               <label>
                 <span>Preferred Time</span>
                 <div className="input-with-icon">
                   <ClockMini />
-                  <input type="time" aria-label="Preferred time" />
+                  <input name="Preferred Time" type="time" aria-label="Preferred time" />
                 </div>
               </label>
               <label className="full select-field">
@@ -142,6 +147,7 @@ export default function BookConsultationPage() {
                 <div className="select-shell input-with-icon">
                   <BriefMini />
                   <input
+                    name="Area of Interest"
                     type="text"
                     placeholder={`Select an area of interest, e.g. ${interestOptions[0]}`}
                     readOnly
@@ -153,13 +159,13 @@ export default function BookConsultationPage() {
                 <span>Brief Description</span>
                 <div className="input-with-icon textarea-with-icon">
                   <PlaneMini />
-                  <textarea rows="5" placeholder="Tell us what you would like to discuss" />
+                  <textarea name="Brief Description" rows="5" placeholder="Tell us what you would like to discuss" />
                 </div>
               </label>
             </div>
 
             <div className="consultation-form-footer">
-              <button type="button" className="btn btn-primary submit-wide-btn">
+              <button type="submit" className="btn btn-primary submit-wide-btn">
                 <PlaneMini />
                 <span>Submit Consultation Request</span>
               </button>

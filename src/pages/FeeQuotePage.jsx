@@ -19,15 +19,20 @@ export default function FeeQuotePage() {
   <li>Consulting Services</li>
           </ul>
         </div>
-        <form className="glass-card contact-form-card">
+        <form
+          className="glass-card contact-form-card"
+          action="mailto:info@optimumscs.com"
+          method="post"
+          encType="text/plain"
+        >
           <div className="form-grid">
-            <label><span>Name</span><input type="text" placeholder="Your full name" /></label>
-            <label><span>Company</span><input type="text" placeholder="Company name" /></label>
-            <label><span>Email</span><input type="email" placeholder="name@company.com" /></label>
-            <label><span>Industry</span><input type="text" placeholder="FMCG, Logistics, Healthcare..." /></label>
-            <label className="full"><span>Scope of Work</span><textarea rows="6" placeholder="Outline the scale, systems, and outcomes required" /></label>
+            <label><span>Name</span><input name="Name" type="text" placeholder="Your full name" /></label>
+            <label><span>Company</span><input name="Company" type="text" placeholder="Company name" /></label>
+            <label><span>Email</span><input name="Email" type="email" placeholder="name@company.com" /></label>
+            <label><span>Industry</span><input name="Industry" type="text" placeholder="FMCG, Logistics, Healthcare..." /></label>
+            <label className="full"><span>Scope of Work</span><textarea name="Scope of Work" rows="6" placeholder="Outline the scale, systems, and outcomes required" /></label>
           </div>
-          <button type="button" className="btn btn-primary">Request Quote</button>
+          <button type="submit" className="btn btn-primary">Send Quote</button>
         </form>
       </div>
     </section>
