@@ -41,9 +41,9 @@ export default function WarehouseManagementPage() {
 
             <button
               className="warehouse-btn primary"
-              onClick={() => navigate("/request-quote")}
+              onClick={() => navigate("/book-consultation")}
             >
-              Request a Quote <ArrowRight size={15} />
+              Book Consultation <ArrowRight size={15} />
             </button>
           </div>
 
@@ -124,10 +124,10 @@ export default function WarehouseManagementPage() {
           <h3>Business Impact</h3>
 
           <div className="warehouse-impact-grid">
-            <Impact value="+30%" label="Improved Inventory Accuracy" />
-            <Impact value="+25%" label="Faster Order Fulfilment" />
-            <Impact value="-20%" label="Reduction in Picking Errors" />
-            <Impact value="+18%" label="Warehouse Efficiency Gain" />
+            <Impact value="+10-15%" label="Improved Inventory Accuracy" />
+            <Impact value="+8-14%" label="Faster Order Fulfilment" />
+            <Impact value="-8-12%" label="Reduction in Picking Errors" />
+            <Impact value="+8-12%" label="Warehouse Efficiency Gain" />
           </div>
         </section>
 

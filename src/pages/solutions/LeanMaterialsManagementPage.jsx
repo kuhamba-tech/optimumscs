@@ -41,9 +41,9 @@ export default function LeanMaterialsManagementPage() {
 
             <button
               className="lean-btn primary"
-              onClick={() => navigate("/request-quote")}
+              onClick={() => navigate("/book-consultation")}
             >
-              Request a Quote <ArrowRight size={15} />
+              Book Consultation <ArrowRight size={15} />
             </button>
           </div>
 
@@ -124,10 +124,10 @@ export default function LeanMaterialsManagementPage() {
           <h3>Business Impact</h3>
 
           <div className="lean-impact-grid">
-            <Impact value="-25%" label="Reduced Inventory Waste" />
-            <Impact value="+30%" label="Improved Material Flow" />
-            <Impact value="+20%" label="Better Stock Visibility" />
-            <Impact value="-18%" label="Lower Holding Costs" />
+            <Impact value="-8-12%" label="Reduced Inventory Waste" />
+            <Impact value="+10-15%" label="Improved Material Flow" />
+            <Impact value="+8-12%" label="Better Stock Visibility" />
+            <Impact value="-6-10%" label="Lower Holding Costs" />
           </div>
         </section>
 

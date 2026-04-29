@@ -39,9 +39,9 @@ export default function ConsultingServicesPage() {
 
             <button
               className="consult-btn primary"
-              onClick={() => navigate("/request-quote")}
+              onClick={() => navigate("/book-consultation")}
             >
-              Request a Quote <ArrowRight size={15} />
+              Book Consultation <ArrowRight size={15} />
             </button>
           </div>
 
@@ -125,10 +125,10 @@ export default function ConsultingServicesPage() {
           <h3>Business Impact</h3>
 
           <div className="consult-impact-grid">
-            <Impact value="+30%" label="Operational Efficiency" />
-            <Impact value="+25%" label="Better Decision Making" />
-            <Impact value="+35%" label="Process Improvement" />
-            <Impact value="+40%" label="Visibility & Control" />
+            <Impact value="+8-12%" label="Operational Efficiency" />
+            <Impact value="+10-15%" label="Better Decision Making" />
+            <Impact value="+10-16%" label="Process Improvement" />
+            <Impact value="+12-18%" label="Visibility & Control" />
           </div>
         </section>
 

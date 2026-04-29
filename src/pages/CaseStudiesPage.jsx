@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './CaseStudiesPage.css'
 import caseStudiesImg from '../assets/case-studies.jpg'
 import { trustedResultCards } from '../components/data'
@@ -27,8 +28,8 @@ const clientTestimonials = [
 const impactMetrics = [
   { value: '5+', label: 'Countries', detail: 'Served with integrated solutions', accent: 'green', icon: 'globe' },
   { value: '100+', label: 'Projects Delivered', detail: 'Across multiple industries', accent: 'blue', icon: 'chart' },
-  { value: '98%', label: 'Client Satisfaction', detail: 'Based on project feedback', accent: 'purple', icon: 'people' },
-  { value: '15%+', label: 'Average Cost Savings', detail: 'Achieved by our clients', accent: 'orange', icon: 'saving' },
+  { value: '92%', label: 'Client Satisfaction', detail: 'Based on project feedback', accent: 'purple', icon: 'people' },
+  { value: '8-12%', label: 'Average Cost Savings', detail: 'Typical project range achieved by clients', accent: 'orange', icon: 'saving' },
 ]
 
 const metricIconPaths = {
@@ -53,7 +54,52 @@ const metricIconPaths = {
   ),
 }
 
+const africaFootprint = [
+  {
+    country: 'South Africa',
+    x: 50,
+    y: 84,
+    industry: 'FMCG Distribution',
+    solution: 'Route Optimization & ERP Visibility',
+    result: '9% transport cost improvement',
+  },
+  {
+    country: 'Zimbabwe',
+    x: 56,
+    y: 71,
+    industry: 'Beverage & Warehouse Operations',
+    solution: 'WMS and materials flow improvement',
+    result: 'Improved stock accuracy and fulfilment control',
+  },
+  {
+    country: 'Uganda',
+    x: 59,
+    y: 53,
+    industry: 'Logistics & Regional Distribution',
+    solution: 'Transport planning and delivery visibility',
+    result: 'Better route control and service visibility',
+  },
+  {
+    country: 'Kenya',
+    x: 65,
+    y: 57,
+    industry: 'Supply Chain Technology',
+    solution: 'ERP, TMS and BI integration',
+    result: '13% service delivery speed improvement',
+  },
+  {
+    country: 'Namibia',
+    x: 43,
+    y: 76,
+    industry: 'Cross-border Logistics',
+    solution: 'Transport optimisation and reporting',
+    result: 'Improved regional planning visibility',
+  },
+]
+
 export default function CaseStudiesPage() {
+  const [selectedCountry, setSelectedCountry] = useState(africaFootprint[0])
+
   return (
     <>
       <section className="case-hero-clean">
@@ -134,6 +180,62 @@ export default function CaseStudiesPage() {
               </div>
             </section>
           </div>
+
+          <section className="africa-footprint-section">
+            <div className="case-proof-heading footprint-heading">
+              <h2>Our Footprint in Africa</h2>
+              <p>Delivering supply chain transformation across key African markets</p>
+            </div>
+
+            <div className="africa-footprint-grid">
+              <div className="africa-map-card" aria-label="Interactive Africa footprint map">
+                <div className="africa-google-map">
+                  <iframe
+                    title="Google map of Africa"
+                    src="https://www.google.com/maps?q=Africa&z=3&output=embed"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+
+                  <div className="africa-map-overlay" aria-label="Countries served across Africa">
+                    {africaFootprint.map((point) => (
+                      <button
+                        key={point.country}
+                        type="button"
+                        className={`country-map-marker ${selectedCountry.country === point.country ? 'active' : ''}`}
+                        style={{ left: `${point.x}%`, top: `${point.y}%` }}
+                        aria-label={`View ${point.country} footprint result`}
+                        onClick={() => setSelectedCountry(point)}
+                      >
+                        <span className="country-map-dot" />
+                        <span className="country-map-label">{point.country}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <article className="footprint-detail-card">
+                <span className="footprint-kicker">Active projects & partnerships across</span>
+                <h3>{selectedCountry.country}</h3>
+                <dl>
+                  <div>
+                    <dt>Industry Served</dt>
+                    <dd>{selectedCountry.industry}</dd>
+                  </div>
+                  <div>
+                    <dt>Solution Focus</dt>
+                    <dd>{selectedCountry.solution}</dd>
+                  </div>
+                  <div>
+                    <dt>Result</dt>
+                    <dd>{selectedCountry.result}</dd>
+                  </div>
+                </dl>
+                <p>Expanding across Africa - supporting regional supply chain transformation.</p>
+              </article>
+            </div>
+          </section>
         </div>
       </section>
     </>

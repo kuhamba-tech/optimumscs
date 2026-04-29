@@ -65,8 +65,8 @@ const solutionAreas = [
     tools: ['Opsi TMS', 'BlueYonder', 'Ignition TMS'],
     diagnosis: 'High transport cost, inefficient routing, low fleet utilisation, delivery delays, or manual planning may be reducing service performance.',
     recommendation: 'Optimise route planning, delivery scheduling, fleet utilisation, and transport operations using TMS and geospatial intelligence.',
-    impact: 'Expected impact: 10-25% reduction in transport costs, improved delivery performance, and increased fleet efficiency.',
-    experience: 'Relevant experience: Value Logistics TMS implementation; Transport Consortium TMS optimisation; Ramco Systems multi-company TMS deployment. FMCG client achieved about 18% cost improvement through route optimisation.',
+    impact: 'Expected impact: 6-12% reduction in transport costs, improved delivery performance, and increased fleet efficiency.',
+    experience: 'Relevant experience: Value Logistics TMS implementation; Transport Consortium TMS optimisation; Ramco Systems multi-company TMS deployment. FMCG client achieved about 9% cost improvement through route optimisation.',
     nextStep: 'Request a transport optimization assessment.',
     questions: [
       'Monthly deliveries or trips?',

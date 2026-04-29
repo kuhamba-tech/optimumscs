@@ -41,9 +41,9 @@ export default function ProcurementServicesPage() {
 
             <button
               className="proc-btn primary"
-              onClick={() => navigate("/request-quote")}
+              onClick={() => navigate("/book-consultation")}
             >
-              Request a Quote <ArrowRight size={15} />
+              Book Consultation <ArrowRight size={15} />
             </button>
           </div>
 
@@ -124,10 +124,10 @@ export default function ProcurementServicesPage() {
           <h3>Business Impact</h3>
 
           <div className="proc-impact-grid">
-            <Impact value="-18%" label="Reduction in Procurement Costs" />
-            <Impact value="+30%" label="Improved Supplier Visibility" />
-            <Impact value="+25%" label="Faster Procurement Cycle" />
-            <Impact value="+35%" label="Better Spend Control" />
+            <Impact value="-5-9%" label="Reduction in Procurement Costs" />
+            <Impact value="+10-16%" label="Improved Supplier Visibility" />
+            <Impact value="+8-14%" label="Faster Procurement Cycle" />
+            <Impact value="+12-18%" label="Better Spend Control" />
           </div>
         </section>
 

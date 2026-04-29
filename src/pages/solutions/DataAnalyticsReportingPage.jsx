@@ -42,9 +42,9 @@ export default function DataAnalyticsReportingPage() {
 
             <button
               className="data-btn primary"
-              onClick={() => navigate("/request-quote")}
+              onClick={() => navigate("/book-consultation")}
             >
-              Request a Quote <ArrowRight size={15} />
+              Book Consultation <ArrowRight size={15} />
             </button>
           </div>
 
@@ -125,10 +125,10 @@ export default function DataAnalyticsReportingPage() {
           <h3>Business Impact</h3>
 
           <div className="data-impact-grid">
-            <Impact value="+35%" label="Improved Reporting Speed" />
-            <Impact value="+30%" label="Better Decision Visibility" />
-            <Impact value="-25%" label="Reduced Manual Reporting" />
-            <Impact value="+40%" label="Improved Data Accuracy" />
+            <Impact value="+15-25%" label="Improved Reporting Speed" />
+            <Impact value="+12-18%" label="Better Decision Visibility" />
+            <Impact value="-10-18%" label="Reduced Manual Reporting" />
+            <Impact value="+10-16%" label="Improved Data Accuracy" />
           </div>
         </section>
 

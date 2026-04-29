@@ -56,7 +56,7 @@ export const industrySummaryCards = [
     title: 'FMCG\nBeverage Manufacturing',
     metric: '20+',
     statLabel: 'Distribution Sites',
-    points: ['ERP & Analytics Deployments', 'Operational costs down ~20%', '100+ staff trained'],
+    points: ['ERP & Analytics Deployments', 'Operational costs down ~8-12%', '100+ staff trained'],
     accent: 'purple',
     icon: ClipboardIcon
   },
@@ -64,7 +64,7 @@ export const industrySummaryCards = [
     title: 'Logistics &\nTransportation',
     metric: '15,000+',
     statLabel: 'Deliveries / Month',
-    points: ['Optimised via TMS', 'Route planning improved by 45%', 'Delivery accuracy up by 17%'],
+    points: ['Optimised via TMS', 'Route planning improved by ~10-15%', 'Delivery accuracy up by 8-12%'],
     accent: 'blue',
     icon: TruckOutline
   },
@@ -72,7 +72,7 @@ export const industrySummaryCards = [
     title: 'Supply Chain\nTechnology',
     metric: '10+',
     statLabel: 'Enterprise Systems',
-    points: ['ERP, TMS & BI', 'Service delivery speed +25%', 'Order efficiency enhanced'],
+    points: ['ERP, TMS & BI', 'Service delivery speed +10-14%', 'Order efficiency enhanced'],
     accent: 'orange',
     icon: ScreenIcon
   },
@@ -80,7 +80,7 @@ export const industrySummaryCards = [
     title: 'Healthcare & Medical\nDistribution',
     metric: '100+',
     statLabel: 'Facilities Supported',
-    points: ['Planning & Visibility', 'Delivery accuracy up by 17%', 'Order efficiency enhanced'],
+    points: ['Planning & Visibility', 'Delivery accuracy up by 8-12%', 'Order efficiency enhanced'],
     accent: 'green',
     icon: RouteIcon
   }
@@ -91,7 +91,7 @@ export const trustedResultCards = [
     title: 'Africa’s Largest\n Beverage Producer',
     problem: 'High delivery costs, stockouts & inaccurate demand planning',
     solution: 'Route optimization, demand forecasting & distribution planning',
-    result: '18% ↓',
+    result: '9% down',
     resultLabel: '',
     accent: 'purple',
     icon: ClipboardIcon
@@ -100,7 +100,7 @@ export const trustedResultCards = [
     title: 'Enterprise Transport &\nLogistics Operator',
     problem: 'Inefficient routes, low delivery accuracy & high transport costs',
     solution: 'TMS optimization, route planning & real-time tracking',
-    result: '17% ↑',
+    result: '11% up',
     resultLabel: 'Delivery Accuracy',
     accent: 'blue',
     icon: TruckOutline
@@ -109,7 +109,7 @@ export const trustedResultCards = [
     title: 'Supply Chain \nTechnology Provider',
     problem: 'Disconnected systems, manual processes & limited visibility',
     solution: 'ERP, TMS & BI integration for end-to-end visibility',
-    result: '25% ↑',
+    result: '13% up',
     resultLabel: 'Service Delivery Speed',
     accent: 'orange',
     icon: ScreenIcon
@@ -118,7 +118,7 @@ export const trustedResultCards = [
     title: 'National Blood\n Organisation',
     problem: 'Complex distribution, visibility gaps & compliance challenges',
     solution: 'Planning & visibility tools, optimized delivery & tracking',
-    result: '17% ↑',
+    result: '10% up',
     resultLabel: 'Delivery Accuracy',
     accent: 'green',
     icon: RouteIcon
@@ -136,16 +136,16 @@ export const solutionsStatCards = [
   {
     title: '',
     sub: 'Optimize routes, reduce fuel cost',
-    value: '↑18%',
-    foot: '+ +8% last quarter',
+    value: '+9%',
+    foot: '+4% last quarter',
     icon: MoneyIcon,
     accent: 'green'
   },
   {
     title: '',
     sub: 'On-Time Delivery\nRate',
-    value: '↑ 94 %',
-    foot: '+15% last quarter',
+    value: '89%',
+    foot: '+6% last quarter',
     icon: TransportIcon,
     accent: 'blue'
   }
@@ -156,8 +156,8 @@ export const solutionPanels = [
     heading: '',
     title: '',
     sub: 'Optimize routes, reduce fuel cost',
-    result: '18%',
-    outcome: '15–30% savings',
+    result: '9% down',
+    outcome: '6-12% savings',
     button: 'View Solution',
     icon: TransportIcon,
     accent: 'green'
@@ -166,7 +166,7 @@ export const solutionPanels = [
     heading: 'Supply / Chain Analytics',
     title: '',
     sub: 'Real-time dashboards & insights',
-    result: '+ 25%',
+    result: '+14%',
     outcome: 'Better decisions',
     button: 'View Solution',
     icon: ChartIcon,
@@ -190,3 +190,4 @@ export const contactDetails = [
   { label: 'Facebook', value: 'Optimum SCS', icon: FacebookMini },
   { label: 'X / Twitter', value: '@Optimum_SCS', icon: XMini }
 ]
+

@@ -40,9 +40,9 @@ export default function ERPTransformationPage() {
 
             <button
               className="erp-btn primary"
-              onClick={() => navigate("/request-quote")}
+              onClick={() => navigate("/book-consultation")}
             >
-              Request a Quote <ArrowRight size={15} />
+              Book Consultation <ArrowRight size={15} />
             </button>
           </div>
 
@@ -123,10 +123,10 @@ export default function ERPTransformationPage() {
           <h3>Business Impact</h3>
 
           <div className="erp-impact-grid">
-            <Impact value="+20%" label="Improvement in Operational Efficiency" />
-            <Impact value="+25%" label="Faster Financial Close" />
-            <Impact value="+30%" label="Better Data Accuracy & Visibility" />
-            <Impact value="+15%" label="Reduction in Operational Costs" />
+            <Impact value="+8-12%" label="Improvement in Operational Efficiency" />
+            <Impact value="+10-15%" label="Faster Financial Close" />
+            <Impact value="+12-18%" label="Better Data Accuracy & Visibility" />
+            <Impact value="-6-10%" label="Reduction in Operational Costs" />
           </div>
         </section>
 

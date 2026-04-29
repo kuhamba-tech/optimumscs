@@ -42,9 +42,9 @@ export default function TMSImplementationPage() {
 
             <button
               className="tms-btn primary"
-              onClick={() => navigate("/request-quote")}
+              onClick={() => navigate("/book-consultation")}
             >
-              Request a Quote <ArrowRight size={15} />
+              Book Consultation <ArrowRight size={15} />
             </button>
           </div>
 
@@ -127,10 +127,10 @@ export default function TMSImplementationPage() {
           <h3>Business Impact</h3>
 
           <div className="tms-impact-grid">
-            <Impact value="-20%" label="Reduction in Transport Costs" />
-            <Impact value="+30%" label="Improved Delivery Efficiency" />
-            <Impact value="+40%" label="Real-time Visibility" />
-            <Impact value="+25%" label="Operational Efficiency" />
+            <Impact value="-8-12%" label="Reduction in Transport Costs" />
+            <Impact value="+10-15%" label="Improved Delivery Efficiency" />
+            <Impact value="+15-20%" label="Real-time Visibility" />
+            <Impact value="+8-12%" label="Operational Efficiency" />
           </div>
         </section>
       </div>

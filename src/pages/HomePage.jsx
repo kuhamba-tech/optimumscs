@@ -104,8 +104,8 @@ export default function HomePage() {
             <div className="hero-result-box">
               <div className="result-word">Result:</div>
               <div className="result-figure green-box">
-                <strong>↑18%</strong>
-                <span></span>
+                <strong>9%</strong>
+                <span>Cost Reduction</span>
               </div>
             </div>
 

@@ -3,6 +3,8 @@ import { useMemo, useState } from 'react'
 const whatsappUrl =
   'https://wa.me/27739370249?text=Hello%20OptimumSCS%2C%20I%20would%20like%20to%20discuss%20a%20supply%20chain%20solution.'
 
+const quoteUrl = '/fee-quote'
+
 const promptResponses = {
   'I have high delivery costs': {
     diagnosis:
@@ -10,11 +12,51 @@ const promptResponses = {
     solution:
       'Transport Optimization and TMS Implementation using tools such as Opsi TMS, BlueYonder TMS, or Ignition TMS.',
     impact:
-      'Typical impact: 10-25% reduction in transport costs, improved delivery performance, and better fleet efficiency.',
+      'Typical impact: 6-12% reduction in transport costs, improved delivery performance, and better fleet efficiency.',
     nextStep:
       'Request a transport optimization assessment with monthly delivery volumes, transport spend, and delivery regions.',
   },
-  'I need ERP support': {
+  'I need TMS implementation': {
+    diagnosis:
+      'Transport planning may be limited by manual dispatch, weak route control, poor delivery tracking, or disconnected transport data.',
+    solution:
+      'TMS Implementation using platforms such as Opsi TMS, BlueYonder TMS, or Ignition TMS, integrated with operational workflows and reporting.',
+    impact:
+      'Typical impact: 6-12% transport cost improvement, stronger delivery visibility, better route compliance, and improved fleet utilisation.',
+    nextStep:
+      'Request a TMS readiness assessment with current transport process, delivery volumes, fleet profile, and system landscape.',
+  },
+  'I need procurement services': {
+    diagnosis:
+      'Procurement performance may be constrained by uncontrolled spend, weak supplier management, limited approval control, or manual buying processes.',
+    solution:
+      'Procurement Services focused on supplier management, sourcing workflows, purchasing controls, spend visibility, and procurement process improvement.',
+    impact:
+      'Typical impact: improved cost control, stronger supplier performance, reduced manual effort, and better spend governance.',
+    nextStep:
+      'Request a procurement assessment and share spend categories, supplier base, and approval workflow issues.',
+  },
+  'I need lean materials management': {
+    diagnosis:
+      'Materials flow may be affected by excess inventory, stockouts, poor replenishment discipline, or weak demand and supply coordination.',
+    solution:
+      'Lean Materials Management to improve inventory planning, replenishment controls, material availability, and waste reduction across operations.',
+    impact:
+      'Typical impact: lower working capital, fewer stock disruptions, improved material availability, and better planning discipline.',
+    nextStep:
+      'Request a lean materials review with SKU count, inventory value, stockout frequency, and replenishment process details.',
+  },
+  'I need warehouse management': {
+    diagnosis:
+      'Warehouse performance may be limited by layout constraints, slow picking, inventory inaccuracies, poor receiving controls, or weak WMS processes.',
+    solution:
+      'Warehouse Management improvement covering layout, picking productivity, receiving, putaway, inventory accuracy, WMS readiness, and fulfilment workflow.',
+    impact:
+      'Typical impact: faster fulfilment, improved inventory control, fewer picking errors, and better warehouse efficiency.',
+    nextStep:
+      'Request a warehouse efficiency review with SKU count, monthly order lines, current accuracy, and productivity issues.',
+  },
+  'I need ERP transformation': {
     diagnosis:
       'Disconnected systems, duplicate data, and manual workflows may be limiting operational control and real-time visibility.',
     solution:
@@ -24,45 +66,25 @@ const promptResponses = {
     nextStep:
       'Request an ERP readiness assessment and share your current ERP, key pain points, and affected teams.',
   },
-  'I need transport optimization': {
-    diagnosis:
-      'Transport operations may be underperforming due to inefficient route planning, delivery delays, manual scheduling, or weak cost-to-serve visibility.',
-    solution:
-      'Transport Optimization with route planning, delivery scheduling, fleet utilisation analysis, and TMS implementation.',
-    impact:
-      'Typical impact: 10-25% lower transport cost and measurable improvement in delivery reliability.',
-    nextStep:
-      'Request a transport optimization assessment and provide trip volumes, fleet profile, and current delivery KPIs.',
-  },
-  'I need better dashboards': {
+  'I need data analytics and reporting': {
     diagnosis:
       'Slow reporting and limited KPI visibility may be delaying decisions and hiding supply chain exceptions.',
     solution:
       'Data Analytics & Reporting using Power BI dashboards, operational KPI reporting, and exception management.',
     impact:
-      'Typical impact: 30-60% faster reporting, improved decision speed, and clearer visibility into cost, service, inventory, and delivery performance.',
+      'Typical impact: 15-25% faster reporting, improved decision speed, and clearer visibility into cost, service, inventory, and delivery performance.',
     nextStep:
       'Request a data visibility assessment and share the KPIs, source systems, and reporting frequency required.',
   },
-  'I need warehouse optimization': {
+  'I need consulting services': {
     diagnosis:
-      'Warehouse inefficiency may be caused by poor layout, picking delays, inventory inaccuracies, or weak workflow control.',
+      'Your supply chain challenge may require structured diagnosis before choosing between transport, warehouse, ERP, procurement, analytics, or operating model changes.',
     solution:
-      'Warehouse Optimization covering layout, picking productivity, inventory accuracy, WMS readiness, and fulfilment workflow improvement.',
+      'Consulting Services to assess the current state, quantify the performance gap, design the improvement roadmap, and support execution.',
     impact:
-      'Typical impact: faster fulfilment, improved inventory control, fewer picking errors, and better warehouse efficiency.',
+      'Typical impact: clearer priorities, measurable improvement roadmap, reduced execution risk, and better alignment between operations, systems, and cost targets.',
     nextStep:
-      'Request a warehouse efficiency review with SKU count, monthly order lines, and current accuracy or productivity issues.',
-  },
-  'I need procurement improvement': {
-    diagnosis:
-      'Procurement performance may be constrained by uncontrolled spend, weak supplier management, or manual purchasing processes.',
-    solution:
-      'Procurement Systems improvement focused on supplier management, purchasing workflows, sourcing controls, and spend visibility.',
-    impact:
-      'Typical impact: improved cost control, stronger supplier performance, and better procurement efficiency.',
-    nextStep:
-      'Request a procurement assessment and share spend categories, supplier base, and approval workflow issues.',
+      'Request a consulting discovery session and share the business area, monthly volume, cost pressure, and target outcomes.',
   },
 }
 
@@ -109,26 +131,48 @@ export default function AskOptimumWidget() {
           <div className="optimum-widget-header">
             <div>
               <strong>AskOptimumSCS</strong>
-              <span>Supply Chain Contact Consultant</span>
+              <span>Supply Chain Consultant</span>
             </div>
-            <button type="button" onClick={closePanel} aria-label="Close assistant">x</button>
+            <button type="button" onClick={closePanel} aria-label="Close assistant" title="Close">x</button>
           </div>
 
           {mode === 'menu' && (
             <div className="optimum-widget-content">
               <p className="optimum-widget-intro">
-                Choose how you would like to engage with OptimumSCS.
+                How can we help optimise your supply chain today?
+              </p>
+              <p className="optimum-widget-personal-note">
+                Based on your interest in logistics, we recommend starting with AI.
               </p>
               <div className="optimum-widget-options">
-                <button type="button" onClick={() => setMode('ai')}>
-                  <span>Ask AI Consultant</span>
-                  <small>Get a guided supply chain recommendation</small>
+                <button type="button" className="primary-option" onClick={() => setMode('ai')}>
+                  <span className="option-icon" aria-hidden="true">AI</span>
+                  <span className="option-copy">
+                    <span className="option-title-row">
+                      <span>Get Instant AI Consultant Recommendation</span>
+                      <em>Recommended</em>
+                    </span>
+                    <small>Answer a few questions and get the best-fit solution in seconds</small>
+                  </span>
                 </button>
-                <a href={whatsappUrl} target="_blank" rel="noreferrer">
-                  <span>Chat on WhatsApp</span>
-                  <small>Speak to OptimumSCS directly</small>
+                <a className="secondary-option" href={whatsappUrl} target="_blank" rel="noreferrer">
+                  <span className="option-icon" aria-hidden="true">WA</span>
+                  <span className="option-copy">
+                    <span>Talk to an OptimumSCS Expert</span>
+                    <small>Chat directly with our team for tailored advice</small>
+                  </span>
+                </a>
+                <a className="quote-option" href={quoteUrl}>
+                  <span className="option-icon" aria-hidden="true">Q</span>
+                  <span className="option-copy">
+                    <span>Request a Quote</span>
+                    <small>Share your scope and receive a tailored estimate</small>
+                  </span>
                 </a>
               </div>
+              <p className="optimum-widget-trust">
+                Trusted by FMCG, Logistics & Manufacturing companies.
+              </p>
             </div>
           )}
 
@@ -167,6 +211,7 @@ export default function AskOptimumWidget() {
         className="optimum-widget-launcher"
         onClick={() => setIsOpen((open) => !open)}
         aria-expanded={isOpen}
+        title="Get instant supply chain advice"
       >
         <span>AskOptimumSCS</span>
         <strong>AI</strong>
