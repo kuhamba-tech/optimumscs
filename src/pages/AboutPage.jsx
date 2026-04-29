@@ -126,7 +126,6 @@ function WhyCard({ icon, title, text }) {
       <div className="why-icon">{icon}</div>
       <h3>{title}</h3>
       <p>{text}</p>
-      <button>View Solution</button>
     </div>
   );
 }
