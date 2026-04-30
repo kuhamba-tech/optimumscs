@@ -2,20 +2,22 @@ import { useState, useEffect } from 'react'
 import { Hero, FeatureCard, StepBar, IndustryCard, SectionHeading } from '../components/Common'
 import { homeFeatureCards, approachSteps, industrySummaryCards } from '../components/data'
 
-import transportImg from '../assets/transport.jpg'
-import analyticsImg from '../assets/data.jpg'
-import warehouseImg from '../assets/warehouse.jpg'
-import procurementImg from '../assets/procurement.jpg'
+import transportImg from '../assets/transport.png'
+import analyticsImg from '../assets/data.png'
 import erpImg from '../assets/erp.jpg'
+import industriesImg from '../assets/industries_weserve.png'
+import leanImg from '../assets/lean-materialmanagement.png'
+import solutionsImg from '../assets/our-solutions.png'
 import homepageOptimumLogo from '../assets/homepage-optimum-logo.jpg'
 
 export default function HomePage() {
   const solutionSlides = [
-    { title: 'Transport Optimization', image: transportImg },
     { title: 'Data Analytics', image: analyticsImg },
-    { title: 'Warehouse Optimization', image: warehouseImg },
-    { title: 'Procurement Systems', image: procurementImg },
     { title: 'ERP Transformation', image: erpImg },
+    { title: 'Industries We Serve', image: industriesImg },
+    { title: 'Lean Materials Management', image: leanImg },
+    { title: 'Our Solutions', image: solutionsImg },
+    { title: 'Transport Optimization', image: transportImg },
   ]
 
   const [activeSlide, setActiveSlide] = useState(0)
@@ -79,8 +81,6 @@ export default function HomePage() {
       <section className="section section-topless">
         <div className="container two-col-split proven-results-grid">
           <div className="glass-card image-panel">
-            <h2>Proven Results</h2>
-
             <div className={`solution-image-box ${isVisible ? 'fade-in' : 'fade-out'}`}>
               <img
                 src={solutionSlides[activeSlide].image}

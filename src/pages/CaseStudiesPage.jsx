@@ -59,6 +59,7 @@ const africaFootprint = [
     country: 'South Africa',
     x: 50,
     y: 84,
+    status: 'Current active project market',
     industry: 'FMCG Distribution',
     solution: 'Route Optimization & ERP Visibility',
     result: '9% transport cost improvement',
@@ -67,6 +68,7 @@ const africaFootprint = [
     country: 'Zimbabwe',
     x: 56,
     y: 71,
+    status: 'Previous project delivery market',
     industry: 'Beverage & Warehouse Operations',
     solution: 'WMS and materials flow improvement',
     result: 'Improved stock accuracy and fulfilment control',
@@ -75,6 +77,7 @@ const africaFootprint = [
     country: 'Uganda',
     x: 59,
     y: 53,
+    status: 'Previous project delivery market',
     industry: 'Logistics & Regional Distribution',
     solution: 'Transport planning and delivery visibility',
     result: 'Better route control and service visibility',
@@ -83,6 +86,7 @@ const africaFootprint = [
     country: 'Namibia',
     x: 43,
     y: 76,
+    status: 'Previous project delivery market',
     industry: 'Cross-border Logistics',
     solution: 'Transport optimisation and reporting',
     result: 'Improved regional planning visibility',
@@ -176,7 +180,7 @@ export default function CaseStudiesPage() {
           <section className="africa-footprint-section">
             <div className="case-proof-heading footprint-heading">
               <h2>Our Footprint in Africa</h2>
-              <p>Delivering supply chain transformation across key African markets</p>
+              <p>Current active projects in South Africa, with previous delivery across key African markets</p>
             </div>
 
             <div className="africa-footprint-grid">
@@ -208,7 +212,7 @@ export default function CaseStudiesPage() {
               </div>
 
               <article className="footprint-detail-card">
-                <span className="footprint-kicker">Active projects & partnerships across</span>
+                <span className="footprint-kicker">{selectedCountry.status}</span>
                 <h3>{selectedCountry.country}</h3>
                 <dl>
                   <div>
@@ -224,7 +228,7 @@ export default function CaseStudiesPage() {
                     <dd>{selectedCountry.result}</dd>
                   </div>
                 </dl>
-                <p>Expanding across Africa - supporting regional supply chain transformation.</p>
+                <p>Supporting regional supply chain transformation through current active work and completed projects from previous years.</p>
               </article>
             </div>
           </section>

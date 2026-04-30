@@ -4559,3 +4559,14 @@ img {
     padding: 14px;
   }
 }
+
+/* Proven Results image carousel: show the full supplied artwork without cropping. */
+.proven-results-grid .solution-image-box {
+  background: #020b1b !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.proven-results-grid .solution-image {
+  object-fit: contain !important;
+  object-position: center;
+}
