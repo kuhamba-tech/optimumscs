@@ -7,56 +7,42 @@ const solutions = [
     title: 'ERP Transformation',
     slug: '/solutions/erp-transformation',
     subtitle: 'Integrate finance, operations and supply chain into a unified system.',
-    metric: '+10%',
-    metricLabel: 'Control',
     outcome: 'Better cross-functional visibility',
   },
   {
     title: 'TMS Implementation',
     slug: '/solutions/tms-implementation',
     subtitle: 'Deploy and optimise transport management systems.',
-    metric: '+11%',
-    metricLabel: 'Efficiency',
     outcome: 'Streamlined transport operations',
   },
   {
     title: 'Procurement Services',
     slug: '/solutions/procurement-services',
     subtitle: 'Strengthen sourcing, supplier visibility and cost control.',
-    metric: '+8%',
-    metricLabel: 'Efficiency',
     outcome: 'Smarter sourcing decisions',
   },
   {
     title: 'Lean Materials Management',
     slug: '/solutions/lean-materials-management',
     subtitle: 'Reduce waste and improve material flow across operations.',
-    metric: '+9%',
-    metricLabel: 'Efficiency',
     outcome: 'Better material control',
   },
   {
     title: 'Warehouse Management',
     slug: '/solutions/warehouse-management',
     subtitle: 'Improve stock accuracy, warehouse flow and inventory control.',
-    metric: '+12%',
-    metricLabel: 'Efficiency',
     outcome: 'Higher warehouse efficiency',
   },
   {
     title: 'Data Analytics & Reporting',
     slug: '/solutions/data-analytics-reporting',
     subtitle: 'Turn operational data into insights, dashboards and reports.',
-    metric: '+14%',
-    metricLabel: 'Insights',
     outcome: 'Better business decisions',
   },
   {
     title: 'Consulting Services',
     slug: '/solutions/consulting-services',
     subtitle: 'Support supply chain improvement with practical expert guidance.',
-    metric: '+10%',
-    metricLabel: 'Performance',
     outcome: 'Improved operational strategy',
   },
 ]
@@ -93,11 +79,6 @@ export default function SolutionsPage() {
                     <div className="solution-copy">
                       <h4>{item.title}</h4>
                       <p>{item.subtitle}</p>
-                    </div>
-
-                    <div className="solution-metric">
-                      <strong>{item.metric}</strong>
-                      <span>{item.metricLabel}</span>
                     </div>
                   </div>
 

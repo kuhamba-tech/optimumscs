@@ -8,7 +8,7 @@ const whyChooseUs = [
   {
     icon: <Briefcase size={22} />,
     title: "Proven Expertise",
-    text: "Delivered FMCG and supply chain solutions across South Africa, Mozambique, Zimbabwe, Namibia, Uganda, and Kenya.",
+    text: "Delivered FMCG and supply chain solutions across South Africa, Mozambique, Zimbabwe, Namibia, and Uganda.",
   },
   {
     icon: <Lightbulb size={22} />,
@@ -36,7 +36,7 @@ const journeyItems = [
   {
     year: "2024",
     title: "Regional Delivery",
-    text: "Successfully delivered projects across multiple African markets including Mozambique, Zimbabwe, Namibia, Uganda, and Kenya.",
+    text: "Successfully delivered projects across multiple African markets including Mozambique, Zimbabwe, Namibia, and Uganda.",
   },
   {
     year: "2026",

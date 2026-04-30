@@ -62,7 +62,7 @@ export const industrySummaryCards = [
   },
   {
     title: 'Logistics &\nTransportation',
-    metric: '15,000+',
+    metric: '4,000+',
     statLabel: 'Deliveries / Month',
     points: ['Optimised via TMS', 'Route planning improved by ~10-15%', 'Delivery accuracy up by 8-12%'],
     accent: 'blue',
@@ -78,7 +78,7 @@ export const industrySummaryCards = [
   },
   {
     title: 'Healthcare & Medical\nDistribution',
-    metric: '100+',
+    metric: '25+',
     statLabel: 'Facilities Supported',
     points: ['Planning & Visibility', 'Delivery accuracy up by 8-12%', 'Order efficiency enhanced'],
     accent: 'green',
