@@ -12,7 +12,7 @@ import {
   Headphones,
 } from "lucide-react";
 
-import consultingImage from "../../assets/consulting-services.jpg";
+import consultingImage from "../../assets/consulting-services.png";
 import "./ConsultingServicesPage.css";
 
 export default function ConsultingServicesPage() {
