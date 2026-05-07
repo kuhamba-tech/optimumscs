@@ -23,7 +23,7 @@ const companyProfile = {
   founded: '2021',
   hq: 'Johannesburg, South Africa',
   positioning:
-    'A future-driven supply chain consulting and technology company specialising in ERP, TMS, warehouse optimisation, procurement systems, analytics platforms, and full digital transformation.',
+    'A future-driven supply chain consulting and technology company specialising in ERP, TMS, procurement services, analytics platforms, and full digital transformation.',
   coreStrength:
     'Combines deep operational expertise with advanced technology implementation to deliver measurable supply chain performance improvements.',
   technologyStack: [
@@ -76,19 +76,19 @@ const solutionAreas = [
   },
   {
     id: 'warehouse_optimization',
-    name: 'Warehouse Optimization',
-    path: '/solutions/warehouse-management',
+    name: 'Procurement Services',
+    path: '/solutions/procurement-services',
     keywords: ['warehouse', 'wms', 'inventory', 'stock', 'stockouts', 'overstock', 'stock issues', 'picking', 'packing', 'putaway', 'storage', 'accuracy', 'warehouse inefficiency'],
-    tools: ['WMS implementation', 'Inventory accuracy review', 'Warehouse workflow optimisation'],
-    diagnosis: 'Stock inaccuracies, slow picking, warehouse inefficiencies, overstocking, or stockouts may be creating cost and service leakage.',
-    recommendation: 'Improve warehouse layout, picking efficiency, inventory accuracy, and workflow performance.',
-    impact: 'Expected impact: improved fulfilment speed, inventory control, and warehouse efficiency.',
-    experience: 'Relevant experience: Delta Beverages Zimbabwe WMS implementation.',
-    nextStep: 'Request a warehouse efficiency review.',
+    tools: ['Supplier management', 'Purchasing workflow design', 'Spend visibility'],
+    diagnosis: 'Stock inaccuracies, overstocking, stockouts, or weak supplier controls may be creating cost and service leakage.',
+    recommendation: 'Improve sourcing, supplier management, purchasing workflows, cost control, and procurement visibility.',
+    impact: 'Expected impact: improved cost control, supplier performance, inventory availability, and procurement efficiency.',
+    experience: 'Relevant experience: execution-focused procurement and sourcing optimisation across supply chain transformation programmes.',
+    nextStep: 'Request a procurement services assessment.',
     questions: [
       'Number of SKUs and monthly order lines?',
-      'Current picking accuracy or stock accuracy?',
-      'Main issue: space, labour productivity, errors, or inventory visibility?',
+      'Current supplier reliability, stock availability, or spend visibility?',
+      'Main issue: supplier performance, approval control, cost, or inventory availability?',
     ],
   },
   {
@@ -104,7 +104,7 @@ const solutionAreas = [
     nextStep: 'Request an ERP readiness assessment.',
     questions: [
       'Which ERP or accounting system do you use now?',
-      'Which teams are disconnected: finance, procurement, warehouse, transport, or sales?',
+      'Which teams are disconnected: finance, procurement services, transport, or sales?',
       'What reports or decisions are currently delayed?',
     ],
   },
@@ -191,7 +191,7 @@ function getBusinessTypeReply(message) {
   const text = message.toLowerCase()
 
   if (text === 'fmcg') {
-    return 'FMCG selected.\n\nDiscovery required:\n1. What is the main pressure: transport cost, warehouse accuracy, procurement spend, ERP control, or KPI visibility?\n2. Monthly order volume or delivery volume?\n3. Which outcome matters most: lower cost, faster fulfilment, or better visibility?'
+    return 'FMCG selected.\n\nDiscovery required:\n1. What is the main pressure: transport cost, procurement services, procurement spend, ERP control, or KPI visibility?\n2. Monthly order volume or delivery volume?\n3. Which outcome matters most: lower cost, faster fulfilment, or better visibility?'
   }
 
   if (text === 'logistics & transport' || text === 'logistics' || text === 'transport') {
@@ -199,7 +199,7 @@ function getBusinessTypeReply(message) {
   }
 
   if (text === 'retail') {
-    return 'Retail selected.\n\nDiscovery required:\n1. Number of stores, SKUs, or monthly orders?\n2. Main issue: stockouts, replenishment, warehouse picking, or reporting visibility?\n3. Which metric needs improvement: availability, cost, speed, or accuracy?'
+    return 'Retail selected.\n\nDiscovery required:\n1. Number of stores, SKUs, or monthly orders?\n2. Main issue: stockouts, replenishment, procurement services, or reporting visibility?\n3. Which metric needs improvement: availability, cost, speed, or accuracy?'
   }
 
   if (text === 'agriculture') {
@@ -207,11 +207,11 @@ function getBusinessTypeReply(message) {
   }
 
   if (text === 'healthcare') {
-    return 'Healthcare selected.\n\nDiscovery required:\n1. What products are managed: medical supplies, pharmaceuticals, equipment, or consumables?\n2. Main issue: stock availability, traceability, procurement cost, or warehouse accuracy?\n3. Current service-level or stockout rate?'
+    return 'Healthcare selected.\n\nDiscovery required:\n1. What products are managed: medical supplies, pharmaceuticals, equipment, or consumables?\n2. Main issue: stock availability, traceability, procurement cost, or procurement services?\n3. Current service-level or stockout rate?'
   }
 
   if (text === 'other') {
-    return 'Other selected.\n\nDiscovery required:\n1. What industry are you in?\n2. Which supply chain area is affected: transport, warehouse, ERP, procurement, or analytics?\n3. What measurable issue are you seeing: cost, delays, errors, stockouts, or poor visibility?'
+    return 'Other selected.\n\nDiscovery required:\n1. What industry are you in?\n2. Which supply chain area is affected: transport, procurement services, ERP, or analytics?\n3. What measurable issue are you seeing: cost, delays, errors, stockouts, or poor visibility?'
   }
 
   return null
@@ -248,7 +248,7 @@ function getReply(message) {
     text.includes('about')
   ) {
     return {
-      answer: `Diagnosis: You need to understand whether OptimumSCS fits your supply chain transformation need.\n\nRecommended Solution: ${companyProfile.name} is ${companyProfile.positioning}\n\nExpected Impact: ${companyProfile.coreStrength}\n\nRelevant Experience: Differentiators include ${companyProfile.differentiation.join('; ')}.\n\nNext Step: Share your challenge so I can map it to Transport, Warehouse, ERP, Procurement, or Analytics.`,
+      answer: `Diagnosis: You need to understand whether OptimumSCS fits your supply chain transformation need.\n\nRecommended Solution: ${companyProfile.name} is ${companyProfile.positioning}\n\nExpected Impact: ${companyProfile.coreStrength}\n\nRelevant Experience: Differentiators include ${companyProfile.differentiation.join('; ')}.\n\nNext Step: Share your challenge so I can map it to Transport, Procurement Services, ERP, or Analytics.`,
       actions: [
         { label: 'View Solutions', path: '/solutions' },
         { label: 'Request Assessment', path: '/fee-quote' },
@@ -288,7 +288,7 @@ function getReply(message) {
     text.length < 4
   ) {
     return {
-      answer: 'Discovery required.\n\n1. Which area is under pressure: transport, warehouse, ERP, procurement, or analytics?\n2. What measurable issue are you seeing: cost, delays, errors, stockouts, or poor visibility?\n3. What is your approximate monthly volume or spend?',
+      answer: 'Discovery required.\n\n1. Which area is under pressure: transport, procurement services, ERP, or analytics?\n2. What measurable issue are you seeing: cost, delays, errors, stockouts, or poor visibility?\n3. What is your approximate monthly volume or spend?',
       actions: [],
     }
   }
@@ -314,7 +314,7 @@ function getReply(message) {
   }
 
   return {
-    answer: `Discovery required before recommendation.\n\n1. What supply chain area is affected: transport, warehouse, ERP, procurement, or analytics?\n2. What is the measurable problem: cost, efficiency, visibility, service level, or accuracy?\n3. What monthly volume, spend, SKUs, orders, or deliveries are involved?\n\nContext: ${companyProfile.name} supports ${companyProfile.industries.slice(0, 5).join(', ')} and related supply chains from ${companyProfile.hq}.`,
+    answer: `Discovery required before recommendation.\n\n1. What supply chain area is affected: transport, procurement services, ERP, or analytics?\n2. What is the measurable problem: cost, efficiency, visibility, service level, or accuracy?\n3. What monthly volume, spend, SKUs, orders, or deliveries are involved?\n\nContext: ${companyProfile.name} supports ${companyProfile.industries.slice(0, 5).join(', ')} and related supply chains from ${companyProfile.hq}.`,
     actions: [
       { label: 'View Solutions', path: '/solutions' },
       { label: 'Request Assessment', path: '/fee-quote' },

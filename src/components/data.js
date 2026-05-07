@@ -30,8 +30,8 @@ export const homeFeatureCards = [
     accent: 'blue'
   },
   {
-    title: 'Warehouse Optimization',
-    description: 'Increase efficiency and accuracy across warehouse operations',
+    title: 'Procurement Services',
+    description: 'Strengthen sourcing, supplier visibility and procurement cost control',
     icon: ChartIcon,
     accent: 'blue'
   },

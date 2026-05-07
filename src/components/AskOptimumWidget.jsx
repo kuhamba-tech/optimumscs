@@ -36,25 +36,15 @@ const promptResponses = {
     nextStep:
       'Request a procurement assessment and share spend categories, supplier base, and approval workflow issues.',
   },
-  'I need lean materials management': {
+  'I need procurement services support': {
     diagnosis:
-      'Materials flow may be affected by excess inventory, stockouts, poor replenishment discipline, or weak demand and supply coordination.',
+      'Procurement performance may be limited by weak supplier controls, manual approvals, spend leakage, or poor purchasing visibility.',
     solution:
-      'Lean Materials Management to improve inventory planning, replenishment controls, material availability, and waste reduction across operations.',
+      'Procurement Services improvement covering sourcing, supplier management, purchasing controls, spend visibility, and process governance.',
     impact:
-      'Typical impact: lower working capital, fewer stock disruptions, improved material availability, and better planning discipline.',
+      'Typical impact: stronger supplier performance, improved cost control, fewer manual delays, and better procurement efficiency.',
     nextStep:
-      'Request a lean materials review with SKU count, inventory value, stockout frequency, and replenishment process details.',
-  },
-  'I need warehouse management': {
-    diagnosis:
-      'Warehouse performance may be limited by layout constraints, slow picking, inventory inaccuracies, poor receiving controls, or weak WMS processes.',
-    solution:
-      'Warehouse Management improvement covering layout, picking productivity, receiving, putaway, inventory accuracy, WMS readiness, and fulfilment workflow.',
-    impact:
-      'Typical impact: faster fulfilment, improved inventory control, fewer picking errors, and better warehouse efficiency.',
-    nextStep:
-      'Request a warehouse efficiency review with SKU count, monthly order lines, current accuracy, and productivity issues.',
+      'Request a procurement services review with spend categories, supplier base, approval workflows, and cost-control priorities.',
   },
   'I need ERP transformation': {
     diagnosis:
@@ -78,7 +68,7 @@ const promptResponses = {
   },
   'I need consulting services': {
     diagnosis:
-      'Your supply chain challenge may require structured diagnosis before choosing between transport, warehouse, ERP, procurement, analytics, or operating model changes.',
+      'Your supply chain challenge may require structured diagnosis before choosing between transport, procurement services, ERP, analytics, or operating model changes.',
     solution:
       'Consulting Services to assess the current state, quantify the performance gap, design the improvement roadmap, and support execution.',
     impact:

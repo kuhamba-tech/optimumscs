@@ -1,7 +1,6 @@
 import {
   BriefMini,
   CalendarMini,
-  ChevronDownMini,
   ClockMini,
   LockMini,
   MailMini,
@@ -14,7 +13,7 @@ import {
 const consultationIntro = {
   title: 'Book a Consultation',
   description:
-    'Schedule a consultation with OptimumSCS to discuss your supply chain, ERP, TMS, procurement, warehouse, analytics, or optimisation needs.',
+    'Schedule a consultation with OptimumSCS to discuss your supply chain, ERP, TMS, procurement services, analytics, or optimisation needs.',
 }
 
 const expectationItems = [
@@ -48,7 +47,7 @@ const interestOptions = [
   'Transport Optimization',
   'TMS Implementation',
   'ERP Transformation',
-  'Warehouse Optimization',
+  'Procurement Services',
   'Procurement Systems',
   'Data Analytics & Reporting',
   'Power BI Dashboards',
@@ -56,6 +55,30 @@ const interestOptions = [
 ]
 
 export default function BookConsultationPage() {
+  const handleConsultationSubmit = (event) => {
+    event.preventDefault()
+
+    const formData = new FormData(event.currentTarget)
+    const fields = [
+      'Full Name',
+      'Company',
+      'Email',
+      'Phone',
+      'Preferred Date',
+      'Preferred Time',
+      'Areas of Interest',
+      'Brief Description',
+    ]
+
+    const messageBody = fields
+      .map((field) => `${field}: ${formData.get(field) || ''}`)
+      .join('\n')
+
+    window.location.href = `mailto:info@optimumscs.com?subject=${encodeURIComponent(
+      'Consultation Request',
+    )}&body=${encodeURIComponent(messageBody)}`
+  }
+
   return (
     <section className="section first-section consultation-page">
       <div className="container consultation-shell">
@@ -91,9 +114,7 @@ export default function BookConsultationPage() {
 
           <form
             className="glass-card consultation-form-card"
-            action="mailto:info@optimumscs.com"
-            method="post"
-            encType="text/plain"
+            onSubmit={handleConsultationSubmit}
           >
             <div className="section-heading left compact-heading">
               <h2>Consultation Request</h2>
@@ -142,17 +163,15 @@ export default function BookConsultationPage() {
                   <input name="Preferred Time" type="time" aria-label="Preferred time" />
                 </div>
               </label>
-              <label className="full select-field">
-                <span>Area of Interest</span>
-                <div className="select-shell input-with-icon">
+              <label className="full">
+                <span>Areas of Interest</span>
+                <div className="input-with-icon textarea-with-icon">
                   <BriefMini />
-                  <input
-                    name="Area of Interest"
-                    type="text"
-                    placeholder={`Select an area of interest, e.g. ${interestOptions[0]}`}
-                    readOnly
+                  <textarea
+                    name="Areas of Interest"
+                    rows="3"
+                    placeholder={`Add one or more areas of interest, e.g. ${interestOptions.join(', ')}`}
                   />
-                  <ChevronDownMini />
                 </div>
               </label>
               <label className="full">

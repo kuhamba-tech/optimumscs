@@ -6,8 +6,7 @@ import transportImg from '../assets/transport.png'
 import analyticsImg from '../assets/data.png'
 import erpImg from '../assets/erp.jpg'
 import industriesImg from '../assets/industries_weserve.png'
-import leanImg from '../assets/lean-materialmanagement.png'
-import solutionsImg from '../assets/our-solutions.png'
+import solutionsImg from '../assets/our-solutions-updated.png'
 import homepageOptimumLogo from '../assets/homepage-optimum-logo.jpg'
 
 export default function HomePage() {
@@ -15,7 +14,6 @@ export default function HomePage() {
     { title: 'Data Analytics', image: analyticsImg },
     { title: 'ERP Transformation', image: erpImg },
     { title: 'Industries We Serve', image: industriesImg },
-    { title: 'Lean Materials Management', image: leanImg },
     { title: 'Our Solutions', image: solutionsImg },
     { title: 'Transport Optimization', image: transportImg },
   ]

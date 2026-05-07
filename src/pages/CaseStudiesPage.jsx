@@ -69,8 +69,8 @@ const africaFootprint = [
     x: 56,
     y: 71,
     status: 'Previous project delivery market',
-    industry: 'Beverage & Warehouse Operations',
-    solution: 'WMS and materials flow improvement',
+    industry: 'Beverage & Procurement Services',
+    solution: 'Procurement services and materials flow improvement',
     result: 'Improved stock accuracy and fulfilment control',
   },
   {

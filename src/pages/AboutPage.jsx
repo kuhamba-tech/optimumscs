@@ -31,7 +31,7 @@ const journeyItems = [
   {
     year: "2022",
     title: "Service Portfolio Expansion",
-    text: "Expanded service offerings across TMS implementation, procurement, ERP transformation, warehouse management, lean materials management, and data analytics.",
+    text: "Expanded service offerings across TMS implementation, procurement services, ERP transformation, and data analytics.",
   },
   {
     year: "2024",

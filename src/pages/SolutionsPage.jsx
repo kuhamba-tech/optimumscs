@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import './SolutionsPage.css'
-import ourSolutionsImg from '../assets/our-solutions.jpg'
+import ourSolutionsImg from '../assets/our-solutions-updated.png'
 
 const solutions = [
   {
@@ -20,18 +20,6 @@ const solutions = [
     slug: '/solutions/procurement-services',
     subtitle: 'Strengthen sourcing, supplier visibility and cost control.',
     outcome: 'Smarter sourcing decisions',
-  },
-  {
-    title: 'Lean Materials Management',
-    slug: '/solutions/lean-materials-management',
-    subtitle: 'Reduce waste and improve material flow across operations.',
-    outcome: 'Better material control',
-  },
-  {
-    title: 'Warehouse Management',
-    slug: '/solutions/warehouse-management',
-    subtitle: 'Improve stock accuracy, warehouse flow and inventory control.',
-    outcome: 'Higher warehouse efficiency',
   },
   {
     title: 'Data Analytics & Reporting',
