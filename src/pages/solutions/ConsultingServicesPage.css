@@ -130,7 +130,8 @@
     grid-template-columns: 1fr;
   }
 
-  .consult-card-grid,
+  .consult-card-grid.four,
+  .consult-card-grid.six,
   .consult-impact-grid,
   .consult-tech-logos {
     grid-template-columns: 1fr;

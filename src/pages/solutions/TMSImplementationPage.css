@@ -118,7 +118,8 @@
     grid-template-columns: 1fr;
   }
 
-  .tms-card-grid,
+  .tms-card-grid.four,
+  .tms-card-grid.six,
   .tms-impact-grid {
     grid-template-columns: 1fr;
   }

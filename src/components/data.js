@@ -24,7 +24,7 @@ export const homeFeatureCards = [
     accent: 'green'
   },
   {
-    title: 'Data\nAnaltyics',
+    title: 'Data\nAnalytics',
     description: 'Real-time dashboards, predictive insights, and data-driven decision support',
     icon: TransportIcon,
     accent: 'blue'
