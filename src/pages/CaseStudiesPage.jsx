@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './CaseStudiesPage.css'
-import caseStudiesImg from '../assets/case-studies.jpg'
+import caseStudiesImg from '../assets/case-studies.png'
 import { trustedResultCards } from '../components/data'
 import { ResultCard } from '../components/Common'
 
