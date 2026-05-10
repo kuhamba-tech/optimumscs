@@ -55,8 +55,7 @@
   object-position: center;
   border-radius: 0;
   filter: none;
-  -webkit-mask-image: radial-gradient(ellipse 88% 88% at 50% 48%, black 42%, transparent 83%);
-  mask-image: radial-gradient(ellipse 88% 88% at 50% 48%, black 42%, transparent 83%);
+  mix-blend-mode: screen;
 }
 
 @media (max-width: 900px) {
