@@ -1,7 +1,7 @@
 import './IndustriesPage.css'
 import { Hero, IndustryCard, ResultCard, SectionHeading } from '../components/Common'
 import { industrySummaryCards, trustedResultCards } from '../components/data'
-import industriesImg from '../assets/industries_weserve.jpg'
+import industriesImg from '../assets/industries_weserve.png'
 
 export default function IndustriesPage() {
   return (

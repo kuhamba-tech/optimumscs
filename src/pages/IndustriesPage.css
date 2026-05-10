@@ -56,6 +56,8 @@
   border-radius: 0;
   filter: none;
   mix-blend-mode: screen;
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 @media (max-width: 900px) {
