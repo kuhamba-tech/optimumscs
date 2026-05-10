@@ -4785,8 +4785,7 @@ img {
   object-position: center;
 }
 
-/* ── Solutions / Industries / Case Studies — global image vibrancy boost ── */
-.solutions-hero-image img,
+/* ── Industries / Case Studies — global image vibrancy boost ── */
 .industries-page-clean .hero-logo-image,
 .case-hero-image img {
   filter: brightness(1.35) saturate(1.7) contrast(1.1);
