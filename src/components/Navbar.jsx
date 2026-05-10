@@ -14,6 +14,8 @@ export default function Navbar() {
             src={cscLogo}
             alt="CSC Logo"
             className="navbar-logo"
+            fetchPriority="high"
+            decoding="async"
           />
         </Link>
 

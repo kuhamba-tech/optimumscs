@@ -12,6 +12,8 @@ export default function Footer() {
   src={cscLogo}
   alt="CSC Logo"
   className="footer-logo"
+  loading="lazy"
+  decoding="async"
 />
           </div>
           <div className="footer-links">
