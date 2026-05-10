@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find \"c:\\\\\\\\Users\\\\\\\\Tapiwa\\\\\\\\Documents\\\\\\\\Timothy\\\\\\\\optimum\\\\\\\\website update\\\\\\\\final_project_about_image_updated\\\\\\\\Optimumscs_Project\\\\\\\\optimumscs\" -name \"*.css\" -type f)",
+      "Bash(xargs ls -lh)",
+      "Bash(cd \"c:\\\\\\\\Users\\\\\\\\Tapiwa\\\\\\\\Documents\\\\\\\\Timothy\\\\\\\\optimum\\\\\\\\website update\\\\\\\\final_project_about_image_updated\\\\\\\\Optimumscs_Project\\\\\\\\optimumscs\")"
+    ]
+  }
+}

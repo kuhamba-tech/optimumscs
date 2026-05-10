@@ -53,15 +53,6 @@ const KB = [
     next: 'Request a consulting discovery session — share the business area, monthly volume, cost pressure, and target outcomes.',
     path: '/solutions/consulting-services',
   },
-  {
-    id: 'warehouse',
-    keywords: ['warehouse', 'wms', 'picking', 'packing', 'putaway', 'storage', 'accuracy', 'fulfilment', 'fulfillment'],
-    diagnosis: 'Warehouse inefficiency, picking errors, or poor inventory accuracy are increasing cost and reducing service levels.',
-    solution: 'Warehouse Management (WMS) implementation and operational optimisation to improve accuracy, throughput, and inventory control.',
-    impact: 'Typical results: improved pick accuracy, faster fulfilment, and better stock visibility. OPSI Systems achieved a 30% efficiency improvement after TMS + WMS integration.',
-    next: 'Request a warehouse assessment — share your SKU count, daily order lines, and main accuracy or throughput challenges.',
-    path: '/solutions/consulting-services',
-  },
 ]
 
 const COMPANY_ANSWER = `OptimumSCS (Optimum Supply Chain Solutions) is a supply chain consulting and technology company founded in 2021, based in Randburg, Johannesburg, South Africa.
@@ -74,7 +65,6 @@ Our services:
 • Procurement Services
 • Data Analytics & Reporting (Power BI)
 • Consulting Services
-• Warehouse Management
 
 Clients include Value Logistics, Nebula Logistics Africa, CCBA (Coca-Cola), OPSI Systems, Barloworld Logistics, and Ramco Systems.
 
@@ -99,7 +89,7 @@ function getBuiltInReply(text) {
   }
 
   return {
-    text: `To give you the best recommendation, please share a bit more:\n\n1. Which area is under pressure — transport, procurement, ERP, analytics, or warehouse?\n2. What measurable problem are you seeing — high cost, delays, stockouts, slow reporting, or manual errors?\n3. What is your approximate monthly volume or spend?\n\nOptimumSCS supports FMCG, Logistics, Retail, Manufacturing, Agriculture, Healthcare, and Public Sector clients across Africa.`,
+    text: `To give you the best recommendation, please share a bit more:\n\n1. Which area is under pressure — transport, procurement, ERP, or analytics?\n2. What measurable problem are you seeing — high cost, delays, stockouts, slow reporting, or manual errors?\n3. What is your approximate monthly volume or spend?\n\nOptimumSCS supports FMCG, Logistics, Retail, Manufacturing, Agriculture, Healthcare, and Public Sector clients across Africa.`,
     path: '/solutions',
   }
 }
@@ -119,8 +109,6 @@ const SYSTEM_PROMPT = `You are AskOptimumSCS, a professional AI supply chain con
 3. Procurement Services — supplier management, sourcing, purchasing workflow design, spend visibility
 4. Data Analytics & Reporting — Power BI dashboards, operational KPI reporting, exception management
 5. Consulting Services — supply chain assessment, operating model design, transformation roadmaps
-6. Warehouse Management — WMS implementation and optimisation
-
 ## Proven Results
 - Value Logistics: TMS → 45% delivery performance improvement
 - CCBA (Coca-Cola): D365 ERP → 20% cost reduction, 100+ staff trained

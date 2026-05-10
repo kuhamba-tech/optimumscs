@@ -43,14 +43,12 @@ const expectationItems = [
 ]
 
 const interestOptions = [
-  'Transport Optimization',
   'TMS Implementation',
   'ERP Transformation',
   'Procurement Services',
-  'Procurement Systems',
   'Data Analytics & Reporting',
-  'Power BI Dashboards',
-  'General Supply Chain Consulting',
+  'Consulting Services ',
+  'Other ',
 ]
 
 function formatDate(date) {

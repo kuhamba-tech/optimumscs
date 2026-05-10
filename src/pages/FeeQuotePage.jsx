@@ -6,7 +6,6 @@ const services = [
   'ERP Transformation',
   'Data Analytics & Reporting',
   'Consulting Services',
-  'Warehouse Management',
 ]
 
 const industries = [

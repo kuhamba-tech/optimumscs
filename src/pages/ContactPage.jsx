@@ -22,7 +22,6 @@ const serviceOptions = [
   'Procurement Services',
   'Data Analytics & Reporting',
   'Consulting Services',
-  'Warehouse Management',
   'General Inquiry',
 ]
 
