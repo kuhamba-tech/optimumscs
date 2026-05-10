@@ -54,8 +54,8 @@
   object-fit: contain;
   object-position: center;
   border-radius: 0;
-  filter: none;
   mix-blend-mode: screen;
+  filter: brightness(1.35) saturate(1.7) contrast(1.1);
   -webkit-mask-image: none;
   mask-image: none;
 }

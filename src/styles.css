@@ -4784,3 +4784,22 @@ img {
   object-fit: contain !important;
   object-position: center;
 }
+
+/* ── Solutions / Industries / Case Studies — global image vibrancy boost ── */
+.solutions-hero-image img,
+.industries-page-clean .hero-logo-image,
+.case-hero-image img {
+  filter: brightness(1.35) saturate(1.7) contrast(1.1);
+}
+
+.industry-grid img,
+.industry-card img,
+.result-grid img,
+.solution-panel img,
+[class*="solution-card"] img,
+[class*="industry-card"] img,
+[class*="case-card"] img {
+  filter: brightness(1.2) saturate(1.35) contrast(1.05)
+          drop-shadow(0 0 20px rgba(56, 139, 253, 0.25));
+  opacity: 1;
+}
