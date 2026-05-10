@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import './SolutionsPage.css'
-import ourSolutionsImg from '../assets/our-solutions-updated.png'
+import ourSolutionsImg from '../assets/our-solutions.png'
 
 const solutions = [
   {
