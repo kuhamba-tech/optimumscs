@@ -15,7 +15,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-import procurementImage from "../../assets/procurement-system.jpg";
+import procurementImage from "../../assets/procurement-system.png";
 import "./ProcurementServicesPage.css";
 
 export default function ProcurementServicesPage() {
