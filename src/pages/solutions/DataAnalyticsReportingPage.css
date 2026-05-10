@@ -71,7 +71,7 @@
   border: 0;
   box-shadow: none;
   mix-blend-mode: screen;
-  filter: contrast(1.6) saturate(1.5) brightness(1.1);
+  filter: contrast(1.4) saturate(1.8) brightness(1.5);
   -webkit-mask-image: none;
   mask-image: none;
 }
