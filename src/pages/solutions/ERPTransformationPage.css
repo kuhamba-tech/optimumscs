@@ -100,7 +100,7 @@
   border: 0;
   object-fit: contain;
   mix-blend-mode: screen;
-  filter: saturate(1.6) contrast(1.15);
+  filter: contrast(1.6) saturate(1.5) brightness(1.1);
   -webkit-mask-image: none;
   mask-image: none;
 }
