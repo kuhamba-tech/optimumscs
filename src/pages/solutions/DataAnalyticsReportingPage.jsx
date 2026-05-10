@@ -15,7 +15,7 @@ import {
   Headphones,
 } from "lucide-react";
 
-import dataImage from "../../assets/data-analtyics.jpg";
+import dataImage from "../../assets/data-analtyics.png";
 import "./DataAnalyticsReportingPage.css";
 
 export default function DataAnalyticsReportingPage() {

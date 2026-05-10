@@ -66,12 +66,14 @@
 .data-hero-image img {
   width: 100%;
   height: 350px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 0;
   border: 0;
   box-shadow: none;
-  -webkit-mask-image: radial-gradient(ellipse 92% 88% at 50% 48%, black 42%, transparent 84%);
-  mask-image: radial-gradient(ellipse 92% 88% at 50% 48%, black 42%, transparent 84%);
+  mix-blend-mode: screen;
+  filter: contrast(1.6) saturate(1.5) brightness(1.1);
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 .data-panel {
