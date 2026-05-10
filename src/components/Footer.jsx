@@ -23,7 +23,7 @@ export default function Footer() {
           </div>
           <div className="social-links">
             <a href="https://www.linkedin.com/company/optimumscs" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon-linkedin"><LinkedinMini /></a>
-            <a href="mailto:info@optimumscs.com" aria-label="Email" className="social-icon-mail"><MailMini /></a>
+            <a href="/book-consultation" aria-label="Book Consultation" className="social-icon-mail"><MailMini /></a>
             <a href="https://x.com/optimumscs" target="_blank" rel="noopener noreferrer" aria-label="X" className="social-icon-twitter"><XMini /></a>
           </div>
         </div>
