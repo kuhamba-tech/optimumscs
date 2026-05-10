@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import SolutionNav from "../../components/SolutionNav";
 import {
   ArrowRight,
   Share2,
@@ -47,7 +48,7 @@ export default function ERPTransformationPage() {
           </div>
 
           <div className="erp-hero-image">
-            <img src={erpImage} alt="ERP Transformation" />
+            <img src={erpImage} alt="ERP Transformation" fetchPriority="high" decoding="async" />
           </div>
         </section>
 
@@ -149,6 +150,11 @@ export default function ERPTransformationPage() {
             <span>sage</span>
           </div>
         </section>
+
+        <SolutionNav
+          prev={{ label: 'Consulting Services', path: '/solutions/consulting-services' }}
+          next={{ label: 'TMS Implementation', path: '/solutions/tms-implementation' }}
+        />
       </div>
     </main>
   );

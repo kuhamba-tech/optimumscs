@@ -1,0 +1,105 @@
+.sol-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 48px;
+  padding: 20px 0 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sol-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 12px 18px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  font-family: inherit;
+}
+
+.sol-nav-btn:hover {
+  background: rgba(121, 215, 90, 0.12);
+  border-color: #79d75a;
+}
+
+.sol-nav-prev {
+  text-align: left;
+  flex: 1;
+  max-width: 220px;
+}
+
+.sol-nav-next {
+  text-align: right;
+  flex: 1;
+  max-width: 220px;
+  justify-content: flex-end;
+}
+
+.sol-nav-back {
+  font-size: 13px;
+  font-weight: 700;
+  color: #c4d2df;
+  padding: 10px 16px;
+  flex-shrink: 0;
+}
+
+.sol-nav-back:hover {
+  color: #ffffff;
+}
+
+.sol-nav-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.sol-nav-text small {
+  font-size: 11px;
+  color: #79d75a;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sol-nav-text strong {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.sol-nav-arrow {
+  font-size: 18px;
+  color: #79d75a;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .sol-nav {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .sol-nav-prev,
+  .sol-nav-next {
+    max-width: none;
+    flex: 1 1 calc(50% - 6px);
+  }
+
+  .sol-nav-back {
+    order: -1;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .sol-nav-text strong {
+    font-size: 13px;
+    white-space: normal;
+  }
+}

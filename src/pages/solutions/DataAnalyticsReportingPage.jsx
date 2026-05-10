@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import SolutionNav from "../../components/SolutionNav";
 import {
   ArrowRight,
   BarChart3,
@@ -49,7 +50,7 @@ export default function DataAnalyticsReportingPage() {
           </div>
 
           <div className="data-hero-image">
-            <img src={dataImage} alt="Data Analytics and Reporting" />
+            <img src={dataImage} alt="Data Analytics and Reporting" fetchPriority="high" decoding="async" />
           </div>
         </section>
 
@@ -143,6 +144,11 @@ export default function DataAnalyticsReportingPage() {
             <span>Python</span>
           </div>
         </section>
+
+        <SolutionNav
+          prev={{ label: 'Procurement Services', path: '/solutions/procurement-services' }}
+          next={{ label: 'Consulting Services', path: '/solutions/consulting-services' }}
+        />
       </div>
     </main>
   );

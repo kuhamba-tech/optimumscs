@@ -20,19 +20,22 @@
 }
 
 .proc-hero h1 {
-  font-size: 52px;
-  font-weight: 900;
+  font-size: 58px;
+  font-weight: 800;
+  letter-spacing: -1.6px;
+  line-height: 1.04;
   margin-bottom: 18px;
 }
 
 .proc-hero h2 {
-  font-size: 24px;
+  font-size: 22px;
+  font-weight: 500;
   line-height: 1.4;
   margin-bottom: 18px;
 }
 
 .proc-hero p {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.7;
   color: #c4d2df;
   margin-bottom: 25px;
@@ -56,15 +59,17 @@
 
 .proc-hero-image {
   background: transparent;
-  border-radius: 12px;
-  overflow: hidden;
+  border-radius: 0;
+  overflow: visible;
 }
 
 .proc-hero-image img {
   width: 100%;
-  border-radius: 12px;
+  border-radius: 0;
   border: 0;
   box-shadow: none;
+  -webkit-mask-image: radial-gradient(ellipse 92% 88% at 50% 48%, black 42%, transparent 84%);
+  mask-image: radial-gradient(ellipse 92% 88% at 50% 48%, black 42%, transparent 84%);
 }
 
 .proc-panel {
@@ -78,7 +83,7 @@
 .proc-panel h3 {
   text-align: center;
   margin-bottom: 20px;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .proc-section-subtitle {
@@ -112,13 +117,13 @@
 
 .proc-card h4,
 .proc-solution-card h4 {
-  font-size: 14px;
+  font-size: 15px;
   margin: 10px 0;
 }
 
 .proc-card p,
 .proc-solution-card p {
-  font-size: 12px;
+  font-size: 14px;
   color: #c4d2df;
   line-height: 1.5;
 }
@@ -178,7 +183,7 @@
   }
 
   .proc-hero h1 {
-    font-size: 40px;
+    font-size: 42px;
   }
 
 }

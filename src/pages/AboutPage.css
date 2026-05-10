@@ -34,8 +34,10 @@
 
 .about-title-top,
 .about-title-bottom {
-  font-size: 46px;
-  font-weight: 900;
+  font-size: 58px;
+  font-weight: 800;
+  letter-spacing: -1.6px;
+  line-height: 1.04;
 }
 
 .about-title-top {
@@ -44,7 +46,7 @@
 
 .about-hero-text p {
   max-width: 620px;
-  font-size: 16px;
+  font-size: 18px;
   color: #d8e4f2;
   line-height: 1.6;
 }
@@ -53,8 +55,8 @@
   position: relative;
   width: 100%;
   height: 460px;
-  overflow: hidden;
-  border-radius: 10px;
+  overflow: visible;
+  border-radius: 0;
   background: transparent;
 }
 
@@ -67,6 +69,9 @@
   object-position: center top;
   opacity: 0;
   animation: aboutImageFade 10s infinite;
+  border-radius: 0;
+  -webkit-mask-image: radial-gradient(ellipse 90% 88% at 50% 48%, black 40%, transparent 82%);
+  mask-image: radial-gradient(ellipse 90% 88% at 50% 48%, black 40%, transparent 82%);
 }
 
 .slide-one {
@@ -122,6 +127,7 @@
 .mission-card p,
 .why-card p,
 .journey-item-clean p {
+  font-size: 16px;
   color: #d8e4f2;
   line-height: 1.6;
 }
@@ -183,7 +189,7 @@
 }
 
 .journey-item-clean p {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .journey-line {
@@ -230,7 +236,7 @@
 
   .about-title-top,
   .about-title-bottom {
-    font-size: 38px;
+    font-size: 42px;
   }
 
   .about-title-top {

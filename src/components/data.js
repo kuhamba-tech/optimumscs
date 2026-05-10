@@ -175,19 +175,11 @@ export const solutionPanels = [
 ]
 
 export const contactDetails = [
-  { label: 'Our Office', value: '104 A Rabie Street Randburg, Gauteng, South Africa', icon: LocationMini },
-  { label: 'Email', value: 'info@optimumscs.com', icon: MailMini },
-  { label: 'Phone', value: '+27 73 937 0249', icon: PhoneMini },
-  {
-    label: 'LinkedIn',
-    value: 'Optimum SCS',
-    icon: LinkedinMini,
-    url: 'https://www.linkedin.com/company/optimum-supply-chain-consulting/'
-  },
-
-
-  
-  { label: 'Facebook', value: 'Optimum SCS', icon: FacebookMini },
-  { label: 'X / Twitter', value: '@Optimum_SCS', icon: XMini }
+  { label: 'Our Office', value: '104 A Rabie Street Randburg, Gauteng, South Africa', icon: LocationMini, brand: 'location' },
+  { label: 'Email', value: 'info@optimumscs.com', icon: MailMini, brand: 'mail', url: 'mailto:info@optimumscs.com' },
+  { label: 'Phone', value: '+27 73 937 0249', icon: PhoneMini, brand: 'phone', url: 'tel:+27739370249' },
+  { label: 'LinkedIn', value: 'Optimum SCS', icon: LinkedinMini, brand: 'linkedin', url: 'https://www.linkedin.com/company/optimum-supply-chain-consulting/' },
+  { label: 'Facebook', value: 'Optimum SCS', icon: FacebookMini, brand: 'facebook' },
+  { label: 'X / Twitter', value: '@Optimum_SCS', icon: XMini, brand: 'twitter' },
 ]
 

@@ -19,11 +19,11 @@
 }
 
 .solutions-hero-text h1 {
-  font-size: 64px;
-  line-height: 1;
+  font-size: 58px;
+  line-height: 1.04;
   margin: 0 0 28px;
-  font-weight: 900;
-  letter-spacing: -1.5px;
+  font-weight: 800;
+  letter-spacing: -1.6px;
 }
 
 .solutions-hero-text p {
@@ -37,8 +37,8 @@
 .solutions-hero-image {
   width: 100%;
   height: 460px;
-  overflow: hidden;
-  border-radius: 12px;
+  overflow: visible;
+  border-radius: 0;
   background: transparent;
 }
 
@@ -48,7 +48,9 @@
   object-fit: contain;
   object-position: center;
   display: block;
-  border-radius: 12px;
+  border-radius: 0;
+  -webkit-mask-image: radial-gradient(ellipse 92% 88% at 50% 48%, black 42%, transparent 84%);
+  mask-image: radial-gradient(ellipse 92% 88% at 50% 48%, black 42%, transparent 84%);
 }
 
 .solutions-content-clean {
@@ -116,7 +118,7 @@
   }
 
   .solutions-hero-text h1 {
-    font-size: 44px;
+    font-size: 42px;
   }
 
   .solutions-hero-text p {

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import SolutionNav from "../../components/SolutionNav";
 import {
   ArrowRight,
   Share2,
@@ -49,7 +50,7 @@ export default function TMSImplementationPage() {
           </div>
 
           <div className="tms-hero-image">
-            <img src={tmsImage} alt="TMS Implementation" />
+            <img src={tmsImage} alt="TMS Implementation" fetchPriority="high" decoding="async" />
           </div>
         </section>
 
@@ -133,6 +134,11 @@ export default function TMSImplementationPage() {
             <Impact value="+8-12%" label="Operational Efficiency" />
           </div>
         </section>
+
+        <SolutionNav
+          prev={{ label: 'ERP Transformation', path: '/solutions/erp-transformation' }}
+          next={{ label: 'Procurement Services', path: '/solutions/procurement-services' }}
+        />
       </div>
     </main>
   );

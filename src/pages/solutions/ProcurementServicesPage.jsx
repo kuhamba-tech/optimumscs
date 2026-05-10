@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import SolutionNav from "../../components/SolutionNav";
 import {
   ArrowRight,
   Search,
@@ -48,7 +49,7 @@ export default function ProcurementServicesPage() {
           </div>
 
           <div className="proc-hero-image">
-            <img src={procurementImage} alt="Procurement Services" />
+            <img src={procurementImage} alt="Procurement Services" fetchPriority="high" decoding="async" />
           </div>
         </section>
 
@@ -142,6 +143,11 @@ export default function ProcurementServicesPage() {
             <span>Compliance</span>
           </div>
         </section>
+
+        <SolutionNav
+          prev={{ label: 'TMS Implementation', path: '/solutions/tms-implementation' }}
+          next={{ label: 'Data Analytics & Reporting', path: '/solutions/data-analytics-reporting' }}
+        />
       </div>
     </main>
   );

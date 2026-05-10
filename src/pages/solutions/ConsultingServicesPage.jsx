@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import SolutionNav from "../../components/SolutionNav";
 import {
   ArrowRight,
   Target,
@@ -46,7 +47,7 @@ export default function ConsultingServicesPage() {
           </div>
 
           <div className="consult-hero-image">
-            <img src={consultingImage} alt="Consulting Services" />
+            <img src={consultingImage} alt="Consulting Services" fetchPriority="high" decoding="async" />
           </div>
         </section>
 
@@ -144,6 +145,11 @@ export default function ConsultingServicesPage() {
             <span>Performance</span>
           </div>
         </section>
+
+        <SolutionNav
+          prev={{ label: 'Data Analytics & Reporting', path: '/solutions/data-analytics-reporting' }}
+          next={{ label: 'ERP Transformation', path: '/solutions/erp-transformation' }}
+        />
       </div>
     </main>
   );

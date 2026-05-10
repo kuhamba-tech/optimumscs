@@ -109,7 +109,7 @@ export default function CaseStudiesPage() {
             </div>
 
             <div className="case-hero-image">
-              <img src={caseStudiesImg} alt="Case Studies" />
+              <img src={caseStudiesImg} alt="Case Studies" fetchPriority="high" decoding="async" />
             </div>
           </div>
         </div>

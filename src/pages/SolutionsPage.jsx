@@ -51,7 +51,7 @@ export default function SolutionsPage() {
             </div>
 
             <div className="solutions-hero-image">
-              <img src={ourSolutionsImg} alt="Our Solutions" />
+              <img src={ourSolutionsImg} alt="Our Solutions" fetchPriority="high" decoding="async" />
             </div>
           </div>
         </div>

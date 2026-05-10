@@ -65,8 +65,8 @@ export default function AboutPage() {
           </div>
 
           <div className="about-hero-image">
-            <img className="about-slide slide-one" src={mosesImg} alt="Moses Dowart quote" />
-            <img className="about-slide slide-two" src={ceoImg} alt="CEO quote" />
+            <img className="about-slide slide-one" src={mosesImg} alt="Moses Dowart quote" fetchPriority="high" decoding="async" />
+            <img className="about-slide slide-two" src={ceoImg} alt="CEO quote" decoding="async" />
           </div>
         </div>
       </section>

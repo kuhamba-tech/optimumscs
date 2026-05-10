@@ -21,15 +21,22 @@
 }
 
 .consult-hero h1 {
-  font-size: 52px;
-  font-weight: 900;
+  font-size: 58px;
+  font-weight: 800;
+  letter-spacing: -1.6px;
+  line-height: 1.04;
 }
 
 .consult-hero h2 {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.4;
   margin: 15px 0;
 }
 
 .consult-hero p {
+  font-size: 18px;
+  line-height: 1.7;
   color: #c4d2df;
 }
 
@@ -51,8 +58,8 @@
 /* IMAGE */
 .consult-hero-image {
   background: transparent;
-  border-radius: 12px;
-  overflow: hidden;
+  border-radius: 0;
+  overflow: visible;
 }
 
 .consult-hero-image img {
@@ -60,7 +67,9 @@
   height: 350px;
   object-fit: contain;
   object-position: center;
-  border-radius: 12px;
+  border-radius: 0;
+  -webkit-mask-image: radial-gradient(ellipse 92% 88% at 50% 48%, black 42%, transparent 84%);
+  mask-image: radial-gradient(ellipse 92% 88% at 50% 48%, black 42%, transparent 84%);
 }
 
 /* PANELS */
@@ -69,6 +78,12 @@
   background: var(--primary-bg-gradient);
   padding: 20px;
   border-radius: 10px;
+}
+
+.consult-panel h3 {
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 /* GRID */
@@ -128,6 +143,10 @@
 @media (max-width: 900px) {
   .consult-hero {
     grid-template-columns: 1fr;
+  }
+
+  .consult-hero h1 {
+    font-size: 42px;
   }
 
   .consult-card-grid.four,

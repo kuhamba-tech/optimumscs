@@ -19,15 +19,22 @@
 }
 
 .tms-hero h1 {
-  font-size: 50px;
-  font-weight: 900;
+  font-size: 58px;
+  font-weight: 800;
+  letter-spacing: -1.6px;
+  line-height: 1.04;
 }
 
 .tms-hero h2 {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.4;
   margin: 15px 0;
 }
 
 .tms-hero p {
+  font-size: 18px;
+  line-height: 1.7;
   color: #c4d2df;
 }
 
@@ -49,15 +56,17 @@
 /* IMAGE */
 .tms-hero-image {
   background: transparent;
-  border-radius: 12px;
-  overflow: hidden;
+  border-radius: 0;
+  overflow: visible;
 }
 
 .tms-hero-image img {
   width: 100%;
   height: 350px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 0;
+  -webkit-mask-image: radial-gradient(ellipse 92% 88% at 50% 48%, black 42%, transparent 84%);
+  mask-image: radial-gradient(ellipse 92% 88% at 50% 48%, black 42%, transparent 84%);
 }
 
 /* PANELS */
@@ -66,6 +75,12 @@
   background: var(--primary-bg-gradient);
   padding: 20px;
   border-radius: 10px;
+}
+
+.tms-panel h3 {
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .tms-card-grid {
@@ -116,6 +131,10 @@
 @media (max-width: 900px) {
   .tms-hero {
     grid-template-columns: 1fr;
+  }
+
+  .tms-hero h1 {
+    font-size: 42px;
   }
 
   .tms-card-grid.four,

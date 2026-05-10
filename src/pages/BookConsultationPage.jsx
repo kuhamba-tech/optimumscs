@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 import {
   BriefMini,
   CalendarMini,
@@ -19,26 +22,22 @@ const consultationIntro = {
 const expectationItems = [
   {
     title: 'Discovery Session',
-    description:
-      'We understand your current challenges, systems, and business priorities.',
+    description: 'We understand your current challenges, systems, and business priorities.',
     icon: CalendarMini,
   },
   {
     title: '30-45 Minutes',
-    description:
-      'A focused discussion to identify improvement opportunities.',
+    description: 'A focused discussion to identify improvement opportunities.',
     icon: ClockMini,
   },
   {
     title: 'Practical Guidance',
-    description:
-      'You receive clear next steps based on your operational needs.',
+    description: 'You receive clear next steps based on your operational needs.',
     icon: BriefMini,
   },
   {
     title: 'Results-Focused',
-    description:
-      'Our goal is to help you optimise operations, reduce costs, and drive measurable value.',
+    description: 'Our goal is to help you optimise operations, reduce costs, and drive measurable value.',
     icon: RouteIcon,
   },
 ]
@@ -54,30 +53,78 @@ const interestOptions = [
   'General Supply Chain Consulting',
 ]
 
+function formatDate(date) {
+  if (!date) return ''
+  return date.toLocaleDateString('en-ZA', { year: 'numeric', month: 'long', day: 'numeric' })
+}
+
+function formatTime(date) {
+  if (!date) return ''
+  return date.toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit', hour12: true })
+}
+
 export default function BookConsultationPage() {
-  const handleConsultationSubmit = (event) => {
+  const [status, setStatus] = useState('idle')
+  const [preferredDate, setPreferredDate] = useState(null)
+  const [preferredTime, setPreferredTime] = useState(null)
+
+  const handleConsultationSubmit = async (event) => {
     event.preventDefault()
+    setStatus('loading')
 
     const formData = new FormData(event.currentTarget)
-    const fields = [
-      'Full Name',
-      'Company',
-      'Email',
-      'Phone',
-      'Preferred Date',
-      'Preferred Time',
-      'Areas of Interest',
-      'Brief Description',
-    ]
+    formData.set('Preferred Date', formatDate(preferredDate))
+    formData.set('Preferred Time', formatTime(preferredTime))
 
-    const messageBody = fields
-      .map((field) => `${field}: ${formData.get(field) || ''}`)
-      .join('\n')
+    const id = import.meta.env.VITE_FORMSPREE_CONSULT_ID
 
-    window.location.href = `mailto:info@optimumscs.com?subject=${encodeURIComponent(
-      'Consultation Request',
-    )}&body=${encodeURIComponent(messageBody)}`
+    if (id && id !== 'REPLACE_ME') {
+      try {
+        const res = await fetch(`https://formspree.io/f/${id}`, {
+          method: 'POST',
+          body: formData,
+          headers: { Accept: 'application/json' },
+        })
+        if (res.ok) {
+          setStatus('success')
+          event.target.reset()
+          setPreferredDate(null)
+          setPreferredTime(null)
+        } else {
+          setStatus('error')
+        }
+      } catch {
+        setStatus('error')
+      }
+    } else {
+      const fields = {
+        'Full Name': formData.get('Full Name'),
+        'Company': formData.get('Company'),
+        'Email': formData.get('Email'),
+        'Phone': formData.get('Phone'),
+        'Preferred Date': formatDate(preferredDate),
+        'Preferred Time': formatTime(preferredTime),
+        'Areas of Interest': formData.get('Areas of Interest'),
+        'Brief Description': formData.get('Brief Description'),
+      }
+      const body = Object.entries(fields).map(([k, v]) => `${k}: ${v || ''}`).join('\n')
+      window.location.href = `mailto:info@optimumscs.com?subject=${encodeURIComponent('Consultation Request – OptimumSCS')}&body=${encodeURIComponent(body)}`
+      setStatus('idle')
+    }
   }
+
+  // Only allow future weekdays
+  const isWeekday = (date) => {
+    const day = date.getDay()
+    return day !== 0 && day !== 6
+  }
+
+  const minDate = new Date()
+  minDate.setDate(minDate.getDate() + 1)
+
+  // Business hours: 8:00 AM – 4:30 PM
+  const minTime = new Date(); minTime.setHours(8, 0, 0)
+  const maxTime = new Date(); maxTime.setHours(16, 30, 0)
 
   return (
     <section className="section first-section consultation-page">
@@ -92,16 +139,12 @@ export default function BookConsultationPage() {
             <div className="section-heading left compact-heading">
               <h2>What to Expect</h2>
             </div>
-
             <div className="consultation-expect-list">
               {expectationItems.map((item) => {
                 const Icon = item.icon
-
                 return (
                   <div className="consultation-expect-row" key={item.title}>
-                    <div className="consultation-expect-icon">
-                      <Icon />
-                    </div>
+                    <div className="consultation-expect-icon"><Icon /></div>
                     <div>
                       <h3>{item.title}</h3>
                       <p>{item.description}</p>
@@ -112,20 +155,28 @@ export default function BookConsultationPage() {
             </div>
           </article>
 
-          <form
-            className="glass-card consultation-form-card"
-            onSubmit={handleConsultationSubmit}
-          >
+          <form className="glass-card consultation-form-card" onSubmit={handleConsultationSubmit}>
             <div className="section-heading left compact-heading">
               <h2>Consultation Request</h2>
             </div>
+
+            {status === 'success' && (
+              <div className="form-success-msg">
+                ✓ Request sent! We will be in touch within 24 hours to confirm your consultation.
+              </div>
+            )}
+            {status === 'error' && (
+              <div className="form-error-msg">
+                Something went wrong. Please email us directly at info@optimumscs.com
+              </div>
+            )}
 
             <div className="form-grid enterprise-form-grid consultation-form-grid">
               <label>
                 <span>Full Name</span>
                 <div className="input-with-icon">
                   <UserIcon />
-                  <input name="Full Name" type="text" placeholder="Your full name" />
+                  <input name="Full Name" type="text" placeholder="Your full name" required />
                 </div>
               </label>
               <label>
@@ -139,41 +190,74 @@ export default function BookConsultationPage() {
                 <span>Email</span>
                 <div className="input-with-icon">
                   <MailMini />
-                  <input name="Email" type="email" placeholder="name@company.com" />
+                  <input name="Email" type="email" placeholder="name@company.com" required />
                 </div>
               </label>
               <label>
                 <span>Phone</span>
                 <div className="input-with-icon">
                   <PhoneMini />
-                  <input name="Phone" type="text" placeholder="+27" />
+                  <input name="Phone" type="tel" placeholder="+27" />
                 </div>
               </label>
+
+              {/* ── Date Picker ── */}
               <label>
                 <span>Preferred Date</span>
-                <div className="input-with-icon">
+                <div className="input-with-icon datepicker-wrap">
                   <CalendarMini />
-                  <input name="Preferred Date" type="date" aria-label="Preferred date" />
-                </div>
-              </label>
-              <label>
-                <span>Preferred Time</span>
-                <div className="input-with-icon">
-                  <ClockMini />
-                  <input name="Preferred Time" type="time" aria-label="Preferred time" />
-                </div>
-              </label>
-              <label className="full">
-                <span>Areas of Interest</span>
-                <div className="input-with-icon textarea-with-icon">
-                  <BriefMini />
-                  <textarea
-                    name="Areas of Interest"
-                    rows="3"
-                    placeholder={`Add one or more areas of interest, e.g. ${interestOptions.join(', ')}`}
+                  <DatePicker
+                    selected={preferredDate}
+                    onChange={setPreferredDate}
+                    filterDate={isWeekday}
+                    minDate={minDate}
+                    placeholderText="Select a date"
+                    dateFormat="dd MMMM yyyy"
+                    className="datepicker-input"
+                    calendarClassName="dp-calendar"
+                    popperPlacement="bottom-start"
+                    showPopperArrow={false}
                   />
                 </div>
               </label>
+
+              {/* ── Time Picker ── */}
+              <label>
+                <span>Preferred Time</span>
+                <div className="input-with-icon datepicker-wrap">
+                  <ClockMini />
+                  <DatePicker
+                    selected={preferredTime}
+                    onChange={setPreferredTime}
+                    showTimeSelect
+                    showTimeSelectOnly
+                    timeIntervals={30}
+                    minTime={minTime}
+                    maxTime={maxTime}
+                    placeholderText="Select a time"
+                    dateFormat="h:mm aa"
+                    timeFormat="h:mm aa"
+                    className="datepicker-input"
+                    calendarClassName="dp-calendar dp-time-only"
+                    popperPlacement="bottom-start"
+                    showPopperArrow={false}
+                  />
+                </div>
+              </label>
+
+              <label className="full">
+                <span>Areas of Interest</span>
+                <div className="input-with-icon">
+                  <BriefMini />
+                  <select name="Areas of Interest" defaultValue="" className="consult-interest-select">
+                    <option value="" disabled>Select area of interest...</option>
+                    {interestOptions.map(o => (
+                      <option key={o} value={o}>{o}</option>
+                    ))}
+                  </select>
+                </div>
+              </label>
+
               <label className="full">
                 <span>Brief Description</span>
                 <div className="input-with-icon textarea-with-icon">
@@ -184,9 +268,9 @@ export default function BookConsultationPage() {
             </div>
 
             <div className="consultation-form-footer">
-              <button type="submit" className="btn btn-primary submit-wide-btn">
+              <button type="submit" className="btn btn-primary submit-wide-btn" disabled={status === 'loading'}>
                 <PlaneMini />
-                <span>Submit Consultation Request</span>
+                <span>{status === 'loading' ? 'Sending…' : 'Submit Consultation Request'}</span>
               </button>
               <div className="privacy-note">
                 <LockMini />

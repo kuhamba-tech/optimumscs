@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { contactDetails } from '../components/data'
 import {
@@ -15,7 +16,57 @@ const officeHours = [
   { day: 'Sunday', hours: 'Closed' },
 ]
 
+const serviceOptions = [
+  'ERP Transformation',
+  'TMS Implementation',
+  'Procurement Services',
+  'Data Analytics & Reporting',
+  'Consulting Services',
+  'Warehouse Management',
+  'General Inquiry',
+]
+
+async function submitToFormspree(formData, id) {
+  const res = await fetch(`https://formspree.io/f/${id}`, {
+    method: 'POST',
+    body: formData,
+    headers: { Accept: 'application/json' },
+  })
+  return res.ok
+}
+
+function buildMailto(formData) {
+  const fields = {
+    'Full Name': formData.get('Full Name'),
+    'Company': formData.get('Company'),
+    'Email': formData.get('Email'),
+    'Phone': formData.get('Phone'),
+    'Service Required': formData.get('Service Required'),
+    'Project Brief': formData.get('Project Brief'),
+  }
+  const body = Object.entries(fields).map(([k, v]) => `${k}: ${v || ''}`).join('\n')
+  return `mailto:info@optimumscs.com?subject=${encodeURIComponent('Website Inquiry – OptimumSCS')}&body=${encodeURIComponent(body)}`
+}
+
 export default function ContactPage() {
+  const [status, setStatus] = useState('idle')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setStatus('loading')
+    const formData = new FormData(e.target)
+    const id = import.meta.env.VITE_FORMSPREE_CONTACT_ID
+
+    if (id && id !== 'REPLACE_ME') {
+      const ok = await submitToFormspree(formData, id).catch(() => false)
+      if (ok) { setStatus('success'); e.target.reset() }
+      else setStatus('error')
+    } else {
+      window.location.href = buildMailto(formData)
+      setStatus('idle')
+    }
+  }
+
   return (
     <section className="section first-section contact-page-enterprise">
       <div className="container contact-enterprise-shell">
@@ -55,7 +106,7 @@ export default function ContactPage() {
                   const Icon = detail.icon
                   const content = (
                     <>
-                      <div className="contact-detail-icon">
+                      <div className={`contact-detail-icon ${detail.brand ? `contact-icon-${detail.brand}` : ''}`}>
                         <Icon />
                       </div>
                       <div className="contact-detail-copy">
@@ -64,26 +115,14 @@ export default function ContactPage() {
                       </div>
                     </>
                   )
-
                   if (detail.url) {
                     return (
-                      <a
-                        className="contact-detail-row"
-                        key={detail.label}
-                        href={detail.url}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
+                      <a className="contact-detail-row" key={detail.label} href={detail.url} target="_blank" rel="noreferrer">
                         {content}
                       </a>
                     )
                   }
-
-                  return (
-                    <div className="contact-detail-row" key={detail.label}>
-                      {content}
-                    </div>
-                  )
+                  return <div className="contact-detail-row" key={detail.label}>{content}</div>
                 })}
               </div>
             </article>
@@ -93,11 +132,8 @@ export default function ContactPage() {
                 <div className="section-heading left compact-heading">
                   <h2>Office Hours</h2>
                 </div>
-                <div className="mini-round blue subtle-outline">
-                  <ClockMini />
-                </div>
+                <div className="mini-round blue subtle-outline"><ClockMini /></div>
               </div>
-
               <div className="office-hours-list">
                 {officeHours.map((item) => (
                   <div className="office-hours-row" key={item.day}>
@@ -106,7 +142,6 @@ export default function ContactPage() {
                   </div>
                 ))}
               </div>
-
               <div className="response-note">
                 <ClockMini />
                 <span>We typically respond within 24 hours on business days.</span>
@@ -115,49 +150,69 @@ export default function ContactPage() {
           </div>
 
           <div className="contact-right-column">
-            <form id="contact-form" className="glass-card contact-form-enterprise contact-block-card">
+            <form
+              id="contact-form"
+              className="glass-card contact-form-enterprise contact-block-card"
+              onSubmit={handleSubmit}
+            >
               <div className="section-heading left compact-heading">
                 <h2>Send Us a Message</h2>
               </div>
 
+              {status === 'success' && (
+                <div className="form-success-msg">
+                  ✓ Message sent! We will get back to you within 24 hours.
+                </div>
+              )}
+              {status === 'error' && (
+                <div className="form-error-msg">
+                  Something went wrong. Please email us directly at info@optimumscs.com
+                </div>
+              )}
+
               <div className="form-grid enterprise-form-grid">
                 <label>
                   <span>Your full name</span>
-                  <input type="text" placeholder="Your full name" />
+                  <input name="Full Name" type="text" placeholder="Your full name" required />
                 </label>
                 <label>
                   <span>Company</span>
-                  <input type="text" placeholder="Company name" />
+                  <input name="Company" type="text" placeholder="Company name" />
                 </label>
                 <label>
                   <span>Email</span>
-                  <input type="email" placeholder="name@company.com" />
+                  <input name="Email" type="email" placeholder="name@company.com" required />
                 </label>
                 <label>
                   <span>Phone</span>
-                  <input type="text" placeholder="+27" />
+                  <input name="Phone" type="tel" placeholder="+27" />
                 </label>
                 <label className="full select-field">
                   <span>Service Required</span>
                   <div className="select-shell">
-                    <input
-                      type="text"
-                      placeholder="Optimization, visibility, analytics, ERP, TMS..."
-                      readOnly
-                    />
+                    <select name="Service Required" defaultValue="">
+                      <option value="" disabled>Select a service...</option>
+                      {serviceOptions.map(o => (
+                        <option key={o} value={o}>{o}</option>
+                      ))}
+                    </select>
                     <ChevronDownMini />
                   </div>
                 </label>
                 <label className="full">
                   <span>Project Brief</span>
-                  <textarea rows="6" placeholder="Describe the challenge you want to solve" />
+                  <textarea name="Project Brief" rows="6" placeholder="Describe the challenge you want to solve" required />
                 </label>
               </div>
 
               <div className="contact-form-footer">
-                <button type="button" className="btn btn-primary submit-wide-btn">
+                <button
+                  type="submit"
+                  className="btn btn-primary submit-wide-btn"
+                  disabled={status === 'loading'}
+                >
                   <PlaneMini />
-                  <span>Send Inquiry</span>
+                  <span>{status === 'loading' ? 'Sending…' : 'Send Inquiry'}</span>
                 </button>
                 <div className="privacy-note">
                   <LockMini />
@@ -166,7 +221,6 @@ export default function ContactPage() {
               </div>
             </form>
 
-            {/* ✅ REAL MAP SECTION */}
             <article className="glass-card location-card contact-block-card">
               <div className="location-head-row">
                 <div className="location-title-wrap">
@@ -174,7 +228,7 @@ export default function ContactPage() {
                     <PinMini />
                     <span>Our Location</span>
                   </h2>
-                  <p>104 A Rabie Street Randburg, Gauteng,South Africa</p>
+                  <p>104 A Rabie Street Randburg, Gauteng, South Africa</p>
                 </div>
                 <a
                   className="directions-link"
@@ -185,11 +239,10 @@ export default function ContactPage() {
                   Get Directions
                 </a>
               </div>
-
               <div className="real-map-wrap">
                 <iframe
                   title="Optimum location map"
-                 src="https://www.google.com/maps?q=104%20A%20Rabie%20Street%20Randburg%20Gauteng%20South%20Africa&z=15&output=embed"
+                  src="https://www.google.com/maps?q=104%20A%20Rabie%20Street%20Randburg%20Gauteng%20South%20Africa&z=15&output=embed"
                   className="real-map-frame"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
