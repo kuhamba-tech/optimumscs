@@ -7,7 +7,7 @@ import analyticsImg from '../assets/data.png'
 import erpImg from '../assets/erp.jpg'
 import industriesImg from '../assets/industries_weserve.png'
 import solutionsImg from '../assets/our-solutions-updated.png'
-import homepageOptimumLogo from '../assets/homepage-optimum-logo.jpg'
+import homepageOptimumLogo from '../assets/csc-logo-transparent.png'
 
 export default function HomePage() {
   const solutionSlides = [
