@@ -98,8 +98,10 @@
   width: 100%;
   border-radius: 0;
   border: 0;
-  -webkit-mask-image: radial-gradient(ellipse 92% 88% at 50% 48%, black 42%, transparent 84%);
-  mask-image: radial-gradient(ellipse 92% 88% at 50% 48%, black 42%, transparent 84%);
+  object-fit: contain;
+  mix-blend-mode: screen;
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 /* PANELS */
@@ -225,7 +227,7 @@
 
 .erp-hero-image img {
   height: 330px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .erp-hero {
