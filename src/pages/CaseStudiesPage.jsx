@@ -26,7 +26,7 @@ const clientTestimonials = [
 ]
 
 const impactMetrics = [
-  { value: '4', label: 'Countries', detail: 'Served with integrated solutions', accent: 'green', icon: 'globe' },
+  { value: '3', label: 'Countries', detail: 'Served with integrated solutions', accent: 'green', icon: 'globe' },
   { value: '50+', label: 'Projects Delivered', detail: 'Across multiple industries', accent: 'blue', icon: 'chart' },
   { value: '92%', label: 'Client Satisfaction', detail: 'Based on project feedback', accent: 'purple', icon: 'people' },
   { value: '8-12%', label: 'Average Cost Savings', detail: 'Typical project range achieved by clients', accent: 'orange', icon: 'saving' },
@@ -81,15 +81,6 @@ const africaFootprint = [
     industry: 'Logistics & Regional Distribution',
     solution: 'Transport planning and delivery visibility',
     result: 'Better route control and service visibility',
-  },
-  {
-    country: 'Namibia',
-    x: 43,
-    y: 76,
-    status: 'Previous project delivery market',
-    industry: 'Cross-border Logistics',
-    solution: 'Transport optimisation and reporting',
-    result: 'Improved regional planning visibility',
   },
 ]
 
