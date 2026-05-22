@@ -2,8 +2,11 @@ import {
   MoneyIcon, TransportIcon, ChartIcon, CogIcon, SearchIcon, AnalyzeIcon, DesignIcon,
   ImplementIcon, OptimizeIcon, ClipboardIcon, TruckOutline, ScreenIcon, RouteIcon,
   CalendarMini, FilterMini, PinMini, BriefMini, MailMini, PhoneMini, LinkedinMini, XMini,
-  FacebookMini, LocationMini
+  FacebookMini, LocationMini, TmsOptimizationIcon, AnalyticsServiceIcon,
+  ProcurementServiceIcon, ErpTransformationIcon, FmcgBeverageIcon,
+  LogisticsTransportationIcon, SupplyChainTechnologyIcon, HealthcareDistributionIcon
 } from './Icons'
+import { ChartNoAxesCombined, Route, ShoppingCart, Workflow } from 'lucide-react'
 
 export const navItems = [
   { label: 'Home', to: '/' },
@@ -20,25 +23,25 @@ export const homeFeatureCards = [
   {
     title: 'TMS & Cost Optimization',
     description: 'Optimize routes, reduce logistics costs, and improve delivery reliability',
-    icon: MoneyIcon,
+    icon: Route,
     accent: 'green'
   },
   {
     title: 'Data\nAnalytics',
     description: 'Real-time dashboards, predictive insights, and data-driven decision support',
-    icon: TransportIcon,
+    icon: ChartNoAxesCombined,
     accent: 'blue'
   },
   {
     title: 'Procurement Services',
     description: 'Strengthen sourcing, supplier visibility and procurement cost control',
-    icon: ChartIcon,
+    icon: ShoppingCart,
     accent: 'blue'
   },
   {
     title: 'ERP\nTransformation',
-    description: 'Integrate finance,operations and inventory into one unified system',
-    icon: CogIcon,
+    description: 'Integrate finance, operations and inventory into one unified system',
+    icon: Workflow,
     accent: 'green'
   }
 ]
@@ -48,7 +51,7 @@ export const approachSteps = [
   { label: 'Analyze', icon: AnalyzeIcon, accent: 'blue' },
   { label: 'Design', icon: DesignIcon, accent: 'blue' },
   { label: 'Implement', icon: ImplementIcon, accent: 'slate' },
-  { label: 'Optimize', icon: OptimizeIcon, accent: 'blue' }
+  { label: 'Optimize', icon: OptimizeIcon, accent: 'green' }
 ]
 
 export const industrySummaryCards = [
@@ -58,7 +61,7 @@ export const industrySummaryCards = [
     statLabel: 'Distribution Sites',
     points: ['ERP & Analytics Deployments', 'Operational costs down ~8-12%', '100+ staff trained'],
     accent: 'purple',
-    icon: ClipboardIcon
+    icon: FmcgBeverageIcon
   },
   {
     title: 'Logistics &\nTransportation',
@@ -66,7 +69,7 @@ export const industrySummaryCards = [
     statLabel: 'Deliveries / Month',
     points: ['Optimised via TMS', 'Route planning improved by ~10-15%', 'Delivery accuracy up by 8-12%'],
     accent: 'blue',
-    icon: TruckOutline
+    icon: LogisticsTransportationIcon
   },
   {
     title: 'Supply Chain\nTechnology',
@@ -74,7 +77,7 @@ export const industrySummaryCards = [
     statLabel: 'Enterprise Systems',
     points: ['ERP, TMS & BI', 'Service delivery speed +10-14%', 'Order efficiency enhanced'],
     accent: 'orange',
-    icon: ScreenIcon
+    icon: SupplyChainTechnologyIcon
   },
   {
     title: 'Healthcare & Medical\nDistribution',
@@ -82,7 +85,7 @@ export const industrySummaryCards = [
     statLabel: 'Facilities Supported',
     points: ['Planning & Visibility', 'Delivery accuracy up by 8-12%', 'Order efficiency enhanced'],
     accent: 'green',
-    icon: RouteIcon
+    icon: HealthcareDistributionIcon
   }
 ]
 
@@ -94,7 +97,7 @@ export const trustedResultCards = [
     result: '9% down',
     resultLabel: '',
     accent: 'purple',
-    icon: ClipboardIcon
+    icon: ChartNoAxesCombined
   },
   {
     title: 'Enterprise Transport &\nLogistics Operator',
@@ -103,7 +106,7 @@ export const trustedResultCards = [
     result: '11% up',
     resultLabel: 'Delivery Accuracy',
     accent: 'blue',
-    icon: TruckOutline
+    icon: Route
   },
   {
     title: 'Supply Chain \nTechnology Provider',
@@ -112,7 +115,7 @@ export const trustedResultCards = [
     result: '13% up',
     resultLabel: 'Service Delivery Speed',
     accent: 'orange',
-    icon: ScreenIcon
+    icon: Workflow
   },
   {
     title: 'National Blood\n Organisation',
@@ -121,7 +124,7 @@ export const trustedResultCards = [
     result: '10% up',
     resultLabel: 'Delivery Accuracy',
     accent: 'green',
-    icon: RouteIcon
+    icon: Route
   }
 ]
 
@@ -138,7 +141,7 @@ export const solutionsStatCards = [
     sub: 'Optimize routes, reduce fuel cost',
     value: '+9%',
     foot: '+4% last quarter',
-    icon: MoneyIcon,
+    icon: TmsOptimizationIcon,
     accent: 'green'
   },
   {
@@ -146,7 +149,7 @@ export const solutionsStatCards = [
     sub: 'On-Time Delivery\nRate',
     value: '89%',
     foot: '+6% last quarter',
-    icon: TransportIcon,
+    icon: TmsOptimizationIcon,
     accent: 'blue'
   }
 ]
@@ -159,7 +162,7 @@ export const solutionPanels = [
     result: '9% down',
     outcome: '6-12% savings',
     button: 'View Solution',
-    icon: TransportIcon,
+    icon: TmsOptimizationIcon,
     accent: 'green'
   },
   {
@@ -169,7 +172,7 @@ export const solutionPanels = [
     result: '+14%',
     outcome: 'Better decisions',
     button: 'View Solution',
-    icon: ChartIcon,
+    icon: AnalyticsServiceIcon,
     accent: 'blue'
   }
 ]
@@ -182,4 +185,3 @@ export const contactDetails = [
   { label: 'Facebook', value: 'Optimum SCS', icon: FacebookMini, brand: 'facebook' },
   { label: 'X / Twitter', value: '@Optimum_SCS', icon: XMini, brand: 'twitter' },
 ]
-

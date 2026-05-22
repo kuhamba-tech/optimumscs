@@ -23,16 +23,210 @@ export const UserIcon = () => (
   <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm7 8a7 7 0 0 0-14 0"/></svg>
 )
 export const ArrowRight = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-export const SearchIcon = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm10 2-4.35-4.35"/></svg>
-export const AnalyzeIcon = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M4 19h16M7 16V9M12 16V5M17 16v-4"/></svg>
-export const DesignIcon = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="m4 15 7-7 9 9M14 8l2-2a2 2 0 1 1 3 3l-2 2"/></svg>
-export const ImplementIcon = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M12 6V3M12 21v-3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M3 12h3M18 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/><circle cx="12" cy="12" r="4"/></svg>
-export const OptimizeIcon = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M4 18V8M10 18V5M16 18v-7M22 18v-4"/></svg>
+export const SearchIcon = () => (
+  <svg viewBox="0 0 64 64" className="icon-stroke approach-neon-icon" aria-hidden="true">
+    <defs><linearGradient id="diagnose-icon" x1="12" y1="10" x2="52" y2="54"><stop offset="0%" stopColor="#58e5ff"/><stop offset="100%" stopColor="#51e0b4"/></linearGradient></defs>
+    <circle cx="29" cy="29" r="18" stroke="url(#diagnose-icon)" strokeWidth="4"/>
+    <path d="m43 43 11 11" stroke="url(#diagnose-icon)" strokeWidth="5"/>
+    <path d="M18 30h7l4-9 6 18 4-9h7" stroke="#ffffff" strokeWidth="3"/>
+  </svg>
+)
+export const AnalyzeIcon = () => (
+  <svg viewBox="0 0 64 64" className="icon-stroke approach-neon-icon" aria-hidden="true">
+    <defs><linearGradient id="analyze-icon" x1="10" y1="12" x2="54" y2="54"><stop offset="0%" stopColor="#58e5ff"/><stop offset="100%" stopColor="#1679ff"/></linearGradient></defs>
+    <path d="M12 52h40" stroke="#ffffff" strokeWidth="3"/>
+    <path d="M18 52V36M31 52V25M44 52V16" stroke="url(#analyze-icon)" strokeWidth="6"/>
+    <path d="m18 34 13-11 13-8 8 6" stroke="#51e0b4" strokeWidth="4"/>
+    <circle cx="18" cy="34" r="3" fill="#51e0b4"/><circle cx="31" cy="23" r="3" fill="#51e0b4"/><circle cx="44" cy="15" r="3" fill="#51e0b4"/>
+  </svg>
+)
+export const DesignIcon = () => (
+  <svg viewBox="0 0 64 64" className="icon-stroke approach-neon-icon" aria-hidden="true">
+    <defs><linearGradient id="design-icon" x1="11" y1="10" x2="53" y2="54"><stop offset="0%" stopColor="#8b5cf6"/><stop offset="100%" stopColor="#58e5ff"/></linearGradient></defs>
+    <rect x="15" y="16" width="34" height="34" rx="5" stroke="url(#design-icon)" strokeWidth="4"/>
+    <path d="M24 25h16M24 34h25M24 43h11" stroke="#ffffff" strokeWidth="3"/>
+    <path d="M45 14 52 7l5 5-7 7-7 2Z" fill="none" stroke="#51e0b4" strokeWidth="4"/>
+  </svg>
+)
+export const ImplementIcon = () => (
+  <svg viewBox="0 0 64 64" className="icon-stroke approach-neon-icon" aria-hidden="true">
+    <defs><linearGradient id="implement-icon" x1="10" y1="10" x2="54" y2="54"><stop offset="0%" stopColor="#58e5ff"/><stop offset="100%" stopColor="#8b5cf6"/></linearGradient></defs>
+    <path d="M35 9h-6l-3 8-8 3v6l8 3 3 8h6l3-8 8-3v-6l-8-3Z" stroke="url(#implement-icon)" strokeWidth="4"/>
+    <circle cx="32" cy="23" r="7" stroke="#ffffff" strokeWidth="3"/>
+    <path d="M17 47h30M24 38v9M40 38v9M47 47l7 7" stroke="#51e0b4" strokeWidth="4"/>
+  </svg>
+)
+export const OptimizeIcon = () => (
+  <svg viewBox="0 0 64 64" className="icon-stroke approach-neon-icon" aria-hidden="true">
+    <defs><linearGradient id="optimize-icon" x1="10" y1="12" x2="54" y2="54"><stop offset="0%" stopColor="#51e0b4"/><stop offset="100%" stopColor="#1679ff"/></linearGradient></defs>
+    <path d="M12 52h40" stroke="#ffffff" strokeWidth="3"/>
+    <path d="M18 47V36M30 47V28M42 47V18" stroke="url(#optimize-icon)" strokeWidth="6"/>
+    <path d="m16 35 13-11 10 5 14-17" stroke="#51e0b4" strokeWidth="4"/>
+    <path d="M48 12h5v5" stroke="#51e0b4" strokeWidth="4"/>
+  </svg>
+)
 
 export const MoneyIcon = () => <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="url(#g1)" opacity=".95"/><path d="M25 25c0-4 3-7 8-7s8 2 8 6c0 8-16 4-16 12 0 4 4 6 8 6s8-2 8-7M32 14v36" fill="none" stroke="#fff" strokeWidth="3.5" strokeLinecap="round"/><defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0%" stopColor="#8dd364"/><stop offset="100%" stopColor="#3f8b4b"/></linearGradient></defs></svg>
 export const TransportIcon = () => <svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="g2" x1="0" x2="1"><stop offset="0%" stopColor="#2f7bdb"/><stop offset="100%" stopColor="#7acbff"/></linearGradient></defs><circle cx="32" cy="32" r="30" fill="url(#g2)" opacity=".96"/><path d="M17 37h30M21 24h17l9 9v11H21zM26 46a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm20 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>
 export const ChartIcon = () => <svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="g3" x1="0" x2="1"><stop offset="0%" stopColor="#2266d1"/><stop offset="100%" stopColor="#7ec9ff"/></linearGradient></defs><circle cx="32" cy="32" r="30" fill="url(#g3)" opacity=".96"/><path d="M18 43h28M22 39V27M31 39V21M40 39V31M20 17l9 8 8-8 7 5" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>
 export const CogIcon = () => <svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="g4" x1="0" x2="1"><stop offset="0%" stopColor="#8dd364"/><stop offset="100%" stopColor="#3f8b4b"/></linearGradient></defs><circle cx="32" cy="32" r="30" fill="url(#g4)" opacity=".96"/><path d="M31 18h2l2 5 5 2v2l-5 2-2 5h-2l-2-5-5-2v-2l5-2 2-5Zm1 10a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm12 11 2 2-3 5-3-1-4 2-1 3h-6l-1-3-4-2-3 1-3-5 2-2v-4l-2-2 3-5 3 1 4-2 1-3h6l1 3 4 2 3-1 3 5-2 2Z" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+
+const ServiceIconShell = ({ children, gradientId, glowColor = '#1aa8ff', accentColor = '#50e3b7' }) => (
+  <svg viewBox="0 0 120 120" className="service-neon-icon" aria-hidden="true">
+    <defs>
+      <radialGradient id={`${gradientId}-field`} cx="50%" cy="45%" r="55%">
+        <stop offset="0%" stopColor={glowColor} stopOpacity=".24" />
+        <stop offset="68%" stopColor="#071d3a" stopOpacity=".26" />
+        <stop offset="100%" stopColor="#03112a" stopOpacity=".08" />
+      </radialGradient>
+      <linearGradient id={`${gradientId}-stroke`} x1="18" y1="16" x2="98" y2="98">
+        <stop offset="0%" stopColor="#58e5ff" />
+        <stop offset="58%" stopColor="#1679ff" />
+        <stop offset="100%" stopColor={accentColor} />
+      </linearGradient>
+      <linearGradient id={`${gradientId}-fill`} x1="22" y1="18" x2="88" y2="92">
+        <stop offset="0%" stopColor={accentColor} />
+        <stop offset="100%" stopColor="#1679ff" />
+      </linearGradient>
+      <filter id={`${gradientId}-soft-glow`} x="-35%" y="-35%" width="170%" height="170%">
+        <feGaussianBlur stdDeviation="2.4" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+    <circle cx="60" cy="60" r="51" fill={`url(#${gradientId}-field)`} />
+    <circle cx="60" cy="60" r="50" fill="none" stroke={`url(#${gradientId}-stroke)`} strokeWidth="2.6" opacity=".92" />
+    <circle cx="60" cy="60" r="42" fill="none" stroke="#2aa8ff" strokeWidth="1.4" opacity=".36" />
+    <circle cx="90" cy="22" r="3.4" fill={accentColor} filter={`url(#${gradientId}-soft-glow)`} />
+    <g filter={`url(#${gradientId}-soft-glow)`}>{children}</g>
+  </svg>
+)
+
+export const TmsOptimizationIcon = () => (
+  <ServiceIconShell gradientId="tms-service-icon" accentColor="#51e0b4" glowColor="#0abf9f">
+    {/* GPS pin – tip at y=78, clear of map card below */}
+    <path d="M60 12 C80 12 90 26 90 44 C90 62 60 78 60 78 C60 78 30 62 30 44 C30 26 40 12 60 12 Z"
+      fill="url(#tms-service-icon-fill)" />
+    <circle cx="60" cy="42" r="14" fill="#071b36" opacity=".86" />
+    <circle cx="60" cy="42" r="6" fill="url(#tms-service-icon-fill)" opacity=".92" />
+    {/* Map card – starts at y=82, well below pin tip */}
+    <rect x="20" y="82" width="80" height="26" rx="5"
+      fill="none" stroke="url(#tms-service-icon-stroke)" strokeWidth="4" />
+    {/* Dashed road lines inside card */}
+    <path d="M30 91 h28 M62 91 h24"
+      stroke="#1aa8ff" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="5 4" opacity=".55" />
+    {/* Route path */}
+    <path d="M28 97 C42 90 56 94 70 90 C80 87 88 91 100 88"
+      fill="none" stroke="url(#tms-service-icon-stroke)" strokeWidth="3" strokeLinecap="round" />
+    {/* Route nodes – clearly inside map card */}
+    <circle cx="50" cy="92" r="4.5" fill="#51e0b4" />
+    <circle cx="78" cy="89" r="4.5" fill="#51e0b4" />
+  </ServiceIconShell>
+)
+
+export const AnalyticsServiceIcon = () => (
+  <ServiceIconShell gradientId="analytics-service-icon" accentColor="#42d9ff" glowColor="#1679ff">
+    {/* Three bars – increasing height left to right */}
+    <rect x="20" y="68" width="14" height="20" rx="3" fill="url(#analytics-service-icon-fill)" opacity=".85" />
+    <rect x="38" y="52" width="14" height="36" rx="3" fill="url(#analytics-service-icon-fill)" />
+    <rect x="56" y="40" width="14" height="48" rx="3" fill="url(#analytics-service-icon-fill)" opacity=".78" />
+    {/* Trend line through bar tops */}
+    <path d="M27 66 L45 50 L63 38" fill="none" stroke="#58e5ff" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Trend nodes */}
+    <circle cx="27" cy="66" r="5.5" fill="#42d9ff" />
+    <circle cx="45" cy="50" r="5.5" fill="#42d9ff" />
+    <circle cx="63" cy="38" r="5.5" fill="#42d9ff" />
+    {/* Magnifier – stroke only so bars remain visible */}
+    <circle cx="78" cy="56" r="21" fill="none" stroke="url(#analytics-service-icon-stroke)" strokeWidth="5.5" />
+    {/* Handle */}
+    <line x1="93" y1="71" x2="105" y2="83" stroke="#42d9ff" strokeWidth="6.5" strokeLinecap="round" />
+  </ServiceIconShell>
+)
+
+export const ProcurementServiceIcon = () => (
+  <ServiceIconShell gradientId="procurement-service-icon" accentColor="#4fe3c0" glowColor="#168dff">
+    {/* Cart handle arm */}
+    <path d="M18 30 L34 30 L48 72 L88 72"
+      fill="none" stroke="url(#procurement-service-icon-stroke)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Cart basket */}
+    <path d="M40 46 L90 46 L84 70 L46 70 Z"
+      fill="none" stroke="url(#procurement-service-icon-stroke)" strokeWidth="4" strokeLinejoin="round" />
+    {/* Wheels */}
+    <circle cx="54" cy="84" r="8" fill="none" stroke="url(#procurement-service-icon-stroke)" strokeWidth="4.5" />
+    <circle cx="78" cy="84" r="8" fill="none" stroke="url(#procurement-service-icon-stroke)" strokeWidth="4.5" />
+    {/* 3D box – isometric hexagon, fits inside basket (basket bottom y=70) */}
+    <path d="M65 48 L79 56 L79 67 L65 68 L51 67 L51 56 Z"
+      fill="url(#procurement-service-icon-fill)" opacity=".25"
+      stroke="url(#procurement-service-icon-stroke)" strokeWidth="3" strokeLinejoin="round" />
+    {/* Box interior edges for 3D effect */}
+    <path d="M51 56 L65 62 L79 56 M65 62 L65 68"
+      fill="none" stroke="url(#procurement-service-icon-stroke)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+  </ServiceIconShell>
+)
+
+export const ErpTransformationIcon = () => (
+  <ServiceIconShell gradientId="erp-service-icon" accentColor="#51e0b4" glowColor="#1679ff">
+    {/* Monitor frame */}
+    <rect x="12" y="18" width="72" height="52" rx="5"
+      fill="#050e1f" opacity=".9" stroke="url(#erp-service-icon-stroke)" strokeWidth="4.5" />
+    {/* Stand neck + base */}
+    <path d="M48 70 v12" stroke="#1679ff" strokeWidth="4" strokeLinecap="round" />
+    <path d="M28 82 h44" stroke="#1679ff" strokeWidth="4.5" strokeLinecap="round" />
+    {/* Pie – 3 clear segments at center (36,44) r=16 */}
+    <path d="M36 44 L36 28 A16 16 0 0 1 52 44 Z" fill="url(#erp-service-icon-fill)" opacity=".96" />
+    <path d="M36 44 L52 44 A16 16 0 0 1 36 60 Z" fill="#1679ff" opacity=".72" />
+    <path d="M36 44 L36 60 A16 16 0 0 1 20 44 Z" fill="#0c2a5e" stroke="#49d9ff" strokeWidth="1.5" />
+    <circle cx="36" cy="44" r="4" fill="#49d9ff" />
+    {/* Data lines – right of pie */}
+    <path d="M62 26 h16 M62 35 h12 M62 44 h18 M62 53 h9"
+      stroke="#49d9ff" strokeWidth="3.5" strokeLinecap="round" opacity=".8" />
+    {/* Gear – precise 8-tooth polygon, center (83,71) */}
+    <path d="M100 71 L92.7 67 L95 59 L87 61.3 L83 54 L79 61.3 L71 59 L73.3 67 L66 71 L73.3 75 L71 83 L79 80.7 L83 88 L87 80.7 L95 83 L92.7 75 Z"
+      fill="#071b36" stroke="#51e0b4" strokeWidth="2.5" strokeLinejoin="round" />
+    <circle cx="83" cy="71" r="7" fill="none" stroke="#51e0b4" strokeWidth="3.5" />
+    <circle cx="83" cy="71" r="3.5" fill="#51e0b4" />
+  </ServiceIconShell>
+)
+
+export const FmcgBeverageIcon = () => (
+  <svg viewBox="0 0 64 64" className="industry-symbol" aria-hidden="true">
+    <rect x="16" y="10" width="32" height="44" rx="5" fill="none" stroke="currentColor" strokeWidth="5" />
+    <path d="M24 20h16M24 30h16M24 40h12" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
+    <path d="M39 43a10 10 0 1 0 14-9v9Z" fill="currentColor" opacity=".95" />
+    <path d="M53 34a10 10 0 0 0-10-1v10Z" fill="currentColor" opacity=".55" />
+  </svg>
+)
+
+export const LogisticsTransportationIcon = () => (
+  <svg viewBox="0 0 64 64" className="industry-symbol" aria-hidden="true">
+    <path d="M10 34h29V20H20" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M39 28h9l8 8v10H39Z" fill="none" stroke="currentColor" strokeWidth="5" strokeLinejoin="round" />
+    <path d="M11 46h45" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
+    <circle cx="22" cy="48" r="5" fill="none" stroke="currentColor" strokeWidth="5" />
+    <circle cx="46" cy="48" r="5" fill="none" stroke="currentColor" strokeWidth="5" />
+  </svg>
+)
+
+export const SupplyChainTechnologyIcon = () => (
+  <svg viewBox="0 0 64 64" className="industry-symbol" aria-hidden="true">
+    <rect x="12" y="15" width="40" height="32" rx="3" fill="none" stroke="currentColor" strokeWidth="5" />
+    <path d="M25 55h14M32 47v8" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
+    <path d="M31 24h4l2 5 5 2v4l-5 2-2 5h-4l-2-5-5-2v-4l5-2Z" fill="currentColor" />
+    <circle cx="33" cy="33" r="4" fill="#1f215f" />
+  </svg>
+)
+
+export const HealthcareDistributionIcon = () => (
+  <svg viewBox="0 0 64 64" className="industry-symbol" aria-hidden="true">
+    <circle cx="16" cy="22" r="7" fill="none" stroke="currentColor" strokeWidth="5" />
+    <circle cx="48" cy="28" r="7" fill="none" stroke="currentColor" strokeWidth="5" />
+    <circle cx="34" cy="48" r="7" fill="none" stroke="currentColor" strokeWidth="5" />
+    <path d="M23 24h10l8 3M44 35l-6 7M21 30l8 12" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M13 44h10M18 39v10" stroke="#ffc43d" strokeWidth="4" strokeLinecap="round" />
+  </svg>
+)
 export const TruckOutline = () => <svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="g5" x1="0" x2="1"><stop offset="0%" stopColor="#1f68df"/><stop offset="100%" stopColor="#29b2ff"/></linearGradient></defs><circle cx="32" cy="32" r="28" fill="url(#g5)" opacity=".16" stroke="#29b2ff" strokeWidth="2"/><path d="M15 35h30V22H28M45 27h7l4 5v3h-11M24 41a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm24 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>
 export const ScreenIcon = () => <svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="g6" x1="0" x2="1"><stop offset="0%" stopColor="#f7931e"/><stop offset="100%" stopColor="#f04d16"/></linearGradient></defs><circle cx="32" cy="32" r="28" fill="url(#g6)" opacity=".16" stroke="#ff8b29" strokeWidth="2"/><path d="M18 19h28v20H18zM27 45h10M32 39v6" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/><path d="M35 25h4l1 3 2 1v4l-2 1-1 3h-4l-1-3-2-1v-4l2-1 1-3Zm2 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" fill="#fff" opacity=".95"/></svg>
 export const RouteIcon = () => <svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="g7" x1="0" x2="1"><stop offset="0%" stopColor="#2ad084"/><stop offset="100%" stopColor="#5ccf62"/></linearGradient></defs><circle cx="32" cy="32" r="28" fill="url(#g7)" opacity=".16" stroke="#5ad07a" strokeWidth="2"/><path d="M23 17a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm18 20a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm10-12a5 5 0 1 1 0 10 5 5 0 0 1 0-10Z" fill="none" stroke="#fff" strokeWidth="3"/><path d="M27 22h10c4 0 7 3 7 7v3M37 42H24c-4 0-7-3-7-7v-5" fill="none" stroke="#ffc83d" strokeWidth="3" strokeDasharray="4 5" strokeLinecap="round"/></svg>

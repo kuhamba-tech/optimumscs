@@ -125,7 +125,7 @@ export default function ProcurementServicesPage() {
           <h3>Business Impact</h3>
 
           <div className="proc-impact-grid">
-            <Impact value="-5-9%" label="Reduction in Procurement Costs" />
+            <Impact value="5-9%" label="Reduction in Procurement Costs" />
             <Impact value="+10-16%" label="Improved Supplier Visibility" />
             <Impact value="+8-14%" label="Faster Procurement Cycle" />
             <Impact value="+12-18%" label="Better Spend Control" />

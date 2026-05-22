@@ -128,7 +128,7 @@ export default function DataAnalyticsReportingPage() {
           <div className="data-impact-grid">
             <Impact value="+15-25%" label="Improved Reporting Speed" />
             <Impact value="+12-18%" label="Better Decision Visibility" />
-            <Impact value="-10-18%" label="Reduced Manual Reporting" />
+            <Impact value="10-18%" label="Reduced Manual Reporting" />
             <Impact value="+10-16%" label="Improved Data Accuracy" />
           </div>
         </section>

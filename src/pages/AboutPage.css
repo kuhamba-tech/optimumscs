@@ -109,14 +109,78 @@
 
 .mission-icon,
 .why-icon {
-  width: 52px;
-  height: 52px;
+  position: relative;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background: linear-gradient(180deg, #8fd36a, #5a9f50);
   display: grid;
   place-items: center;
-  color: white;
+  color: #f2fbff;
   flex: 0 0 auto;
+  background:
+    radial-gradient(circle at 42% 34%, rgba(88, 229, 255, .22), rgba(6, 27, 62, .82) 58%, rgba(2, 12, 33, .96));
+  border: 1px solid rgba(88, 229, 255, .34);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.06),
+    inset 0 0 24px rgba(22, 121, 255, .2),
+    0 14px 32px rgba(0, 8, 24, .34),
+    0 0 24px rgba(88, 229, 255, .18);
+  overflow: visible;
+  transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+}
+
+.mission-icon::before,
+.why-icon::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: inherit;
+  border: 1px solid rgba(88, 229, 255, .24);
+  pointer-events: none;
+}
+
+.mission-icon::after,
+.why-icon::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  right: 17%;
+  top: 14%;
+  border-radius: 50%;
+  background: #7af7d8;
+  box-shadow: 0 0 16px rgba(122, 247, 216, .78);
+  pointer-events: none;
+}
+
+.mission-icon {
+  background:
+    radial-gradient(circle at 42% 34%, rgba(122, 247, 216, .24), rgba(27, 90, 74, .86) 58%, rgba(8, 32, 49, .98));
+  border-color: rgba(122, 247, 216, .42);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.06),
+    inset 0 0 26px rgba(122, 247, 216, .16),
+    0 14px 32px rgba(0, 8, 24, .34),
+    0 0 24px rgba(81, 224, 180, .2);
+}
+
+.mission-icon svg,
+.why-icon svg {
+  position: relative;
+  z-index: 1;
+  stroke-width: 2.35;
+  filter: drop-shadow(0 0 8px rgba(88, 229, 255, .28));
+}
+
+.mission-card:hover .mission-icon,
+.why-card:hover .why-icon {
+  transform: translateY(-4px) scale(1.035);
+  border-color: rgba(88, 229, 255, .58);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.08),
+    inset 0 0 34px rgba(22, 121, 255, .26),
+    0 18px 42px rgba(0, 8, 24, .42),
+    0 0 34px rgba(88, 229, 255, .28);
 }
 
 .mission-card h2 {

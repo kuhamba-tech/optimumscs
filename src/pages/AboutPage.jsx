@@ -1,22 +1,22 @@
 import { useNavigate } from "react-router-dom";
-import { Target, Briefcase, Lightbulb, ShieldCheck } from "lucide-react";
+import { MapPinned, Target, TrendingDown, Workflow } from "lucide-react";
 import mosesImg from "../assets/about-moses-quote.jpg";
 import ceoImg from "../assets/about-ceo-quote.jpg";
 import "./AboutPage.css";
 
 const whyChooseUs = [
   {
-    icon: <Briefcase size={22} />,
+    icon: <MapPinned size={28} />,
     title: "Proven Expertise",
     text: "Delivered FMCG and supply chain solutions across South Africa, Mozambique, Zimbabwe, Namibia, and Uganda.",
   },
   {
-    icon: <Lightbulb size={22} />,
+    icon: <TrendingDown size={28} />,
     title: "Cost & Efficiency Optimization",
     text: "Improving service delivery, enhancing operational efficiency, and reducing costs through data-driven supply chain solutions.",
   },
   {
-    icon: <ShieldCheck size={22} />,
+    icon: <Workflow size={28} />,
     title: "Consulting Expertise",
     text: "Delivering consulting expertise across ERP, TMS, procurement, and FMCG supply chains to drive operational efficiency, cost reduction, and improved service performance.",
   },
@@ -74,7 +74,7 @@ export default function AboutPage() {
       <section className="about-container-clean">
         <div className="mission-card">
           <div className="mission-icon">
-            <Target size={22} />
+            <Target size={28} />
           </div>
 
           <div>

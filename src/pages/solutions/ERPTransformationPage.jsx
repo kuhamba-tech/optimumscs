@@ -127,7 +127,7 @@ export default function ERPTransformationPage() {
             <Impact value="+8-12%" label="Improvement in Operational Efficiency" />
             <Impact value="+10-15%" label="Faster Financial Close" />
             <Impact value="+12-18%" label="Better Data Accuracy & Visibility" />
-            <Impact value="-6-10%" label="Reduction in Operational Costs" />
+            <Impact value="6-10%" label="Reduction in Operational Costs" />
           </div>
         </section>
 

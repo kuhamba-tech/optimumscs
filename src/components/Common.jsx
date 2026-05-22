@@ -11,7 +11,6 @@ export function Button({ children, variant = 'primary', to = '#', className = ''
   )
 }
 
-/* ✅ UPDATED HERO (dynamic image support) */
 export function Hero({
   title,
   subtitle,
@@ -46,10 +45,9 @@ export function Hero({
           )}
         </div>
 
-        {/* ✅ THIS IS THE FIX */}
         <div className={`hero-visual-box ${blendImage ? 'hero-visual-box-blend' : ''}`.trim()}>
           <img
-            src={image ? image : optimumLogo}   /* 🔥 dynamic + fallback */
+            src={image ? image : optimumLogo}
             alt="Hero visual"
             className={`hero-logo-image ${blendImage ? 'hero-logo-image-blend' : ''}`.trim()}
             decoding="async"
@@ -62,11 +60,23 @@ export function Hero({
   )
 }
 
+export function IconWrapper({ children, accent = 'blue', size = 'md', className = '' }) {
+  return (
+    <div className={`icon-wrapper icon-wrapper-${size} ${accent} ${className}`.trim()}>
+      {children}
+    </div>
+  )
+}
+
 export function FeatureCard({ title, description, icon: Icon, accent = 'blue' }) {
   return (
     <article className="glass-card feature-card">
-      <div className={`round-icon ${accent}`}><Icon /></div>
-      <div>
+      <div className="feature-card-copy">
+        {Icon && (
+          <IconWrapper accent={accent} size="md" className="feature-card-icon">
+            <Icon />
+          </IconWrapper>
+        )}
         <h3>{title}</h3>
         <p>{description}</p>
       </div>
@@ -82,7 +92,7 @@ export function StepBar({ items }) {
         return (
           <React.Fragment key={item.label}>
             <div className="process-step">
-              <div className={`mini-round ${item.accent}`}><Icon /></div>
+              <IconWrapper accent={item.accent} size="sm" className="mini-round"><Icon /></IconWrapper>
               <span>{item.label}</span>
             </div>
             {index < items.length - 1 && <ArrowRight />}
@@ -98,7 +108,7 @@ export function IndustryCard({ title, metric, statLabel, points, accent, icon: I
     <article className={`industry-card accent-${accent}`}>
       <div className="industry-card-head"><h3>{title}</h3></div>
       <div className="industry-card-body">
-        <div className="industry-icon-wrap"><Icon /></div>
+        <IconWrapper accent={accent} size="xl" className="industry-icon-wrap"><Icon /></IconWrapper>
         <div className="industry-metric">{metric}</div>
         <div className="industry-stat">{statLabel}</div>
         <ul>
@@ -112,7 +122,7 @@ export function IndustryCard({ title, metric, statLabel, points, accent, icon: I
 export function ResultCard({ title, problem, solution, result, resultLabel, accent, icon: Icon }) {
   return (
     <article className="glass-card result-card">
-      <div className="result-icon"><Icon /></div>
+      <IconWrapper accent={accent} size="xl" className="result-icon"><Icon /></IconWrapper>
       <h3>{title}</h3>
 
       <div className={`case-copy accent-text-${accent}`}>
