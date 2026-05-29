@@ -359,7 +359,7 @@ export default function TalentDashboard() {
             <p style={{ margin: 0, fontSize: 14, lineHeight: 1.75, color: 'var(--text-soft)' }}>
               This dashboard currently uses demo seed data. To connect to a live database:
               <br />• Set <code style={{ background: 'rgba(88,229,255,.08)', padding: '1px 6px', borderRadius: 4, color: '#58e5ff' }}>VITE_TALENT_API_BASE</code> in your .env file
-              <br />• Set <code style={{ background: 'rgba(88,229,255,.08)', padding: '1px 6px', borderRadius: 4, color: '#58e5ff' }}>VITE_FORMSPREE_TALENT_ID</code> for form submissions
+              <br />• Set <code style={{ background: 'rgba(88,229,255,.08)', padding: '1px 6px', borderRadius: 4, color: '#58e5ff' }}>VITE_WEB3FORMS_RECRUIT_KEY</code> for form submissions
               <br />• Replace <code style={{ background: 'rgba(88,229,255,.08)', padding: '1px 6px', borderRadius: 4, color: '#58e5ff' }}>DEMO_PROFILES</code> array with a <code style={{ background: 'rgba(88,229,255,.08)', padding: '1px 6px', borderRadius: 4, color: '#58e5ff' }}>useEffect</code> fetch from your API
               <br />• Protect this route with your authentication layer (session / JWT)
               <br />• See schema and API design comments at the top of <code style={{ background: 'rgba(88,229,255,.08)', padding: '1px 6px', borderRadius: 4, color: '#58e5ff' }}>TalentDashboard.jsx</code>

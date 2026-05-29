@@ -21,28 +21,24 @@ const industries = [
 ]
 
 async function submitQuote(formData, industry) {
-  const id = import.meta.env.VITE_FORMSPREE_CONTACT_ID
-  formData.set('Industry', industry)
+  const key = import.meta.env.VITE_WEB3FORMS_KEY
 
-  if (id && id !== 'REPLACE_ME') {
-    const res = await fetch(`https://formspree.io/f/${id}`, {
-      method: 'POST',
-      body: formData,
-      headers: { Accept: 'application/json' },
-    })
-    return res.ok ? 'success' : 'error'
-  }
+  const res = await fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify({
+      access_key: key,
+      subject: 'Fee Quote Request – OptimumSCS',
+      Name: formData.get('Name'),
+      Company: formData.get('Company') || '',
+      Email: formData.get('Email'),
+      Industry: industry,
+      'Scope of Work': formData.get('Scope of Work'),
+    }),
+  })
 
-  const fields = {
-    Name: formData.get('Name'),
-    Company: formData.get('Company'),
-    Email: formData.get('Email'),
-    Industry: industry,
-    'Scope of Work': formData.get('Scope of Work'),
-  }
-  const body = Object.entries(fields).map(([k, v]) => `${k}: ${v || ''}`).join('\n')
-  window.location.href = `mailto:info@optimumscs.com?subject=${encodeURIComponent('Fee Quote Request – OptimumSCS')}&body=${encodeURIComponent(body)}`
-  return 'mailto'
+  const data = await res.json()
+  return data.success ? 'success' : 'error'
 }
 
 export default function FeeQuotePage() {
@@ -58,7 +54,8 @@ export default function FeeQuotePage() {
     setStatus('loading')
     const formData = new FormData(e.target)
     const result = await submitQuote(formData, industryValue).catch(() => 'error')
-    if (result !== 'mailto') setStatus(result)
+    setStatus(result)
+    if (result === 'success') e.target.reset()
   }
 
   return (

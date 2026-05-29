@@ -74,40 +74,36 @@ export default function BookConsultationPage() {
     formData.set('Preferred Date', formatDate(preferredDate))
     formData.set('Preferred Time', formatTime(preferredTime))
 
-    const id = import.meta.env.VITE_FORMSPREE_CONSULT_ID
+    const key = import.meta.env.VITE_WEB3FORMS_KEY
 
-    if (id && id !== 'REPLACE_ME') {
-      try {
-        const res = await fetch(`https://formspree.io/f/${id}`, {
-          method: 'POST',
-          body: formData,
-          headers: { Accept: 'application/json' },
-        })
-        if (res.ok) {
-          setStatus('success')
-          event.target.reset()
-          setPreferredDate(null)
-          setPreferredTime(null)
-        } else {
-          setStatus('error')
-        }
-      } catch {
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: key,
+          subject: 'Consultation Request – OptimumSCS',
+          'Full Name': formData.get('Full Name'),
+          Company: formData.get('Company') || '',
+          Email: formData.get('Email'),
+          Phone: formData.get('Phone') || '',
+          'Preferred Date': formatDate(preferredDate),
+          'Preferred Time': formatTime(preferredTime),
+          'Areas of Interest': formData.get('Areas of Interest') || '',
+          'Brief Description': formData.get('Brief Description') || '',
+        }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setStatus('success')
+        event.target.reset()
+        setPreferredDate(null)
+        setPreferredTime(null)
+      } else {
         setStatus('error')
       }
-    } else {
-      const fields = {
-        'Full Name': formData.get('Full Name'),
-        'Company': formData.get('Company'),
-        'Email': formData.get('Email'),
-        'Phone': formData.get('Phone'),
-        'Preferred Date': formatDate(preferredDate),
-        'Preferred Time': formatTime(preferredTime),
-        'Areas of Interest': formData.get('Areas of Interest'),
-        'Brief Description': formData.get('Brief Description'),
-      }
-      const body = Object.entries(fields).map(([k, v]) => `${k}: ${v || ''}`).join('\n')
-      window.location.href = `mailto:info@optimumscs.com?subject=${encodeURIComponent('Consultation Request – OptimumSCS')}&body=${encodeURIComponent(body)}`
-      setStatus('idle')
+    } catch {
+      setStatus('error')
     }
   }
 

@@ -161,55 +161,33 @@ export default function CareersPage() {
     setApplyStatus('loading')
     const { name, email, phone, role, message } = applyFields
 
-    const formspreeId = import.meta.env.VITE_FORMSPREE_APPLY_ID
-    if (formspreeId && formspreeId !== 'REPLACE_ME') {
-      try {
-        const fd = new FormData()
-        fd.append('Full Name', name)
-        fd.append('Email', email)
-        fd.append('Phone', phone)
-        fd.append('Role Applied For', role)
-        fd.append('Message', message)
-        fd.append('_subject', `Job Application – ${role} – OptimumSCS`)
-        if (applyCV)    fd.append('CV',                    applyCV)
-        if (applyCerts) fd.append('Certifications',        applyCerts)
-        if (applyOther) fd.append('Supporting_Documents',  applyOther)
-        const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
-          method: 'POST', body: fd, headers: { Accept: 'application/json' },
-        })
-        if (res.ok) {
-          setApplyStatus('success')
-          setApplyFields({ name: '', email: '', phone: '', role: '', message: '' })
-          setApplyCV(null); setApplyCerts(null); setApplyOther(null)
-        } else {
-          setApplyStatus('error')
-        }
-      } catch {
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_RECRUIT_KEY,
+          subject: `Job Application – ${role} – OptimumSCS`,
+          'Full Name': name,
+          'Email': email,
+          'Phone': phone || '',
+          'Role Applied For': role,
+          'Message': message || '',
+          'CV': applyCV?.name || 'Not attached',
+          'Certifications': applyCerts?.name || 'Not attached',
+          'Supporting Documents': applyOther?.name || 'Not attached',
+        }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setApplyStatus('success')
+        setApplyFields({ name: '', email: '', phone: '', role: '', message: '' })
+        setApplyCV(null); setApplyCerts(null); setApplyOther(null)
+      } else {
         setApplyStatus('error')
       }
-    } else {
-      /* mailto fallback — pre-fills the email body */
-      const body = [
-        `Full Name: ${name}`,
-        `Email: ${email}`,
-        `Phone: ${phone}`,
-        `Role Applied For: ${role}`,
-        '',
-        `Message / Cover Note:`,
-        message,
-        '',
-        `Attached files:`,
-        `CV: ${applyCV?.name    || 'Not attached'}`,
-        `Certifications: ${applyCerts?.name || 'Not attached'}`,
-        `Other Documents: ${applyOther?.name || 'Not attached'}`,
-        '',
-        `Please attach your documents to this email before sending.`,
-      ].join('\n')
-      const subject = encodeURIComponent(`Job Application – ${role} – OptimumSCS Microsoft Fabric Project`)
-      const bodyEnc = encodeURIComponent(body)
-      window.location.href = `mailto:recruitment@optimumscs.com?subject=${subject}&body=${bodyEnc}`
-      setApplyStatus('idle')
-      setApplyOpen(false)
+    } catch {
+      setApplyStatus('error')
     }
   }
 
@@ -238,64 +216,45 @@ export default function CareersPage() {
     setStatus('loading')
 
     const selectedSkills = Object.entries(skills).filter(([, v]) => v).map(([k]) => k)
-    const payload = {
-      'Full Name':            fields.fullName,
-      'Email':                fields.email,
-      'Mobile':               fields.mobile,
-      'Country':              fields.country,
-      'City':                 fields.city,
-      'LinkedIn':             fields.linkedin,
-      'Current Position':     fields.position,
-      'Current Employer':     fields.employer,
-      'Years of Experience':  fields.yearsExp,
-      'Industry':             fields.industry,
-      'Availability':         fields.availability,
-      'Engagement Preference':engagement.join(', '),
-      'Skills':               selectedSkills.join(', '),
-      'Certifications':       certs.join(', '),
-      'CV':                   cvFile?.name    || 'Not attached',
-      'Certifications Doc':   certsFile?.name || 'Not attached',
-    }
 
-    const formspreeId = import.meta.env.VITE_FORMSPREE_TALENT_ID
-    if (formspreeId && formspreeId !== 'REPLACE_ME') {
-      /* ── Formspree path ── */
-      try {
-        const fd = new FormData()
-        Object.entries(payload).forEach(([k, v]) => fd.append(k, v))
-        fd.append('_subject', `Talent Network Registration – ${fields.fullName} – OptimumSCS`)
-        if (cvFile)     fd.append('CV_File',              cvFile)
-        if (certsFile)  fd.append('Certifications_File',  certsFile)
-        const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
-          method: 'POST', body: fd, headers: { Accept: 'application/json' },
-        })
-        if (res.ok) {
-          setStatus('success')
-          e.target.reset()
-          setCerts([]); setSkills({}); setEngagement([])
-          setCvFile(null); setCertsFile(null)
-          setFields({ fullName:'', email:'', mobile:'', country:'', city:'', linkedin:'',
-                      position:'', employer:'', yearsExp:'', industry:'', availability:'', otherInfo:'' })
-        } else {
-          setStatus('error')
-        }
-      } catch {
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_RECRUIT_KEY,
+          subject: `Talent Network Registration – ${fields.fullName} – OptimumSCS`,
+          'Full Name':             fields.fullName,
+          'Email':                 fields.email,
+          'Mobile':                fields.mobile,
+          'Country':               fields.country,
+          'City':                  fields.city,
+          'LinkedIn':              fields.linkedin,
+          'Current Position':      fields.position,
+          'Current Employer':      fields.employer,
+          'Years of Experience':   fields.yearsExp,
+          'Industry':              fields.industry,
+          'Availability':          fields.availability,
+          'Engagement Preference': engagement.join(', '),
+          'Skills':                selectedSkills.join(', '),
+          'Certifications':        certs.join(', '),
+          'CV':                    cvFile?.name    || 'Not attached',
+          'Certifications Doc':    certsFile?.name || 'Not attached',
+        }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setStatus('success')
+        e.target.reset()
+        setCerts([]); setSkills({}); setEngagement([])
+        setCvFile(null); setCertsFile(null)
+        setFields({ fullName:'', email:'', mobile:'', country:'', city:'', linkedin:'',
+                    position:'', employer:'', yearsExp:'', industry:'', availability:'', otherInfo:'' })
+      } else {
         setStatus('error')
       }
-    } else {
-      /* ── Mailto fallback — opens email client, stays on page ── */
-      const body = Object.entries(payload)
-        .map(([k, v]) => `${k}: ${v || '–'}`)
-        .join('\n')
-      const subject = encodeURIComponent('Talent Network Registration – OptimumSCS')
-      const href = `mailto:recruitment@optimumscs.com?subject=${subject}&body=${encodeURIComponent(body)}`
-      window.open(href, '_blank')
-      /* show success so the user knows the submission was handled */
-      setStatus('success')
-      setCerts([]); setSkills({}); setEngagement([])
-      setCvFile(null); setCertsFile(null)
-      setFields({ fullName:'', email:'', mobile:'', country:'', city:'', linkedin:'',
-                  position:'', employer:'', yearsExp:'', industry:'', availability:'', otherInfo:'' })
+    } catch {
+      setStatus('error')
     }
   }
 
