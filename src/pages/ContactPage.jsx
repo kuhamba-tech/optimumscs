@@ -25,24 +25,7 @@ const serviceOptions = [
   'General Inquiry',
 ]
 
-async function submitToFormspree(formData, id) {
-  const res = await fetch(`https://formspree.io/f/${id}`, {
-    method: 'POST',
-    body: formData,
-    headers: { Accept: 'application/json' },
-  })
-  return res.ok
-}
-
-function buildMailto(formData) {
-  const fields = {
-    'Full Name': formData.get('Full Name'),
-    'Company': formData.get('Company'),
-    'Email': formData.get('Email'),
-    'Phone': formData.get('Phone'),
-    'Service Required': formData.get('Service Required'),
-    'Project Brief': formData.get('Project Brief'),
-  }
+function buildMailto(fields) {
   const body = Object.entries(fields).map(([k, v]) => `${k}: ${v || ''}`).join('\n')
   return `mailto:info@optimumscs.com?subject=${encodeURIComponent('Website Inquiry – OptimumSCS')}&body=${encodeURIComponent(body)}`
 }
@@ -54,14 +37,43 @@ export default function ContactPage() {
     e.preventDefault()
     setStatus('loading')
     const formData = new FormData(e.target)
-    const id = import.meta.env.VITE_FORMSPREE_CONTACT_ID
+    const key = import.meta.env.VITE_WEB3FORMS_KEY
 
-    if (id && id !== 'REPLACE_ME') {
-      const ok = await submitToFormspree(formData, id).catch(() => false)
-      if (ok) { setStatus('success'); e.target.reset() }
-      else setStatus('error')
-    } else {
-      window.location.href = buildMailto(formData)
+    const fields = {
+      'Full Name': formData.get('Full Name'),
+      'Company': formData.get('Company'),
+      'Email': formData.get('Email'),
+      'Phone': formData.get('Phone'),
+      'Service Required': formData.get('Service Required'),
+      'Project Brief': formData.get('Project Brief'),
+    }
+
+    const openMailto = () => {
+      window.location.href = buildMailto(fields)
+    }
+
+    if (!key || key === 'REPLACE_ME') {
+      openMailto()
+      setStatus('idle')
+      return
+    }
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ access_key: key, subject: 'Website Inquiry – OptimumSCS', ...fields }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setStatus('success')
+        e.target.reset()
+      } else {
+        openMailto()
+        setStatus('idle')
+      }
+    } catch {
+      openMailto()
       setStatus('idle')
     }
   }
