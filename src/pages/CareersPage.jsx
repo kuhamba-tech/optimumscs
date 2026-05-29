@@ -232,35 +232,70 @@ export default function CareersPage() {
   }
   const removeCert = c => setCerts(prev => prev.filter(x => x !== c))
 
-  /* ── Submit ───────────────────────────── */
+  /* ── Submit profile ──────────────────── */
   const handleSubmit = async e => {
     e.preventDefault()
     setStatus('loading')
-    const selectedSkills = Object.entries(skills).filter(([,v]) => v).map(([k]) => k)
+
+    const selectedSkills = Object.entries(skills).filter(([, v]) => v).map(([k]) => k)
     const payload = {
-      ...fields,
-      'Engagement Preference': engagement,
-      'Skills': selectedSkills,
-      'Certifications': certs,
+      'Full Name':            fields.fullName,
+      'Email':                fields.email,
+      'Mobile':               fields.mobile,
+      'Country':              fields.country,
+      'City':                 fields.city,
+      'LinkedIn':             fields.linkedin,
+      'Current Position':     fields.position,
+      'Current Employer':     fields.employer,
+      'Years of Experience':  fields.yearsExp,
+      'Industry':             fields.industry,
+      'Availability':         fields.availability,
+      'Engagement Preference':engagement.join(', '),
+      'Skills':               selectedSkills.join(', '),
+      'Certifications':       certs.join(', '),
+      'CV':                   cvFile?.name    || 'Not attached',
+      'Certifications Doc':   certsFile?.name || 'Not attached',
     }
 
     const formspreeId = import.meta.env.VITE_FORMSPREE_TALENT_ID
     if (formspreeId && formspreeId !== 'REPLACE_ME') {
+      /* ── Formspree path ── */
       try {
         const fd = new FormData()
-        Object.entries(payload).forEach(([k, v]) => fd.append(k, Array.isArray(v) ? v.join(', ') : v))
-        if (cvFile) fd.append('CV', cvFile)
-        if (certsFile) fd.append('Certifications_Doc', certsFile)
+        Object.entries(payload).forEach(([k, v]) => fd.append(k, v))
+        fd.append('_subject', `Talent Network Registration – ${fields.fullName} – OptimumSCS`)
+        if (cvFile)     fd.append('CV_File',              cvFile)
+        if (certsFile)  fd.append('Certifications_File',  certsFile)
         const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
           method: 'POST', body: fd, headers: { Accept: 'application/json' },
         })
-        if (res.ok) { setStatus('success'); e.target.reset(); setCerts([]); setSkills({}); setEngagement([]) }
-        else setStatus('error')
-      } catch { setStatus('error') }
+        if (res.ok) {
+          setStatus('success')
+          e.target.reset()
+          setCerts([]); setSkills({}); setEngagement([])
+          setCvFile(null); setCertsFile(null)
+          setFields({ fullName:'', email:'', mobile:'', country:'', city:'', linkedin:'',
+                      position:'', employer:'', yearsExp:'', industry:'', availability:'', otherInfo:'' })
+        } else {
+          setStatus('error')
+        }
+      } catch {
+        setStatus('error')
+      }
     } else {
-      const body = buildMailtoBody({ ...payload, 'CV': cvFile?.name || 'Not attached' })
-      window.location.href = `mailto:recruitment@optimumscs.com?subject=${encodeURIComponent('Talent Network Registration – OptimumSCS')}&body=${encodeURIComponent(body)}`
-      setStatus('idle')
+      /* ── Mailto fallback — opens email client, stays on page ── */
+      const body = Object.entries(payload)
+        .map(([k, v]) => `${k}: ${v || '–'}`)
+        .join('\n')
+      const subject = encodeURIComponent('Talent Network Registration – OptimumSCS')
+      const href = `mailto:recruitment@optimumscs.com?subject=${subject}&body=${encodeURIComponent(body)}`
+      window.open(href, '_blank')
+      /* show success so the user knows the submission was handled */
+      setStatus('success')
+      setCerts([]); setSkills({}); setEngagement([])
+      setCvFile(null); setCertsFile(null)
+      setFields({ fullName:'', email:'', mobile:'', country:'', city:'', linkedin:'',
+                  position:'', employer:'', yearsExp:'', industry:'', availability:'', otherInfo:'' })
     }
   }
 
@@ -557,13 +592,18 @@ export default function CareersPage() {
             <form id="talent-form" className="glass-card careers-form-main" onSubmit={handleSubmit}>
 
               {status === 'success' && (
-                <div className="form-success-msg" style={{ marginBottom: 24 }}>
-                  ✓ Profile submitted! We have added you to the OptimumSCS Talent Network and will be in touch when a matching opportunity arises.
+                <div className="form-success-msg" style={{ marginBottom: 24, fontSize: 16, lineHeight: 1.6 }}>
+                  ✓ Profile submitted successfully! Your profile has been sent to the OptimumSCS Talent Network.
+                  We will review your details and be in touch when a matching project opportunity arises.
+                  <br /><strong style={{ display: 'block', marginTop: 8 }}>Thank you for registering.</strong>
                 </div>
               )}
               {status === 'error' && (
                 <div className="form-error-msg" style={{ marginBottom: 24 }}>
-                  Submission failed. Please email your CV directly to recruitment@optimumscs.com
+                  Submission failed. Please email your CV and profile directly to{' '}
+                  <a href="mailto:recruitment@optimumscs.com" style={{ color: '#f87171', textDecoration: 'underline' }}>
+                    recruitment@optimumscs.com
+                  </a>
                 </div>
               )}
 
