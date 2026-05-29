@@ -14,9 +14,9 @@ export const navItems = [
   { label: 'Industries', to: '/industries' },
   { label: 'About', to: '/about' },
   { label: 'Case Studies', to: '/case-studies' },
+  { label: 'Careers', to: '/careers' },
   { label: 'Contact', to: '/contact' },
-   { label: 'Request Quote', to: '/fee-quote' }
-   
+  { label: 'Request Quote', to: '/fee-quote' },
 ]
 
 export const homeFeatureCards = [

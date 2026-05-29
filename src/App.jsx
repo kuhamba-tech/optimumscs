@@ -11,6 +11,8 @@ const CaseStudiesPage = lazy(() => import('./pages/CaseStudiesPage'))
 const ContactPage = lazy(() => import('./pages/ContactPage'))
 const FeeQuotePage = lazy(() => import('./pages/FeeQuotePage'))
 const BookConsultationPage = lazy(() => import('./pages/BookConsultationPage'))
+const CareersPage = lazy(() => import('./pages/CareersPage'))
+const TalentDashboard = lazy(() => import('./pages/TalentDashboard'))
 const ERPTransformationPage = lazy(() => import('./pages/solutions/ERPTransformationPage'))
 const TMSImplementationPage = lazy(() => import('./pages/solutions/TMSImplementationPage'))
 const ProcurementServicesPage = lazy(() => import('./pages/solutions/ProcurementServicesPage'))
@@ -33,6 +35,8 @@ export default function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/fee-quote" element={<FeeQuotePage />} />
             <Route path="/book-consultation" element={<BookConsultationPage />} />
+            <Route path="/careers" element={<CareersPage />} />
+            <Route path="/talent-dashboard" element={<TalentDashboard />} />
             <Route path="/solutions/erp-transformation" element={<ERPTransformationPage />} />
             <Route path="/solutions/tms-implementation" element={<TMSImplementationPage />} />
             <Route path="/solutions/procurement-services" element={<ProcurementServicesPage />} />
