@@ -160,19 +160,35 @@ export default function CareersPage() {
     e.preventDefault()
     setApplyStatus('loading')
     const { name, email, phone, role, message } = applyFields
+    const key = import.meta.env.VITE_WEB3FORMS_RECRUIT_KEY
+
+    const openMailto = () => {
+      const body = [
+        `Full Name: ${name}`, `Email: ${email}`, `Phone: ${phone || ''}`,
+        `Role Applied For: ${role}`, '', `Message:`, message || '',
+        '', `CV: ${applyCV?.name || 'Not attached'}`,
+        `Certifications: ${applyCerts?.name || 'Not attached'}`,
+        `Other Documents: ${applyOther?.name || 'Not attached'}`,
+      ].join('\n')
+      window.location.href = `mailto:recruitment@optimumscs.com?subject=${encodeURIComponent(`Job Application – ${role} – OptimumSCS`)}&body=${encodeURIComponent(body)}`
+    }
+
+    if (!key || key === 'REPLACE_ME') {
+      openMailto()
+      setApplyStatus('idle')
+      setApplyOpen(false)
+      return
+    }
 
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          access_key: import.meta.env.VITE_WEB3FORMS_RECRUIT_KEY,
+          access_key: key,
           subject: `Job Application – ${role} – OptimumSCS`,
-          'Full Name': name,
-          'Email': email,
-          'Phone': phone || '',
-          'Role Applied For': role,
-          'Message': message || '',
+          'Full Name': name, 'Email': email, 'Phone': phone || '',
+          'Role Applied For': role, 'Message': message || '',
           'CV': applyCV?.name || 'Not attached',
           'Certifications': applyCerts?.name || 'Not attached',
           'Supporting Documents': applyOther?.name || 'Not attached',
@@ -184,10 +200,14 @@ export default function CareersPage() {
         setApplyFields({ name: '', email: '', phone: '', role: '', message: '' })
         setApplyCV(null); setApplyCerts(null); setApplyOther(null)
       } else {
-        setApplyStatus('error')
+        openMailto()
+        setApplyStatus('idle')
+        setApplyOpen(false)
       }
     } catch {
-      setApplyStatus('error')
+      openMailto()
+      setApplyStatus('idle')
+      setApplyOpen(false)
     }
   }
 
@@ -216,45 +236,66 @@ export default function CareersPage() {
     setStatus('loading')
 
     const selectedSkills = Object.entries(skills).filter(([, v]) => v).map(([k]) => k)
+    const key = import.meta.env.VITE_WEB3FORMS_RECRUIT_KEY
+
+    const payload = {
+      'Full Name':             fields.fullName,
+      'Email':                 fields.email,
+      'Mobile':                fields.mobile,
+      'Country':               fields.country,
+      'City':                  fields.city,
+      'LinkedIn':              fields.linkedin,
+      'Current Position':      fields.position,
+      'Current Employer':      fields.employer,
+      'Years of Experience':   fields.yearsExp,
+      'Industry':              fields.industry,
+      'Availability':          fields.availability,
+      'Engagement Preference': engagement.join(', '),
+      'Skills':                selectedSkills.join(', '),
+      'Certifications':        certs.join(', '),
+      'CV':                    cvFile?.name    || 'Not attached',
+      'Certifications Doc':    certsFile?.name || 'Not attached',
+    }
+
+    const resetForm = () => {
+      e.target.reset()
+      setCerts([]); setSkills({}); setEngagement([])
+      setCvFile(null); setCertsFile(null)
+      setFields({ fullName:'', email:'', mobile:'', country:'', city:'', linkedin:'',
+                  position:'', employer:'', yearsExp:'', industry:'', availability:'', otherInfo:'' })
+    }
+
+    const openMailto = () => {
+      const body = Object.entries(payload).map(([k, v]) => `${k}: ${v || '–'}`).join('\n')
+      window.open(`mailto:recruitment@optimumscs.com?subject=${encodeURIComponent('Talent Network Registration – OptimumSCS')}&body=${encodeURIComponent(body)}`, '_blank')
+    }
+
+    if (!key || key === 'REPLACE_ME') {
+      openMailto()
+      setStatus('success')
+      resetForm()
+      return
+    }
 
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: import.meta.env.VITE_WEB3FORMS_RECRUIT_KEY,
-          subject: `Talent Network Registration – ${fields.fullName} – OptimumSCS`,
-          'Full Name':             fields.fullName,
-          'Email':                 fields.email,
-          'Mobile':                fields.mobile,
-          'Country':               fields.country,
-          'City':                  fields.city,
-          'LinkedIn':              fields.linkedin,
-          'Current Position':      fields.position,
-          'Current Employer':      fields.employer,
-          'Years of Experience':   fields.yearsExp,
-          'Industry':              fields.industry,
-          'Availability':          fields.availability,
-          'Engagement Preference': engagement.join(', '),
-          'Skills':                selectedSkills.join(', '),
-          'Certifications':        certs.join(', '),
-          'CV':                    cvFile?.name    || 'Not attached',
-          'Certifications Doc':    certsFile?.name || 'Not attached',
-        }),
+        body: JSON.stringify({ access_key: key, subject: `Talent Network Registration – ${fields.fullName} – OptimumSCS`, ...payload }),
       })
       const data = await res.json()
       if (data.success) {
         setStatus('success')
-        e.target.reset()
-        setCerts([]); setSkills({}); setEngagement([])
-        setCvFile(null); setCertsFile(null)
-        setFields({ fullName:'', email:'', mobile:'', country:'', city:'', linkedin:'',
-                    position:'', employer:'', yearsExp:'', industry:'', availability:'', otherInfo:'' })
+        resetForm()
       } else {
-        setStatus('error')
+        openMailto()
+        setStatus('success')
+        resetForm()
       }
     } catch {
-      setStatus('error')
+      openMailto()
+      setStatus('success')
+      resetForm()
     }
   }
 

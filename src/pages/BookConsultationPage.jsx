@@ -76,22 +76,33 @@ export default function BookConsultationPage() {
 
     const key = import.meta.env.VITE_WEB3FORMS_KEY
 
+    const fields = {
+      'Full Name': formData.get('Full Name'),
+      Company: formData.get('Company') || '',
+      Email: formData.get('Email'),
+      Phone: formData.get('Phone') || '',
+      'Preferred Date': formatDate(preferredDate),
+      'Preferred Time': formatTime(preferredTime),
+      'Areas of Interest': formData.get('Areas of Interest') || '',
+      'Brief Description': formData.get('Brief Description') || '',
+    }
+
+    const openMailto = () => {
+      const body = Object.entries(fields).map(([k, v]) => `${k}: ${v}`).join('\n')
+      window.location.href = `mailto:info@optimumscs.com?subject=${encodeURIComponent('Consultation Request – OptimumSCS')}&body=${encodeURIComponent(body)}`
+    }
+
+    if (!key || key === 'REPLACE_ME') {
+      openMailto()
+      setStatus('idle')
+      return
+    }
+
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: key,
-          subject: 'Consultation Request – OptimumSCS',
-          'Full Name': formData.get('Full Name'),
-          Company: formData.get('Company') || '',
-          Email: formData.get('Email'),
-          Phone: formData.get('Phone') || '',
-          'Preferred Date': formatDate(preferredDate),
-          'Preferred Time': formatTime(preferredTime),
-          'Areas of Interest': formData.get('Areas of Interest') || '',
-          'Brief Description': formData.get('Brief Description') || '',
-        }),
+        body: JSON.stringify({ access_key: key, subject: 'Consultation Request – OptimumSCS', ...fields }),
       })
       const data = await res.json()
       if (data.success) {
@@ -100,10 +111,12 @@ export default function BookConsultationPage() {
         setPreferredDate(null)
         setPreferredTime(null)
       } else {
-        setStatus('error')
+        openMailto()
+        setStatus('idle')
       }
     } catch {
-      setStatus('error')
+      openMailto()
+      setStatus('idle')
     }
   }
 

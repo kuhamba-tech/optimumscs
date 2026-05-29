@@ -20,25 +20,48 @@ const industries = [
   'Other',
 ]
 
+function mailtoQuote(formData, industry) {
+  const fields = {
+    Name: formData.get('Name'),
+    Company: formData.get('Company') || '',
+    Email: formData.get('Email'),
+    Industry: industry,
+    'Scope of Work': formData.get('Scope of Work'),
+  }
+  const body = Object.entries(fields).map(([k, v]) => `${k}: ${v}`).join('\n')
+  window.location.href = `mailto:info@optimumscs.com?subject=${encodeURIComponent('Fee Quote Request – OptimumSCS')}&body=${encodeURIComponent(body)}`
+}
+
 async function submitQuote(formData, industry) {
   const key = import.meta.env.VITE_WEB3FORMS_KEY
 
-  const res = await fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify({
-      access_key: key,
-      subject: 'Fee Quote Request – OptimumSCS',
-      Name: formData.get('Name'),
-      Company: formData.get('Company') || '',
-      Email: formData.get('Email'),
-      Industry: industry,
-      'Scope of Work': formData.get('Scope of Work'),
-    }),
-  })
+  if (!key || key === 'REPLACE_ME') {
+    mailtoQuote(formData, industry)
+    return 'mailto'
+  }
 
-  const data = await res.json()
-  return data.success ? 'success' : 'error'
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: key,
+        subject: 'Fee Quote Request – OptimumSCS',
+        Name: formData.get('Name'),
+        Company: formData.get('Company') || '',
+        Email: formData.get('Email'),
+        Industry: industry,
+        'Scope of Work': formData.get('Scope of Work'),
+      }),
+    })
+    const data = await res.json()
+    if (data.success) return 'success'
+    mailtoQuote(formData, industry)
+    return 'mailto'
+  } catch {
+    mailtoQuote(formData, industry)
+    return 'mailto'
+  }
 }
 
 export default function FeeQuotePage() {
@@ -54,6 +77,7 @@ export default function FeeQuotePage() {
     setStatus('loading')
     const formData = new FormData(e.target)
     const result = await submitQuote(formData, industryValue).catch(() => 'error')
+    if (result === 'mailto') { setStatus('idle'); return }
     setStatus(result)
     if (result === 'success') e.target.reset()
   }
