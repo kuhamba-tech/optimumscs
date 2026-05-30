@@ -54,9 +54,10 @@ async function submitToWeb3Forms({ type, fields }) {
     }),
   })
 
+  const raw = await res.text()
   let data
   try {
-    data = await res.json()
+    data = JSON.parse(raw)
   } catch {
     return { status: 502, body: { error: 'web3forms-invalid-response' } }
   }
