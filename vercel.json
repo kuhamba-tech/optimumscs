@@ -6,6 +6,10 @@
       "use": "@vercel/node"
     },
     {
+      "src": "api/submit-form.cjs",
+      "use": "@vercel/node"
+    },
+    {
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
@@ -17,6 +21,10 @@
     {
       "src": "/api/ask-optimum",
       "dest": "/api/ask-optimum.cjs"
+    },
+    {
+      "src": "/api/submit-form",
+      "dest": "/api/submit-form.cjs"
     },
     {
       "handle": "filesystem"

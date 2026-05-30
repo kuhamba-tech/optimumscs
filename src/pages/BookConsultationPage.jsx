@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import { submitForm } from '../lib/submitFormClient'
 import {
   BriefMini,
   CalendarMini,
@@ -74,8 +75,6 @@ export default function BookConsultationPage() {
     formData.set('Preferred Date', formatDate(preferredDate))
     formData.set('Preferred Time', formatTime(preferredTime))
 
-    const key = import.meta.env.VITE_WEB3FORMS_KEY
-
     const fields = {
       'Full Name': formData.get('Full Name'),
       Company: formData.get('Company') || '',
@@ -92,32 +91,17 @@ export default function BookConsultationPage() {
       window.location.href = `mailto:info@optimumscs.com?subject=${encodeURIComponent('Consultation Request – OptimumSCS')}&body=${encodeURIComponent(body)}`
     }
 
-    if (!key || key === 'REPLACE_ME') {
-      openMailto()
-      setStatus('idle')
+    const result = await submitForm('consultation', fields)
+    if (result === 'success') {
+      setStatus('success')
+      event.target.reset()
+      setPreferredDate(null)
+      setPreferredTime(null)
       return
     }
 
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ access_key: key, subject: 'Consultation Request – OptimumSCS', ...fields }),
-      })
-      const data = await res.json()
-      if (data.success) {
-        setStatus('success')
-        event.target.reset()
-        setPreferredDate(null)
-        setPreferredTime(null)
-      } else {
-        openMailto()
-        setStatus('idle')
-      }
-    } catch {
-      openMailto()
-      setStatus('idle')
-    }
+    openMailto()
+    setStatus('mailto')
   }
 
   // Only allow future weekdays
@@ -175,6 +159,11 @@ export default function BookConsultationPage() {
             {status === 'error' && (
               <div className="form-error-msg">
                 Something went wrong. Please email us directly at info@optimumscs.com
+              </div>
+            )}
+            {status === 'mailto' && (
+              <div className="form-success-msg">
+                Your email app should open with your consultation details. If it did not, email info@optimumscs.com.
               </div>
             )}
 

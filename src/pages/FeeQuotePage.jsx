@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { clearQuotePrefill, loadQuotePrefill } from '../lib/askOptimumKnowledge'
+import { submitForm } from '../lib/submitFormClient'
 
 const services = [
   'TMS Implementation',
@@ -34,35 +35,18 @@ function mailtoQuote(formData, industry) {
 }
 
 async function submitQuote(formData, industry) {
-  const key = import.meta.env.VITE_WEB3FORMS_KEY
-
-  if (!key || key === 'REPLACE_ME') {
-    mailtoQuote(formData, industry)
-    return 'mailto'
+  const fields = {
+    Name: formData.get('Name'),
+    Company: formData.get('Company') || '',
+    Email: formData.get('Email'),
+    Industry: industry,
+    'Scope of Work': formData.get('Scope of Work'),
   }
 
-  try {
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        access_key: key,
-        subject: 'Fee Quote Request – OptimumSCS',
-        Name: formData.get('Name'),
-        Company: formData.get('Company') || '',
-        Email: formData.get('Email'),
-        Industry: industry,
-        'Scope of Work': formData.get('Scope of Work'),
-      }),
-    })
-    const data = await res.json()
-    if (data.success) return 'success'
-    mailtoQuote(formData, industry)
-    return 'mailto'
-  } catch {
-    mailtoQuote(formData, industry)
-    return 'mailto'
-  }
+  const result = await submitForm('quote', fields)
+  if (result === 'success') return 'success'
+  mailtoQuote(formData, industry)
+  return 'mailto'
 }
 
 export default function FeeQuotePage() {
@@ -113,7 +97,7 @@ export default function FeeQuotePage() {
     setStatus('loading')
     const formData = new FormData(e.target)
     const result = await submitQuote(formData, industryValue).catch(() => 'error')
-    if (result === 'mailto') { setStatus('idle'); return }
+    if (result === 'mailto') { setStatus('mailto'); return }
     setStatus(result)
     if (result === 'success') e.target.reset()
   }
@@ -144,6 +128,11 @@ export default function FeeQuotePage() {
           {status === 'error' && (
             <div className="form-error-msg">
               Something went wrong. Please email info@optimumscs.com directly.
+            </div>
+          )}
+          {status === 'mailto' && (
+            <div className="form-success-msg">
+              Your email app should open with your quote details. If it did not, email info@optimumscs.com.
             </div>
           )}
 

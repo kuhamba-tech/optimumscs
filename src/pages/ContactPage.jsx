@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { contactDetails } from '../components/data'
+import { submitForm } from '../lib/submitFormClient'
 import {
   CalendarMini,
   ChevronDownMini,
@@ -37,8 +38,6 @@ export default function ContactPage() {
     e.preventDefault()
     setStatus('loading')
     const formData = new FormData(e.target)
-    const key = import.meta.env.VITE_WEB3FORMS_KEY
-
     const fields = {
       'Full Name': formData.get('Full Name'),
       'Company': formData.get('Company'),
@@ -52,30 +51,15 @@ export default function ContactPage() {
       window.location.href = buildMailto(fields)
     }
 
-    if (!key || key === 'REPLACE_ME') {
-      openMailto()
-      setStatus('idle')
+    const result = await submitForm('contact', fields)
+    if (result === 'success') {
+      setStatus('success')
+      e.target.reset()
       return
     }
 
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ access_key: key, subject: 'Website Inquiry – OptimumSCS', ...fields }),
-      })
-      const data = await res.json()
-      if (data.success) {
-        setStatus('success')
-        e.target.reset()
-      } else {
-        openMailto()
-        setStatus('idle')
-      }
-    } catch {
-      openMailto()
-      setStatus('idle')
-    }
+    openMailto()
+    setStatus('mailto')
   }
 
   return (
@@ -178,6 +162,11 @@ export default function ContactPage() {
               {status === 'error' && (
                 <div className="form-error-msg">
                   Something went wrong. Please email us directly at info@optimumscs.com
+                </div>
+              )}
+              {status === 'mailto' && (
+                <div className="form-success-msg">
+                  Your email app should open with your message. If it did not, email info@optimumscs.com.
                 </div>
               )}
 

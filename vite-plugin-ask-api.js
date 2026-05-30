@@ -1,11 +1,16 @@
+import { createRequire } from 'module'
 import { loadEnv } from 'vite'
 import { handleAskOptimumRequest, readJsonBody } from './lib/askOptimumServer.js'
 
+const require = createRequire(import.meta.url)
+const submitFormHandler = require('./api/submit-form.cjs')
+
 export function askOptimumApiPlugin() {
   return {
-    name: 'ask-optimum-api',
+    name: 'optimum-api',
     configureServer(server) {
       const envDir = server.config.envDir || process.cwd()
+
       server.middlewares.use('/api/ask-optimum', async (req, res, next) => {
         if (req.method !== 'POST') {
           next()
@@ -21,6 +26,22 @@ export function askOptimumApiPlugin() {
           res.end(JSON.stringify(payload))
         } catch {
           res.statusCode = 500
+          res.end(JSON.stringify({ error: 'server-error' }))
+        }
+      })
+
+      server.middlewares.use('/api/submit-form', async (req, res, next) => {
+        if (req.method !== 'POST' && req.method !== 'OPTIONS') {
+          next()
+          return
+        }
+
+        try {
+          Object.assign(process.env, loadEnv(server.config.mode, envDir, ''))
+          await submitFormHandler(req, res)
+        } catch {
+          res.statusCode = 500
+          res.setHeader('Content-Type', 'application/json')
           res.end(JSON.stringify({ error: 'server-error' }))
         }
       })
