@@ -1,5 +1,5 @@
 import { loadEnv } from 'vite'
-import { handleAskOptimumRequest, readJsonBody } from './server/askOptimumApi.js'
+import { handleAskOptimumRequest, readJsonBody } from './lib/askOptimumServer.js'
 
 export function askOptimumApiPlugin() {
   return {

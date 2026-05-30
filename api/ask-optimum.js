@@ -1,13 +1,7 @@
-import { handleAskOptimumRequest, readJsonBody } from '../server/askOptimumApi.js'
+import { handleAskOptimumRequest, parseRequestBody } from '../lib/askOptimumServer.js'
 
-function parseRequestBody(req) {
-  if (req.body && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
-    return req.body
-  }
-  if (typeof req.body === 'string' && req.body.trim()) {
-    return JSON.parse(req.body)
-  }
-  return readJsonBody(req)
+export const config = {
+  runtime: 'nodejs20.x',
 }
 
 /** Vercel serverless handler — POST /api/ask-optimum */
