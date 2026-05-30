@@ -3,11 +3,15 @@ Contact: moses@optimumscs.com | +27 739370249
 Reply with headings: Diagnosis:, Recommended Solution:, Expected Impact:, Next Step:`
 
 function parseBody(req) {
-  if (req.body && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
-    return req.body
-  }
-  if (typeof req.body === 'string' && req.body.trim()) {
-    return JSON.parse(req.body)
+  try {
+    if (req.body && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
+      return req.body
+    }
+    if (typeof req.body === 'string' && req.body.trim()) {
+      return JSON.parse(req.body)
+    }
+  } catch {
+    return {}
   }
   return {}
 }
@@ -38,12 +42,17 @@ async function askClaude(reqBody) {
     }),
   })
 
-  const text = await res.text()
+  let data
+  try {
+    data = await res.json()
+  } catch {
+    return { status: 502, body: { error: 'api-invalid-response' } }
+  }
+
   if (!res.ok) {
     return { status: res.status, body: { error: `api-${res.status}` } }
   }
 
-  const data = JSON.parse(text)
   return { status: 200, body: { text: data.content?.[0]?.text ?? '' } }
 }
 
