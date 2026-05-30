@@ -4,7 +4,7 @@ Your **local fee quote works** with this key. Add the **same** values on Vercel.
 
 ## Steps
 
-1. Open [vercel.com](https://vercel.com) → project **optimumscs** (or the project for `optimumscs-gamma.vercel.app`).
+1. Open [vercel.com](https://vercel.com) → the project for **`optimumscs.vercel.app`** (OptimumSCS account) or `optimumscs-gamma.vercel.app` (personal test).
 2. **Settings** → **Environment Variables** → **Add New**.
 
 ### Variable 1 — Forms (required for Fee Quote, Book Consultation, Contact)
@@ -29,9 +29,11 @@ Your **local fee quote works** with this key. Add the **same** values on Vercel.
 ## Verify after redeploy
 
 ```powershell
-powershell -File scripts/test-vercel-apis.ps1
+powershell -File scripts/test-vercel-apis.ps1 -BaseUrl "https://optimumscs.vercel.app"
 ```
 
-Or open https://optimumscs-gamma.vercel.app/fee-quote and submit — expect the same green message as local.
+Or open https://optimumscs.vercel.app/fee-quote (production) or https://optimumscs-gamma.vercel.app/fee-quote (test) — expect the same green message as local.
+
+Full company-account steps: [OPTIMUMSCS_VERCEL_DEPLOY.md](./OPTIMUMSCS_VERCEL_DEPLOY.md).
 
 **API check:** `POST /api/submit-form` should return `{"success":true}` (not `no-key`).

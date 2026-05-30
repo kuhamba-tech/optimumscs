@@ -1,6 +1,9 @@
 # Vercel deployment — AskOptimumSCS live AI
 
-Site: [https://optimumscs-gamma.vercel.app/](https://optimumscs-gamma.vercel.app/)
+Sites:
+
+- **Production domain:** [https://optimumscs.vercel.app/](https://optimumscs.vercel.app/) — connect project `optimumscs` to this repo (see [UPDATE_OPTIMUMSCS_VERCEL.md](./UPDATE_OPTIMUMSCS_VERCEL.md))
+- **Preview / test:** [https://optimumscs-gamma.vercel.app/](https://optimumscs-gamma.vercel.app/)
 
 ## 1. Environment variables (required)
 
