@@ -47,8 +47,17 @@ async function askClaude(reqBody) {
   return { status: 200, body: { text: data.content?.[0]?.text ?? '' } }
 }
 
+const API_VERSION = '2026-05-30'
+
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*')
+
+  if (req.method === 'GET') {
+    res.statusCode = 200
+    res.setHeader('Content-Type', 'application/json')
+    res.end(JSON.stringify({ status: 'ok', version: API_VERSION }))
+    return
+  }
 
   if (req.method === 'OPTIONS') {
     res.statusCode = 204
