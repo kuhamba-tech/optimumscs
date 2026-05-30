@@ -17,7 +17,11 @@ function parseBody(req) {
     return Promise.resolve(req.body)
   }
   if (typeof req.body === 'string' && req.body.trim()) {
-    return Promise.resolve(JSON.parse(req.body))
+    try {
+      return Promise.resolve(JSON.parse(req.body))
+    } catch {
+      return Promise.resolve({})
+    }
   }
   return new Promise((resolve, reject) => {
     const chunks = []
@@ -44,15 +48,20 @@ async function submitToWeb3Forms({ type, fields }) {
     return { status: 400, body: { error: 'invalid-payload' } }
   }
 
-  const res = await fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify({
-      access_key: accessKey,
-      subject: SUBJECTS[type] || `OptimumSCS Form – ${type}`,
-      ...fields,
-    }),
-  })
+  let res
+  try {
+    res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: accessKey,
+        subject: SUBJECTS[type] || `OptimumSCS Form - ${type}`,
+        ...fields,
+      }),
+    })
+  } catch {
+    return { status: 502, body: { error: 'web3forms-unreachable' } }
+  }
 
   const raw = await res.text()
   let data

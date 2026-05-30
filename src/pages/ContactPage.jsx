@@ -58,8 +58,13 @@ export default function ContactPage() {
       return
     }
 
-    openMailto()
-    setStatus('mailto')
+    if (result === 'no-key') {
+      openMailto()
+      setStatus('mailto')
+      return
+    }
+
+    setStatus('error')
   }
 
   return (

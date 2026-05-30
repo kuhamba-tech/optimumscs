@@ -45,8 +45,11 @@ async function submitQuote(formData, industry) {
 
   const result = await submitForm('quote', fields)
   if (result === 'success') return 'success'
-  mailtoQuote(formData, industry)
-  return 'mailto'
+  if (result === 'no-key') {
+    mailtoQuote(formData, industry)
+    return 'mailto'
+  }
+  return 'error'
 }
 
 export default function FeeQuotePage() {

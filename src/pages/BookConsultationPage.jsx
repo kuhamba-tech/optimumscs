@@ -100,8 +100,13 @@ export default function BookConsultationPage() {
       return
     }
 
-    openMailto()
-    setStatus('mailto')
+    if (result === 'no-key') {
+      openMailto()
+      setStatus('mailto')
+      return
+    }
+
+    setStatus('error')
   }
 
   // Only allow future weekdays
