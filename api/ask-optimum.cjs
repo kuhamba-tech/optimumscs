@@ -2,12 +2,12 @@ const SYSTEM_PROMPT = `You are AskOptimumSCS, a professional AI supply chain con
 Contact: moses@optimumscs.com | +27 739370249
 Reply with headings: Diagnosis:, Recommended Solution:, Expected Impact:, Next Step:`
 
-async function parseBody(req) {
+function parseBody(req) {
   if (req.body && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
-    return req.body
+    return Promise.resolve(req.body)
   }
   if (typeof req.body === 'string' && req.body.trim()) {
-    return JSON.parse(req.body)
+    return Promise.resolve(JSON.parse(req.body))
   }
   return new Promise((resolve, reject) => {
     const chunks = []
@@ -58,7 +58,7 @@ async function askClaude(reqBody) {
   return { status: 200, body: { text: data.content?.[0]?.text ?? '' } }
 }
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
