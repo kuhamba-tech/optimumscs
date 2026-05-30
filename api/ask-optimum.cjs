@@ -72,6 +72,6 @@ module.exports = async function handler(req, res) {
   } catch (err) {
     res.statusCode = 500
     res.setHeader('Content-Type', 'application/json')
-    res.end(JSON.stringify({ error: 'server-error', detail: String(err?.message || err) }))
+    res.end(JSON.stringify({ error: 'server-error' }))
   }
 }
