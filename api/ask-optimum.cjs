@@ -4,24 +4,12 @@ Reply with headings: Diagnosis:, Recommended Solution:, Expected Impact:, Next S
 
 function parseBody(req) {
   if (req.body && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
-    return Promise.resolve(req.body)
+    return req.body
   }
   if (typeof req.body === 'string' && req.body.trim()) {
-    return Promise.resolve(JSON.parse(req.body))
+    return JSON.parse(req.body)
   }
-  return new Promise((resolve, reject) => {
-    const chunks = []
-    req.on('data', (chunk) => chunks.push(chunk))
-    req.on('end', () => {
-      try {
-        const raw = Buffer.concat(chunks).toString('utf8')
-        resolve(raw ? JSON.parse(raw) : {})
-      } catch (e) {
-        reject(e)
-      }
-    })
-    req.on('error', reject)
-  })
+  return {}
 }
 
 async function askClaude(reqBody) {
@@ -50,18 +38,17 @@ async function askClaude(reqBody) {
     }),
   })
 
+  const text = await res.text()
   if (!res.ok) {
-    return { status: res.status, body: { error: `api-${res.status}` } }
+    return { status: res.status, body: { error: `api-${res.status}`, detail: text.slice(0, 120) } }
   }
 
-  const data = await res.json()
+  const data = JSON.parse(text)
   return { status: 200, body: { text: data.content?.[0]?.text ?? '' } }
 }
 
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
 
   if (req.method === 'OPTIONS') {
     res.statusCode = 204
@@ -77,15 +64,14 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const body = await parseBody(req)
+    const body = parseBody(req)
     const { status, body: payload } = await askClaude(body)
     res.statusCode = status
     res.setHeader('Content-Type', 'application/json')
     res.end(JSON.stringify(payload))
   } catch (err) {
-    console.error('ask-optimum:', err?.message || err)
     res.statusCode = 500
     res.setHeader('Content-Type', 'application/json')
-    res.end(JSON.stringify({ error: 'server-error' }))
+    res.end(JSON.stringify({ error: 'server-error', detail: String(err?.message || err) }))
   }
 }
