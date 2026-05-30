@@ -12,6 +12,13 @@ export function askOptimumApiPlugin() {
       const envDir = server.config.envDir || process.cwd()
 
       server.middlewares.use('/api/ask-optimum', async (req, res, next) => {
+        if (req.method === 'GET') {
+          res.statusCode = 200
+          res.setHeader('Content-Type', 'application/json')
+          res.end(JSON.stringify({ status: 'ok', version: 'dev' }))
+          return
+        }
+
         if (req.method !== 'POST') {
           next()
           return

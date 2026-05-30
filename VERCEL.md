@@ -9,7 +9,7 @@ In [Vercel Dashboard](https://vercel.com) → your project → **Settings** → 
 | Name | Used for | Environments |
 |------|----------|----------------|
 | `ANTHROPIC_API_KEY` | AskOptimumSCS live AI (`/api/ask-optimum`) | Production, Preview |
-| `WEB3FORMS_ACCESS_KEY` | Fee Quote, Book Consultation, Contact forms (`/api/submit-form`) | Production, Preview |
+| `WEB3FORMS_ACCESS_KEY` | Fee Quote, Book Consultation, Contact forms (`/api/submit-form`) — your **fee quote** access key from Web3Forms | Production, Preview |
 
 You can use the same value as your Web3Forms access key from [web3forms.com](https://web3forms.com).
 
