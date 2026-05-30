@@ -40,7 +40,7 @@ async function askClaude(reqBody) {
 
   const text = await res.text()
   if (!res.ok) {
-    return { status: res.status, body: { error: `api-${res.status}`, detail: text.slice(0, 120) } }
+    return { status: res.status, body: { error: `api-${res.status}` } }
   }
 
   const data = JSON.parse(text)

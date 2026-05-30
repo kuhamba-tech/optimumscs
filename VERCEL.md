@@ -36,3 +36,16 @@ curl -X POST https://optimumscs-gamma.vercel.app/api/ask-optimum \
 ## 4. Git connection
 
 Ensure the Vercel project is linked to `kuhamba-tech/optimumscs` branch `main` so pushes deploy automatically.
+
+## 5. If deployments fail in ~5 seconds
+
+Check the build log. Common causes:
+
+- Invalid `vercel.json` (do not mix `builds` with `outputDirectory`, or use glob patterns in `functions`)
+- This project uses a minimal `vercel.json` (SPA rewrite only); `/api/*` is auto-detected from `api/ask-optimum.cjs`
+
+**Vercel project settings (Dashboard → Settings → General):**
+
+- Framework Preset: **Vite**
+- Build Command: `npm run build`
+- Output Directory: `dist`
