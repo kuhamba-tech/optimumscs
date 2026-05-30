@@ -12,9 +12,9 @@ export const navItems = [
   { label: 'Home', to: '/' },
   { label: 'Solutions', to: '/solutions' },
   { label: 'Industries', to: '/industries' },
-  { label: 'About', to: '/about' },
   { label: 'Case Studies', to: '/case-studies' },
   { label: 'Careers', to: '/careers' },
+  { label: 'About', to: '/about' },
   { label: 'Contact', to: '/contact' },
   { label: 'Request Quote', to: '/fee-quote' },
 ]

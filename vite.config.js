@@ -1,11 +1,14 @@
 import { defineConfig } from 'vite'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
+import { askOptimumApiPlugin } from './vite-plugin-ask-api.js'
 
 export default defineConfig({
   server: {
-    port: 5173
+    port: 5173,
+    strictPort: true,
   },
   plugins: [
+    askOptimumApiPlugin(),
     ViteImageOptimizer({
       png: {
         quality: 80,

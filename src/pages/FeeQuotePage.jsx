@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { clearQuotePrefill, loadQuotePrefill } from '../lib/askOptimumKnowledge'
 
 const services = [
   'TMS Implementation',
@@ -68,6 +69,41 @@ export default function FeeQuotePage() {
   const [selectedIndustry, setSelectedIndustry] = useState('')
   const [otherIndustry, setOtherIndustry] = useState('')
   const [status, setStatus] = useState('idle')
+  const scopeRef = useRef(null)
+  const prefillApplied = useRef(false)
+
+  useEffect(() => {
+    if (prefillApplied.current) return
+    const prefill = loadQuotePrefill()
+    if (!prefill) return
+    prefillApplied.current = true
+
+    const industries = [
+      'FMCG',
+      'Logistics & Transport',
+      'Retail & E-commerce',
+      'Manufacturing',
+      'Agriculture & Agro-logistics',
+      'Healthcare & Pharmaceutical',
+      'Public Sector',
+      'Mining & Energy',
+      'Other',
+    ]
+    const match = industries.find(
+      (ind) => prefill.industry && ind.toLowerCase().includes(prefill.industry.toLowerCase().split(' ')[0]),
+    )
+    if (match && match !== 'Other') {
+      setSelectedIndustry(match)
+    } else if (prefill.industry) {
+      setSelectedIndustry('Other')
+      setOtherIndustry(prefill.industry)
+    }
+
+    if (prefill.scope && scopeRef.current) {
+      scopeRef.current.value = prefill.scope
+    }
+    clearQuotePrefill()
+  }, [])
 
   const isOther = selectedIndustry === 'Other'
   const industryValue = isOther ? otherIndustry : selectedIndustry
@@ -155,6 +191,7 @@ export default function FeeQuotePage() {
             <label className="full">
               <span>Scope of Work</span>
               <textarea
+                ref={scopeRef}
                 name="Scope of Work"
                 rows="6"
                 placeholder="Outline the scale, systems, and outcomes required"
