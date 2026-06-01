@@ -7,10 +7,15 @@ Set-Location $root
 
 $repo = "https://github.com/kuhamba-tech/optimumscs.git"
 
-Write-Host "`n=== Step 1: Vercel CLI login (browser will open) ===" -ForegroundColor Cyan
-Write-Host "Use account: info@optimumscs.com / optimumscs-8250`n"
-npx vercel@41 login
-if ($LASTEXITCODE -ne 0) { exit 1 }
+Write-Host "`n=== Step 1: Vercel CLI login (EMAIL only — not --github) ===" -ForegroundColor Cyan
+Write-Host "Account: info@optimumscs.com (optimumscs-8250)"
+Write-Host "If GitHub login failed before, use: npx vercel@41 login info@optimumscs.com`n"
+npx vercel@41 login info@optimumscs.com
+if ($LASTEXITCODE -ne 0) {
+  Write-Host "Or connect GitHub in browser only: https://vercel.com/account/settings/authentication" -ForegroundColor Yellow
+  Write-Host "Then skip CLI and use https://vercel.com/new to import the repo." -ForegroundColor Yellow
+  exit 1
+}
 
 Write-Host "`n=== Step 2: Link project (name: optimumscs) ===" -ForegroundColor Cyan
 Write-Host "Select your scope (optimumscs-8250) and project name optimumscs`n"

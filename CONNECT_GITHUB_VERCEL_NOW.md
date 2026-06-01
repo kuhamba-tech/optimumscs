@@ -4,13 +4,18 @@ Three browser tabs should have opened. Complete each, then run the script.
 
 ---
 
-## Tab 1 — Vercel account settings
+## Tab 1 — Connect GitHub (use email login, NOT CLI GitHub login)
 
-https://vercel.com/account/settings
+**If you see:** *"There is already an account associated with your GitHub email"*  
+→ Do **not** use `vercel login --github`. Use the steps below.
 
-1. **Login Connections** → **GitHub** → **Connect**
-2. Sign in to GitHub if asked
-3. Authorize **Vercel**
+1. **Log in with email:** https://vercel.com/login  
+   - Email: **info@optimumscs.com** (account **optimumscs-8250**)
+2. Open: https://vercel.com/account/settings/authentication  
+3. Under **Login Connections** → **GitHub** → **Connect** (not Sign up with GitHub)
+4. Authorize GitHub when asked
+
+**Do not use** `vercel login --github` — it fails when the GitHub email already has a Vercel account.
 
 ---
 
