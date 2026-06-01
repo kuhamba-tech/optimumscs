@@ -38,7 +38,9 @@ npm run preview
 - **Production:** [https://optimumscs.vercel.app/](https://optimumscs.vercel.app/)
 - **Test:** [https://optimumscs-gamma.vercel.app/](https://optimumscs-gamma.vercel.app/)
 
-Connect the Vercel project **optimumscs** to `kuhamba-tech/optimumscs` on branch `main`, copy env vars from gamma, then every `git push` updates production. Full steps: **[DEPLOYMENT.md](./DEPLOYMENT.md)**.
+**Git remotes:** `origin` → [kuhamba-tech/optimumscs](https://github.com/kuhamba-tech/optimumscs). Add `optimumscs` remote for the company GitHub org — see **[SETUP_OPTIMUMSCS_GIT_VERCEL.md](./SETUP_OPTIMUMSCS_GIT_VERCEL.md)**.
+
+Push both: `powershell -File scripts/push-all-remotes.ps1`
 
 ## AskOptimumSCS (AI widget)
 - Dev: set `ANTHROPIC_API_KEY` in `.env` (see `.env.example`). Run `npm run dev` → `http://localhost:5173`.
