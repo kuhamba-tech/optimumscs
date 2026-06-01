@@ -1,3 +1,17 @@
+# Fix: optimumscs.vercel.app still shows the OLD site
+
+## Quick fix (terminal — 2 minutes)
+
+In the project folder, run:
+
+```powershell
+.\RUN_FIX_DOMAIN.ps1
+```
+
+Log in when the browser opens, then the script points **optimumscs.vercel.app** at the **new** site (same as gamma).
+
+---
+
 # Fix: Git connected but optimumscs.vercel.app still shows old site
 
 Git push to **kuhamba-tech/optimumscs** updates **optimumscs-gamma.vercel.app** (new site).
