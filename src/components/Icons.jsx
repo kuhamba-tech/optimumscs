@@ -267,6 +267,16 @@ export const LocationMini = () => (
     <path d="M12 2.75A7.1 7.1 0 0 0 4.9 9.85c0 5.12 6.27 10.86 6.54 11.1.32.29.8.29 1.12 0 .27-.24 6.54-5.98 6.54-11.1A7.1 7.1 0 0 0 12 2.75Zm0 15.97c-1.85-1.83-5.1-5.83-5.1-8.87a5.1 5.1 0 0 1 10.2 0c0 3.04-3.25 7.04-5.1 8.87Zm0-11.43a2.72 2.72 0 1 0 0 5.44 2.72 2.72 0 0 0 0-5.44Zm0 3.74a1.02 1.02 0 1 1 0-2.04 1.02 1.02 0 0 1 0 2.04Z"/>
   </svg>
 )
+export const GitHubMini = () => (
+  <svg viewBox="0 0 24 24" className="icon-modern" aria-hidden="true">
+    <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.38.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10Z"/>
+  </svg>
+)
+export const VercelMini = () => (
+  <svg viewBox="0 0 24 24" className="icon-modern" aria-hidden="true">
+    <path d="M12 2L2 19.5h20L12 2Z"/>
+  </svg>
+)
 export const ClockMini = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M12 7v5l3 2"/><circle cx="12" cy="12" r="9"/></svg>
 export const PlaneMini = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><path d="M21 3 3 10l7 2 2 7 9-16ZM10 12l11-9"/></svg>
 export const LockMini = () => <svg viewBox="0 0 24 24" className="icon-stroke" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
