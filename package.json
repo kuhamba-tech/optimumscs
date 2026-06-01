@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:stop": "powershell -File scripts/stop-dev-server.ps1",
     "build": "node ./node_modules/vite/bin/vite.js build --configLoader native",
     "vercel-build": "node ./node_modules/vite/bin/vite.js build --configLoader native",
     "preview": "vite preview"

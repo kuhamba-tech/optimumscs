@@ -5,7 +5,8 @@ import { askOptimumApiPlugin } from './vite-plugin-ask-api.js'
 export default defineConfig({
   server: {
     port: 5173,
-    strictPort: true,
+    // Use next port if 5173 is busy (run `npm run dev:stop` to free 5173)
+    strictPort: false,
   },
   plugins: [
     askOptimumApiPlugin(),
