@@ -1,5 +1,7 @@
 # Update `optimumscs.vercel.app` from your Vercel account
 
+> **Main guide:** [DEPLOYMENT.md](./DEPLOYMENT.md) — Git connection, env vars, and auto-deploy on push.
+
 Your **new** site (Fee Quote, forms API, AskOptimumSCS) is deployed at:
 
 **https://optimumscs-gamma.vercel.app**
