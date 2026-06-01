@@ -18,8 +18,11 @@ Vercel says: log in with **email**, then **link** GitHub in settings.
    - Use **info@optimumscs.com** (password or magic link)
 
 3. **Link GitHub (while logged in):**  
-   https://vercel.com/account/settings/authentication  
-   - **GitHub** → **Connect** (link account)  
+   - Go to https://vercel.com/account  
+   - Open **Settings** (or profile menu → **Account Settings**)  
+   - Find **Authentication** / **Login Connections**  
+   - **GitHub** → **Connect**  
+   - **Avoid** broken URLs like `/account/settings/authentication` if they show **404**  
    - **Not** "Sign up with GitHub"
 
 4. Continue **Tab 2 & 3:**  
