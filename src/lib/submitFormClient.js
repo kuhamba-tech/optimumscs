@@ -47,6 +47,5 @@ export async function submitForm(type, fields) {
     /* fall through */
   }
 
-  // Server-side fetch is blocked by Web3Forms free plan — fall back to browser direct.
-  return submitViaBrowserWeb3Forms(type, fields)
+  return 'error'
 }
