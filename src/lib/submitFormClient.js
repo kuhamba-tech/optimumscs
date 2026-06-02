@@ -47,11 +47,6 @@ export async function submitForm(type, fields) {
     /* fall through */
   }
 
-  // Local dev: Web3Forms sometimes blocks server-side fetch (Cloudflare).
-  // Browser direct call uses your key only on localhost for testing.
-  if (import.meta.env.DEV) {
-    return submitViaBrowserWeb3Forms(type, fields)
-  }
-
-  return 'error'
+  // Server-side fetch is blocked by Web3Forms free plan — fall back to browser direct.
+  return submitViaBrowserWeb3Forms(type, fields)
 }
