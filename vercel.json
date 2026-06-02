@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "alias": ["optimumscs.vercel.app", "www.optimumscs.com", "optimumscs.com"],
+  "alias": ["optimumscs.vercel.app"],
   "builds": [
     {
       "src": "api/ask-optimum.cjs",
