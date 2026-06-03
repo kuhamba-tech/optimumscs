@@ -5,6 +5,7 @@ import { handleAskOptimumRequest, readJsonBody } from './lib/askOptimumServer.js
 const require = createRequire(import.meta.url)
 const submitFormHandler = require('./api/submit-form.cjs')
 const captchaHandler = require('./api/captcha.cjs')
+const vcardHandler = require('./api/vcard.cjs')
 
 export function askOptimumApiPlugin() {
   return {
@@ -63,6 +64,21 @@ export function askOptimumApiPlugin() {
         try {
           Object.assign(process.env, loadEnv(server.config.mode, envDir, ''))
           await captchaHandler(req, res)
+        } catch {
+          res.statusCode = 500
+          res.setHeader('Content-Type', 'application/json')
+          res.end(JSON.stringify({ error: 'server-error' }))
+        }
+      })
+
+      server.middlewares.use('/moses-dowart.vcf', async (req, res, next) => {
+        if (req.method !== 'GET') {
+          next()
+          return
+        }
+
+        try {
+          await vcardHandler(req, res)
         } catch {
           res.statusCode = 500
           res.setHeader('Content-Type', 'application/json')

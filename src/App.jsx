@@ -12,6 +12,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage'))
 const FeeQuotePage = lazy(() => import('./pages/FeeQuotePage'))
 const BookConsultationPage = lazy(() => import('./pages/BookConsultationPage'))
 const CareersPage = lazy(() => import('./pages/CareersPage'))
+const DigitalBusinessCardPage = lazy(() => import('./pages/DigitalBusinessCardPage'))
 const TalentDashboard = lazy(() => import('./pages/TalentDashboard'))
 const ERPTransformationPage = lazy(() => import('./pages/solutions/ERPTransformationPage'))
 const TMSImplementationPage = lazy(() => import('./pages/solutions/TMSImplementationPage'))
@@ -26,6 +27,8 @@ export default function App() {
     <>
       <Suspense fallback={PageShell}>
         <Routes>
+          <Route path="/digital-card" element={<DigitalBusinessCardPage />} />
+          <Route path="/moses-dowart" element={<DigitalBusinessCardPage />} />
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/solutions" element={<SolutionsPage />} />

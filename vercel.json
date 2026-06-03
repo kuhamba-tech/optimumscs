@@ -50,6 +50,10 @@
       "use": "@vercel/node"
     },
     {
+      "src": "api/vcard.cjs",
+      "use": "@vercel/node"
+    },
+    {
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
@@ -71,6 +75,10 @@
     {
       "src": "/api/captcha",
       "dest": "/api/captcha.cjs"
+    },
+    {
+      "src": "/moses-dowart.vcf",
+      "dest": "/api/vcard.cjs"
     },
     {
       "handle": "filesystem"
