@@ -52,12 +52,9 @@ function validateCaptcha(captcha) {
   const a = Number(captcha.a)
   const b = Number(captcha.b)
   const answer = Number(captcha.answer)
-  const generatedAt = Number(captcha.generatedAt)
-  const ageMs = Date.now() - generatedAt
 
   if (!Number.isInteger(a) || !Number.isInteger(b) || a < 2 || b < 2 || a > 9 || b > 9) return false
   if (!Number.isFinite(answer) || answer !== a + b) return false
-  if (!Number.isFinite(ageMs) || ageMs < 0 || ageMs > 10 * 60 * 1000) return false
   return true
 }
 
