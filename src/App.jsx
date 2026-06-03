@@ -29,6 +29,7 @@ export default function App() {
         <Routes>
           <Route path="/digital-card" element={<DigitalBusinessCardPage />} />
           <Route path="/moses-dowart" element={<DigitalBusinessCardPage />} />
+          <Route path="/card/:profileId" element={<DigitalBusinessCardPage />} />
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/solutions" element={<SolutionsPage />} />
