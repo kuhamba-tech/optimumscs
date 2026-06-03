@@ -13,7 +13,7 @@ import {
   Users,
 } from 'lucide-react'
 import logo from '../assets/homepage-optimum-logo.png'
-import mosesImage from '../assets/about-moses-quote.jpg'
+import mosesImage from '../assets/moses-dowart-avatar.jpg'
 import './DigitalBusinessCardPage.css'
 
 const CARD = {
