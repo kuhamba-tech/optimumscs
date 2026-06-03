@@ -1537,17 +1537,49 @@ button, input, textarea { font: inherit; }
   font-size: 16px;
   font-weight: 700;
 }
-.human-captcha-row {
+.human-captcha-image-row {
   display: grid;
-  grid-template-columns: auto minmax(92px, 160px);
+  grid-template-columns: minmax(180px, 240px) auto;
   gap: 12px;
   align-items: center;
 }
-.human-captcha-row strong {
-  color: #d8ecff;
-  font-size: 17px;
+.human-captcha-image {
+  width: 240px;
+  max-width: 100%;
+  min-height: 72px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.08);
 }
-.human-captcha-row input {
+.human-captcha-image.is-loading::after {
+  content: 'Loading...';
+  color: #9eb4d5;
+  font-size: 14px;
+  font-weight: 700;
+}
+.human-captcha-image svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.human-captcha-refresh {
+  min-width: 96px;
+  min-height: 44px;
+  border: 1px solid rgba(132, 212, 255, .28);
+  border-radius: 8px;
+  background: rgba(132, 212, 255, .1);
+  color: #d8ecff;
+  font-weight: 800;
+  cursor: pointer;
+}
+.human-captcha-refresh:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+.human-captcha-input {
   width: 100%;
   min-height: 46px;
   border: 1px solid rgba(255,255,255,.18);
@@ -1556,6 +1588,7 @@ button, input, textarea { font: inherit; }
   color: #fff;
   padding: 10px 12px;
   font: inherit;
+  text-transform: uppercase;
 }
 .human-captcha-error {
   margin-top: 10px;
@@ -1569,6 +1602,14 @@ button, input, textarea { font: inherit; }
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+@media (max-width: 560px) {
+  .human-captcha-image-row {
+    grid-template-columns: 1fr;
+  }
+  .human-captcha-refresh {
+    width: 100%;
+  }
 }
 /* Fix select in contact form */
 .select-shell select {

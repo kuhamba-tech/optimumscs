@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer')
+const { verifyToken } = require('../lib/captchaServer.cjs')
 
 const SUBJECTS = {
   quote: 'Fee Quote Request - OptimumSCS',
@@ -48,14 +49,7 @@ function validateCaptcha(captcha) {
   if (process.env.CAPTCHA_DISABLED === 'true') return true
   if (!captcha || typeof captcha !== 'object') return false
   if (captcha.trap) return false
-
-  const a = Number(captcha.a)
-  const b = Number(captcha.b)
-  const answer = Number(captcha.answer)
-
-  if (!Number.isInteger(a) || !Number.isInteger(b) || a < 2 || b < 2 || a > 9 || b > 9) return false
-  if (!Number.isFinite(answer) || answer !== a + b) return false
-  return true
+  return verifyToken(captcha.token, captcha.answer)
 }
 
 function parseBody(req) {
