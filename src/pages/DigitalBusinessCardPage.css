@@ -230,12 +230,13 @@
   border-top: 1px solid rgba(255,255,255,.08);
 }
 
-.dbc-bottom-nav span {
+.dbc-bottom-nav a {
   display: grid;
   justify-items: center;
   gap: 5px;
   color: rgba(255,255,255,.86);
   font-size: 12px;
+  text-decoration: none;
 }
 
 @media (max-width: 440px) {

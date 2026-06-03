@@ -99,6 +99,14 @@ export default function AskOptimumSCS() {
   const launcherRef = useRef(null)
   const inputRef = useRef(null)
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('ask') === '1' || params.get('ask') === 'open' || window.location.hash === '#ask') {
+      setOpen(true)
+      setMode('menu')
+    }
+  }, [])
+
   const persistSession = useCallback((next) => {
     try {
       sessionStorage.setItem(

@@ -27,6 +27,8 @@ const CARD = {
   emailHref: 'mailto:info@optimumscs.com?subject=Supply%20Chain%20Consultation%20Request',
   website: 'https://www.optimumscs.com',
   location: 'South Africa',
+  locationHref: 'https://www.google.com/maps/search/?api=1&query=South%20Africa',
+  askHref: 'https://www.optimumscs.com/?ask=1',
   vcard: '/moses-dowart.vcf',
 }
 
@@ -88,11 +90,11 @@ export default function DigitalBusinessCardPage() {
           <ActionRow icon={Phone} label={CARD.phoneDisplay} detail="Call or WhatsApp" href={CARD.phoneHref} />
           <ActionRow icon={Mail} label={CARD.email} detail="Email" href={CARD.emailHref} />
           <ActionRow icon={Globe2} label="www.optimumscs.com" detail="Website" href={CARD.website} />
-          <ActionRow icon={MapPin} label={CARD.location} detail="Serving Clients Across Africa" href={`${CARD.website}/contact`} />
+          <ActionRow icon={MapPin} label={CARD.location} detail="Serving Clients Across Africa" href={CARD.locationHref} />
         </div>
 
         <div className="dbc-primary-actions">
-          <a className="dbc-button dbc-save" href={CARD.vcard} download="moses-dowart-optimumscs.vcf">
+          <a className="dbc-button dbc-save" href={CARD.vcard}>
             <ContactRound size={22} />
             <span>Save Contact</span>
           </a>
@@ -107,7 +109,7 @@ export default function DigitalBusinessCardPage() {
             <Globe2 size={20} />
             <span>Visit Website</span>
           </a>
-          <a href={`${CARD.website}/book-consultation`}>
+          <a href={CARD.askHref}>
             <Bot size={20} />
             <span>AskOptimumSCS</span>
             <em>AI</em>
@@ -119,10 +121,10 @@ export default function DigitalBusinessCardPage() {
           <span>{shared ? 'Link Copied' : 'Share My Card'}</span>
         </button>
 
-        <div className="dbc-bottom-nav" aria-hidden="true">
-          <span><Users size={20} />About</span>
-          <span><BriefcaseBusiness size={20} />Services</span>
-          <span><Sparkles size={20} />Connect</span>
+        <div className="dbc-bottom-nav">
+          <a href={`${CARD.website}/about`}><Users size={20} />About</a>
+          <a href={`${CARD.website}/solutions`}><BriefcaseBusiness size={20} />Services</a>
+          <a href={`${CARD.website}/book-consultation`}><Sparkles size={20} />Connect</a>
         </div>
       </section>
     </main>
