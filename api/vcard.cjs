@@ -37,7 +37,7 @@ function buildMosesVCard() {
   const title = 'Principal Consultant'
   const phone = '+27739370249'
   const displayPhone = '+27 73 937 0249'
-  const email = 'info@optimumscs.com'
+  const email = 'moses@optimumscs.com'
   const website = 'https://www.optimumscs.com'
   const digitalCard = 'https://www.optimumscs.com/digital-card'
   const address = 'South Africa'
