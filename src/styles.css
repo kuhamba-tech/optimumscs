@@ -4008,7 +4008,7 @@ button, input, textarea { font: inherit; }
 }
 
 .hero-logo-image-blend {
-  mix-blend-mode: screen;
+  mix-blend-mode: normal;
   width: 100%;
   max-width: 720px;
   max-height: 100%;
@@ -4018,8 +4018,8 @@ button, input, textarea { font: inherit; }
   object-position: center;
   background: transparent;
   filter: none;
-  -webkit-mask-image: none;
-  mask-image: none;
+  -webkit-mask-image: radial-gradient(ellipse 88% 82% at 50% 50%, black 52%, transparent 100%);
+  mask-image: radial-gradient(ellipse 88% 82% at 50% 50%, black 52%, transparent 100%);
 }
 
 .hero-visual-box-blend {
