@@ -12,7 +12,7 @@ import {
   Sparkles,
   Users,
 } from 'lucide-react'
-import logo from '../assets/optimum-logo.png'
+import logo from '../assets/homepage-optimum-logo.png'
 import mosesImage from '../assets/about-moses-quote.jpg'
 import './DigitalBusinessCardPage.css'
 
