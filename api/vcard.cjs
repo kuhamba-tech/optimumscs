@@ -14,6 +14,7 @@ function buildMosesVCard() {
   const displayPhone = '+27 73 937 0249'
   const email = 'info@optimumscs.com'
   const website = 'https://www.optimumscs.com'
+  const digitalCard = 'https://www.optimumscs.com/digital-card'
   const address = 'South Africa'
   const note = 'Transforming supply chains with data, technology and intelligence. Call or WhatsApp: +27 73 937 0249.'
 
@@ -28,6 +29,7 @@ function buildMosesVCard() {
     `TEL;TYPE=WORK,VOICE:${phone}`,
     `EMAIL;TYPE=WORK:${vcardEscape(email)}`,
     `URL;TYPE=WORK:${vcardEscape(website)}`,
+    `URL;TYPE=HOME:${vcardEscape(digitalCard)}`,
     `ADR;TYPE=WORK:;;;;${vcardEscape(address)};;;`,
     `NOTE:${vcardEscape(note)}`,
     `X-SOCIALPROFILE;TYPE=WhatsApp:${vcardEscape(`https://wa.me/${phone.replace('+', '')}`)}`,

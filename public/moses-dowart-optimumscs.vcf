@@ -1,0 +1,15 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Dowart;Moses;;;
+FN:Moses Dowart
+ORG:Optimum Supply Chain Solutions
+TITLE:Principal Consultant
+TEL;TYPE=CELL,VOICE:+27739370249
+TEL;TYPE=WORK,VOICE:+27739370249
+EMAIL;TYPE=WORK:info@optimumscs.com
+URL;TYPE=WORK:https://www.optimumscs.com
+URL;TYPE=HOME:https://www.optimumscs.com/digital-card
+ADR;TYPE=WORK:;;;;South Africa;;;
+NOTE:Transforming supply chains with data, technology and intelligence. Call or WhatsApp: +27 73 937 0249.
+X-SOCIALPROFILE;TYPE=WhatsApp:https://wa.me/27739370249
+END:VCARD
