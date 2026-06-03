@@ -52,8 +52,8 @@ export const DIGITAL_CARD_PROFILES = [
   },
   {
     id: 'tinaye',
-    full_name: 'Tinaye',
-    position: '',
+    full_name: 'Tinaye Sibanda',
+    position: 'Dynamics 365 Finance & Operations Lead Consultant',
     profile_photo: '',
     phone: '+27740826883',
     whatsapp: '+27740826883',
