@@ -4024,7 +4024,7 @@ button, input, textarea { font: inherit; }
 
 .hero-visual-box-blend {
   padding: 24px;
-  background: radial-gradient(ellipse 80% 70% at 50% 50%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 45%, transparent 72%);
+  background: transparent;
   border-radius: 24px;
 }
 
