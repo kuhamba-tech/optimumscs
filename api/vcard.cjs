@@ -40,6 +40,7 @@ function buildMosesVCard() {
   const email = 'moses@optimumscs.com'
   const website = 'https://www.optimumscs.com'
   const digitalCard = 'https://www.optimumscs.com/digital-card'
+  const linkedin = 'https://www.linkedin.com/in/moses-d-801b6914/'
   const address = 'South Africa'
   const note = 'Transforming supply chains with data, technology and intelligence. Call or WhatsApp: +27 73 937 0249.'
   const photoLine = getContactPhotoLine()
@@ -56,6 +57,7 @@ function buildMosesVCard() {
     `EMAIL;TYPE=WORK:${vcardEscape(email)}`,
     `URL;TYPE=WORK:${vcardEscape(website)}`,
     `URL;TYPE=HOME:${vcardEscape(digitalCard)}`,
+    `X-SOCIALPROFILE;TYPE=LinkedIn:${vcardEscape(linkedin)}`,
     `ADR;TYPE=WORK:;;;;${vcardEscape(address)};;;`,
     `NOTE:${vcardEscape(note)}`,
     `X-SOCIALPROFILE;TYPE=WhatsApp:${vcardEscape(`https://wa.me/${phone.replace('+', '')}`)}`,

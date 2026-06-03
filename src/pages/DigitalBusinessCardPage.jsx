@@ -26,6 +26,7 @@ const CARD = {
   email: 'moses@optimumscs.com',
   emailHref: 'mailto:moses@optimumscs.com?subject=Supply%20Chain%20Consultation%20Request',
   website: 'https://www.optimumscs.com',
+  linkedin: 'https://www.linkedin.com/in/moses-d-801b6914/',
   location: 'South Africa',
   locationHref: 'https://www.google.com/maps/search/?api=1&query=South%20Africa',
   askHref: 'https://www.optimumscs.com/?ask=1',
@@ -90,6 +91,7 @@ export default function DigitalBusinessCardPage() {
           <ActionRow icon={Phone} label={CARD.phoneDisplay} detail="Call or WhatsApp" href={CARD.phoneHref} />
           <ActionRow icon={Mail} label={CARD.email} detail="Email" href={CARD.emailHref} />
           <ActionRow icon={Globe2} label="www.optimumscs.com" detail="Website" href={CARD.website} />
+          <ActionRow icon={Globe2} label="Moses Dowart" detail="LinkedIn" href={CARD.linkedin} />
           <ActionRow icon={MapPin} label={CARD.location} detail="Serving Clients Across Africa" href={CARD.locationHref} />
         </div>
 
