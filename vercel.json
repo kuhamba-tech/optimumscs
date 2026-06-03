@@ -51,7 +51,12 @@
     },
     {
       "src": "api/vcard.cjs",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "src/assets/moses-dowart-avatar.jpg"
+        ]
+      }
     },
     {
       "src": "package.json",

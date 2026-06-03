@@ -1,9 +1,34 @@
+const fs = require('fs')
+const path = require('path')
+
 function vcardEscape(value) {
   return String(value || '')
     .replace(/\\/g, '\\\\')
     .replace(/\n/g, '\\n')
     .replace(/,/g, '\\,')
     .replace(/;/g, '\\;')
+}
+
+function foldVCardLine(line) {
+  const width = 74
+  if (line.length <= width) return line
+
+  const parts = []
+  for (let i = 0; i < line.length; i += width) {
+    parts.push(`${i === 0 ? '' : ' '}${line.slice(i, i + width)}`)
+  }
+  return parts.join('\r\n')
+}
+
+function getContactPhotoLine() {
+  const photoPath = path.join(process.cwd(), 'src', 'assets', 'moses-dowart-avatar.jpg')
+
+  try {
+    const base64 = fs.readFileSync(photoPath).toString('base64')
+    return foldVCardLine(`PHOTO;ENCODING=b;TYPE=JPEG:${base64}`)
+  } catch {
+    return ''
+  }
 }
 
 function buildMosesVCard() {
@@ -17,8 +42,9 @@ function buildMosesVCard() {
   const digitalCard = 'https://www.optimumscs.com/digital-card'
   const address = 'South Africa'
   const note = 'Transforming supply chains with data, technology and intelligence. Call or WhatsApp: +27 73 937 0249.'
+  const photoLine = getContactPhotoLine()
 
-  return [
+  const lines = [
     'BEGIN:VCARD',
     'VERSION:3.0',
     `N:${vcardEscape('Dowart')};${vcardEscape('Moses')};;;`,
@@ -34,9 +60,12 @@ function buildMosesVCard() {
     `NOTE:${vcardEscape(note)}`,
     `X-SOCIALPROFILE;TYPE=WhatsApp:${vcardEscape(`https://wa.me/${phone.replace('+', '')}`)}`,
     `X-ABLabel:${vcardEscape(displayPhone)}`,
+    photoLine,
     'END:VCARD',
     '',
-  ].join('\r\n')
+  ].filter(Boolean)
+
+  return lines.join('\r\n')
 }
 
 module.exports = async function handler(req, res) {
