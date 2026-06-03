@@ -9,16 +9,15 @@ const SUBJECTS = {
 async function submitViaBrowserWeb3Forms(type, fields) {
   const key = import.meta.env.VITE_WEB3FORMS_KEY
   if (!key || key === 'REPLACE_ME') return 'no-key'
+  // Only send known types — unknown type silently drops rather than forwarding raw user input
+  const subject = SUBJECTS[type]
+  if (!subject) return 'error'
 
   try {
     const res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        access_key: key,
-        subject: SUBJECTS[type] || `OptimumSCS Form - ${type}`,
-        ...fields,
-      }),
+      body: JSON.stringify({ access_key: key, subject, ...fields }),
     })
     const data = await res.json()
     return data.success ? 'success' : 'error'

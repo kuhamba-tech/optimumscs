@@ -31,7 +31,7 @@ export default function Footer() {
         </div>
         <div className="footer-bottom">
           <span>© 2026 Optimum SCS. All rights reserved.</span>
-          <span>Designed by Stellar Aspirations</span>
+          <span>Designed by OptimumSCS</span>
         </div>
       </div>
     </footer>

@@ -2,6 +2,11 @@ import React from 'react'
 import { ArrowRight } from './Icons'
 import optimumLogo from '../assets/optimum-logo.png'
 
+// Only allow <br> line breaks — strips all other HTML to prevent XSS via title prop
+function safeTitleHtml(raw) {
+  return String(raw ?? '').replace(/<(?!br\s*\/?)[^>]+>/gi, '')
+}
+
 export function Button({ children, variant = 'primary', to = '#', className = '' }) {
   const Comp = to.startsWith('/') ? 'a' : 'a'
   return (
@@ -26,7 +31,7 @@ export function Hero({
       <div className="container hero-grid">
 
         <div className="hero-copy">
-          <h1 dangerouslySetInnerHTML={{ __html: title }} />
+          <h1 dangerouslySetInnerHTML={{ __html: safeTitleHtml(title) }} />
           <p>{subtitle}</p>
 
           {(primary || secondary) && (

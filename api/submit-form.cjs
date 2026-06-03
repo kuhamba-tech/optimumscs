@@ -1,12 +1,37 @@
 const nodemailer = require('nodemailer')
 const { verifyToken } = require('../lib/captchaServer.cjs')
+const { check, getIp } = require('../lib/rateLimit.cjs')
 
+// Strict whitelist — prevents email header injection via unknown type values
 const SUBJECTS = {
   quote: 'Fee Quote Request - OptimumSCS',
   consultation: 'Consultation Request - OptimumSCS',
   contact: 'Website Inquiry - OptimumSCS',
   career: 'Talent Network Registration - OptimumSCS',
   application: 'Job Application - OptimumSCS',
+}
+
+// Max lengths per field type to prevent payload flooding
+const FIELD_MAX = {
+  default: 200,
+  message: 2000,
+  description: 2000,
+  brief: 2000,
+  scope: 2000,
+  email: 254,
+  phone: 30,
+  name: 100,
+  company: 150,
+}
+
+function fieldMax(key) {
+  const k = key.toLowerCase()
+  if (k.includes('email')) return FIELD_MAX.email
+  if (k.includes('phone') || k.includes('tel')) return FIELD_MAX.phone
+  if (k.includes('name')) return FIELD_MAX.name
+  if (k.includes('company') || k.includes('organisation') || k.includes('organization')) return FIELD_MAX.company
+  if (k.includes('message') || k.includes('description') || k.includes('brief') || k.includes('scope')) return FIELD_MAX.message
+  return FIELD_MAX.default
 }
 
 function createTransporter() {
@@ -19,8 +44,8 @@ function createTransporter() {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
     },
-    tls: { rejectUnauthorized: false },
-    requireTLS: port === 587,
+    tls: { rejectUnauthorized: true },
+    requireTLS: true, // enforce TLS on every port — credentials never travel in plaintext
   })
 }
 
@@ -33,12 +58,22 @@ function escapeHtml(value) {
     .replace(/'/g, '&#039;')
 }
 
+function sanitizeFields(fields) {
+  const out = {}
+  for (const [k, v] of Object.entries(fields)) {
+    const key = String(k).slice(0, 60).replace(/[\r\n]/g, '')
+    const max = fieldMax(key)
+    out[key] = String(v ?? '').slice(0, max).replace(/[\r\n]{3,}/g, '\n\n')
+  }
+  return out
+}
+
 function buildEmailBody(type, fields) {
   const lines = Object.entries(fields)
     .map(([k, v]) => `<tr><td style="padding:6px 12px;font-weight:bold;white-space:nowrap">${escapeHtml(k)}</td><td style="padding:6px 12px">${escapeHtml(v)}</td></tr>`)
     .join('')
   return `
-    <h2 style="color:#1a3c5e">${escapeHtml(SUBJECTS[type] || type)}</h2>
+    <h2 style="color:#1a3c5e">${escapeHtml(SUBJECTS[type])}</h2>
     <table style="border-collapse:collapse;font-family:sans-serif;font-size:14px">
       ${lines}
     </table>
@@ -61,7 +96,12 @@ function parseBody(req) {
   }
   return new Promise((resolve, reject) => {
     const chunks = []
-    req.on('data', c => chunks.push(c))
+    let size = 0
+    req.on('data', c => {
+      size += c.length
+      if (size > 51200) { reject(new Error('payload-too-large')); return } // 50 KB limit
+      chunks.push(c)
+    })
     req.on('end', () => {
       const raw = Buffer.concat(chunks).toString('utf8')
       try { resolve(raw ? JSON.parse(raw) : {}) } catch (e) { reject(e) }
@@ -74,12 +114,23 @@ async function sendMail({ type, fields, captcha }) {
   const user = process.env.SMTP_USER
   const pass = process.env.SMTP_PASS
   if (!user || !pass) return { status: 503, body: { error: 'no-smtp-config' } }
-  if (!type || !fields || typeof fields !== 'object') {
+
+  // Strict type whitelist — rejects anything not in SUBJECTS to prevent header injection
+  if (!type || !SUBJECTS[type]) {
+    return { status: 400, body: { error: 'invalid-type' } }
+  }
+  if (!fields || typeof fields !== 'object' || Array.isArray(fields)) {
     return { status: 400, body: { error: 'invalid-payload' } }
   }
   if (!validateCaptcha(captcha)) {
     return { status: 400, body: { error: 'invalid-captcha' } }
   }
+
+  const cleaned = sanitizeFields(fields)
+  // Case-insensitive email lookup prevents internal SMTP address leakage when field casing varies
+  const emailKey = Object.keys(cleaned).find(k => k.toLowerCase() === 'email')
+  const replyTo = (emailKey ? cleaned[emailKey] : null) || user
+  const safeReplyTo = replyTo.replace(/[\r\n<>]/g, '').slice(0, 254)
 
   const to = process.env.SMTP_TO || user
   const transporter = createTransporter()
@@ -88,27 +139,49 @@ async function sendMail({ type, fields, captcha }) {
     await transporter.sendMail({
       from: `"OptimumSCS Website" <${user}>`,
       to,
-      replyTo: fields.Email || fields.email || user,
-      subject: SUBJECTS[type] || `OptimumSCS Form - ${type}`,
-      html: buildEmailBody(type, fields),
+      replyTo: safeReplyTo,
+      subject: SUBJECTS[type],
+      html: buildEmailBody(type, cleaned),
     })
     return { status: 200, body: { success: true } }
   } catch (err) {
     console.error('SMTP error:', err.message)
-    return { status: 502, body: { error: 'smtp-failed', detail: err.message } }
+    return { status: 502, body: { error: 'smtp-failed' } }
   }
 }
 
 module.exports = async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  const origin = req.headers.origin || ''
+  const allowed = process.env.ALLOWED_ORIGIN || 'https://optimumscs.com'
+  res.setHeader('Access-Control-Allow-Origin', allowed)
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+  res.setHeader('Vary', 'Origin')
 
   if (req.method === 'OPTIONS') { res.statusCode = 204; res.end(); return }
   if (req.method !== 'POST') {
     res.statusCode = 405
     res.setHeader('Content-Type', 'application/json')
     res.end(JSON.stringify({ error: 'method-not-allowed' }))
+    return
+  }
+
+  const ct = req.headers['content-type'] || ''
+  if (!ct.includes('application/json')) {
+    res.statusCode = 415
+    res.setHeader('Content-Type', 'application/json')
+    res.end(JSON.stringify({ error: 'unsupported-media-type' }))
+    return
+  }
+
+  // Rate limit: 8 form submissions per IP per 10 minutes
+  const ip = getIp(req)
+  const rl = check(ip, 'submit-form', 8, 10 * 60 * 1000)
+  if (!rl.allowed) {
+    res.statusCode = 429
+    res.setHeader('Content-Type', 'application/json')
+    res.setHeader('Retry-After', String(rl.retryAfter))
+    res.end(JSON.stringify({ error: 'too-many-requests', retryAfter: rl.retryAfter }))
     return
   }
 
@@ -119,7 +192,14 @@ module.exports = async function handler(req, res) {
     res.setHeader('Content-Type', 'application/json')
     res.end(JSON.stringify(payload))
   } catch (err) {
-    console.error('submit-form:', err?.message || err)
+    const msg = err?.message || ''
+    if (msg === 'payload-too-large') {
+      res.statusCode = 413
+      res.setHeader('Content-Type', 'application/json')
+      res.end(JSON.stringify({ error: 'payload-too-large' }))
+      return
+    }
+    console.error('submit-form:', msg)
     res.statusCode = 500
     res.setHeader('Content-Type', 'application/json')
     res.end(JSON.stringify({ error: 'server-error' }))
