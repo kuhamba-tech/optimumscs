@@ -1,13 +1,15 @@
 const nodemailer = require('nodemailer')
 
 const SUBJECTS = {
-  quote: 'Fee Quote Request – OptimumSCS',
-  consultation: 'Consultation Request – OptimumSCS',
-  contact: 'Website Inquiry – OptimumSCS',
+  quote: 'Fee Quote Request - OptimumSCS',
+  consultation: 'Consultation Request - OptimumSCS',
+  contact: 'Website Inquiry - OptimumSCS',
+  career: 'Talent Network Registration - OptimumSCS',
+  application: 'Job Application - OptimumSCS',
 }
 
 function createTransporter() {
-  const port = parseInt(process.env.SMTP_PORT || '465')
+  const port = parseInt(process.env.SMTP_PORT || '465', 10)
   return nodemailer.createTransport({
     host: process.env.SMTP_HOST || 'mail.optimumscs.com',
     port,
@@ -21,16 +23,42 @@ function createTransporter() {
   })
 }
 
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
+}
+
 function buildEmailBody(type, fields) {
   const lines = Object.entries(fields)
-    .map(([k, v]) => `<tr><td style="padding:6px 12px;font-weight:bold;white-space:nowrap">${k}</td><td style="padding:6px 12px">${v}</td></tr>`)
+    .map(([k, v]) => `<tr><td style="padding:6px 12px;font-weight:bold;white-space:nowrap">${escapeHtml(k)}</td><td style="padding:6px 12px">${escapeHtml(v)}</td></tr>`)
     .join('')
   return `
-    <h2 style="color:#1a3c5e">${SUBJECTS[type] || type}</h2>
+    <h2 style="color:#1a3c5e">${escapeHtml(SUBJECTS[type] || type)}</h2>
     <table style="border-collapse:collapse;font-family:sans-serif;font-size:14px">
       ${lines}
     </table>
   `
+}
+
+function validateCaptcha(captcha) {
+  if (process.env.CAPTCHA_DISABLED === 'true') return true
+  if (!captcha || typeof captcha !== 'object') return false
+  if (captcha.trap) return false
+
+  const a = Number(captcha.a)
+  const b = Number(captcha.b)
+  const answer = Number(captcha.answer)
+  const generatedAt = Number(captcha.generatedAt)
+  const ageMs = Date.now() - generatedAt
+
+  if (!Number.isInteger(a) || !Number.isInteger(b) || a < 2 || b < 2 || a > 9 || b > 9) return false
+  if (!Number.isFinite(answer) || answer !== a + b) return false
+  if (!Number.isFinite(ageMs) || ageMs < 0 || ageMs > 10 * 60 * 1000) return false
+  return true
 }
 
 function parseBody(req) {
@@ -44,19 +72,22 @@ function parseBody(req) {
     const chunks = []
     req.on('data', c => chunks.push(c))
     req.on('end', () => {
-      try { resolve(Buffer.concat(chunks).toString('utf8') ? JSON.parse(Buffer.concat(chunks).toString('utf8')) : {}) }
-      catch (e) { reject(e) }
+      const raw = Buffer.concat(chunks).toString('utf8')
+      try { resolve(raw ? JSON.parse(raw) : {}) } catch (e) { reject(e) }
     })
     req.on('error', reject)
   })
 }
 
-async function sendMail({ type, fields }) {
+async function sendMail({ type, fields, captcha }) {
   const user = process.env.SMTP_USER
   const pass = process.env.SMTP_PASS
   if (!user || !pass) return { status: 503, body: { error: 'no-smtp-config' } }
   if (!type || !fields || typeof fields !== 'object') {
     return { status: 400, body: { error: 'invalid-payload' } }
+  }
+  if (!validateCaptcha(captcha)) {
+    return { status: 400, body: { error: 'invalid-captcha' } }
   }
 
   const to = process.env.SMTP_TO || user
@@ -66,7 +97,8 @@ async function sendMail({ type, fields }) {
     await transporter.sendMail({
       from: `"OptimumSCS Website" <${user}>`,
       to,
-      subject: SUBJECTS[type] || `OptimumSCS Form – ${type}`,
+      replyTo: fields.Email || fields.email || user,
+      subject: SUBJECTS[type] || `OptimumSCS Form - ${type}`,
       html: buildEmailBody(type, fields),
     })
     return { status: 200, body: { success: true } }

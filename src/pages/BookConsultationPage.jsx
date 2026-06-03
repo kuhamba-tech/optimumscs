@@ -2,6 +2,7 @@ import { useState } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { submitForm } from '../lib/submitFormClient'
+import HumanCaptcha, { useHumanCaptcha } from '../components/HumanCaptcha'
 import {
   BriefMini,
   CalendarMini,
@@ -66,9 +67,11 @@ export default function BookConsultationPage() {
   const [status, setStatus] = useState('idle')
   const [preferredDate, setPreferredDate] = useState(null)
   const [preferredTime, setPreferredTime] = useState(null)
+  const captcha = useHumanCaptcha()
 
   const handleConsultationSubmit = async (event) => {
     event.preventDefault()
+    if (!captcha.validate()) return
     setStatus('loading')
 
     const formData = new FormData(event.currentTarget)
@@ -91,12 +94,19 @@ export default function BookConsultationPage() {
       window.location.href = `mailto:info@optimumscs.com?subject=${encodeURIComponent('Consultation Request – OptimumSCS')}&body=${encodeURIComponent(body)}`
     }
 
-    const result = await submitForm('consultation', fields)
+    const result = await submitForm('consultation', fields, captcha.payload)
     if (result === 'success') {
       setStatus('success')
       event.target.reset()
       setPreferredDate(null)
       setPreferredTime(null)
+      captcha.reset()
+      return
+    }
+
+    if (result === 'captcha') {
+      captcha.reset()
+      setStatus('idle')
       return
     }
 
@@ -267,6 +277,8 @@ export default function BookConsultationPage() {
                 </div>
               </label>
             </div>
+
+            <HumanCaptcha captcha={captcha} />
 
             <div className="consultation-form-footer">
               <button type="submit" className="btn btn-primary submit-wide-btn" disabled={status === 'loading'}>

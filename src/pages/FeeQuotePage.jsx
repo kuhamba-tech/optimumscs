@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { clearQuotePrefill, loadQuotePrefill } from '../lib/askOptimumKnowledge'
 import { submitForm } from '../lib/submitFormClient'
+import HumanCaptcha, { useHumanCaptcha } from '../components/HumanCaptcha'
 
 const services = [
   'TMS Implementation',
@@ -34,7 +35,7 @@ function mailtoQuote(formData, industry) {
   window.location.href = `mailto:info@optimumscs.com?subject=${encodeURIComponent('Fee Quote Request – OptimumSCS')}&body=${encodeURIComponent(body)}`
 }
 
-async function submitQuote(formData, industry) {
+async function submitQuote(formData, industry, captcha) {
   const fields = {
     Name: formData.get('Name'),
     Company: formData.get('Company') || '',
@@ -43,7 +44,7 @@ async function submitQuote(formData, industry) {
     'Scope of Work': formData.get('Scope of Work'),
   }
 
-  const result = await submitForm('quote', fields)
+  const result = await submitForm('quote', fields, captcha)
   if (result === 'success') return 'success'
   if (result === 'no-key') {
     mailtoQuote(formData, industry)
@@ -56,6 +57,7 @@ export default function FeeQuotePage() {
   const [selectedIndustry, setSelectedIndustry] = useState('')
   const [otherIndustry, setOtherIndustry] = useState('')
   const [status, setStatus] = useState('idle')
+  const captcha = useHumanCaptcha()
   const scopeRef = useRef(null)
   const prefillApplied = useRef(false)
 
@@ -97,12 +99,17 @@ export default function FeeQuotePage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (!captcha.validate()) return
     setStatus('loading')
     const formData = new FormData(e.target)
-    const result = await submitQuote(formData, industryValue).catch(() => 'error')
+    const result = await submitQuote(formData, industryValue, captcha.payload).catch(() => 'error')
+    if (result === 'captcha') { captcha.reset(); setStatus('idle'); return }
     if (result === 'mailto') { setStatus('mailto'); return }
     setStatus(result)
-    if (result === 'success') e.target.reset()
+    if (result === 'success') {
+      e.target.reset()
+      captcha.reset()
+    }
   }
 
   return (
@@ -191,6 +198,8 @@ export default function FeeQuotePage() {
               />
             </label>
           </div>
+
+          <HumanCaptcha captcha={captcha} />
 
           <button
             type="submit"

@@ -1,7 +1,9 @@
 const SUBJECTS = {
-  quote: 'Fee Quote Request – OptimumSCS',
-  consultation: 'Consultation Request – OptimumSCS',
-  contact: 'Website Inquiry – OptimumSCS',
+  quote: 'Fee Quote Request - OptimumSCS',
+  consultation: 'Consultation Request - OptimumSCS',
+  contact: 'Website Inquiry - OptimumSCS',
+  career: 'Talent Network Registration - OptimumSCS',
+  application: 'Job Application - OptimumSCS',
 }
 
 async function submitViaBrowserWeb3Forms(type, fields) {
@@ -14,7 +16,7 @@ async function submitViaBrowserWeb3Forms(type, fields) {
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
         access_key: key,
-        subject: SUBJECTS[type] || `OptimumSCS Form – ${type}`,
+        subject: SUBJECTS[type] || `OptimumSCS Form - ${type}`,
         ...fields,
       }),
     })
@@ -25,13 +27,13 @@ async function submitViaBrowserWeb3Forms(type, fields) {
   }
 }
 
-/** Submit site forms via serverless API (key stays on server in production). */
-export async function submitForm(type, fields) {
+/** Submit site forms via serverless API. */
+export async function submitForm(type, fields, captcha) {
   try {
     const res = await fetch('/api/submit-form', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ type, fields }),
+      body: JSON.stringify({ type, fields, captcha }),
     })
 
     let data = {}
@@ -42,10 +44,11 @@ export async function submitForm(type, fields) {
     }
 
     if (res.ok && data.success) return 'success'
-    if (res.status === 503 && data.error === 'no-key') return 'no-key'
+    if (res.status === 400 && data.error === 'invalid-captcha') return 'captcha'
+    if (res.status === 503 && (data.error === 'no-key' || data.error === 'no-smtp-config')) return 'no-key'
   } catch {
     /* fall through */
   }
 
-  return 'error'
+  return submitViaBrowserWeb3Forms(type, fields)
 }

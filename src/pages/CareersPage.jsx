@@ -1,5 +1,7 @@
 import { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import HumanCaptcha, { useHumanCaptcha } from '../components/HumanCaptcha'
+import { submitForm } from '../lib/submitFormClient'
 import {
   Route, ShoppingCart, Workflow, ChartNoAxesCombined,
   Upload, FileText, Award, User, Briefcase, Clock,
@@ -144,6 +146,7 @@ export default function CareersPage() {
   const [certsFile, setCertsFile] = useState(null)
   const [activeSection, setActiveSection] = useState('personal')
   const [status, setStatus] = useState('idle')
+  const profileCaptcha = useHumanCaptcha()
 
   /* quick-apply modal */
   const [applyOpen,   setApplyOpen]   = useState(false)
@@ -154,61 +157,51 @@ export default function CareersPage() {
   const [applyCV,     setApplyCV]     = useState(null)
   const [applyCerts,  setApplyCerts]  = useState(null)
   const [applyOther,  setApplyOther]  = useState(null)
+  const applyCaptcha = useHumanCaptcha()
   const setApply = (k, v) => setApplyFields(p => ({ ...p, [k]: v }))
 
   const handleApplySubmit = async e => {
     e.preventDefault()
+    if (!applyCaptcha.validate()) return
     setApplyStatus('loading')
     const { name, email, phone, role, message } = applyFields
-    const key = import.meta.env.VITE_WEB3FORMS_RECRUIT_KEY
 
-    const openMailto = () => {
-      const body = [
-        `Full Name: ${name}`, `Email: ${email}`, `Phone: ${phone || ''}`,
-        `Role Applied For: ${role}`, '', `Message:`, message || '',
-        '', `CV: ${applyCV?.name || 'Not attached'}`,
-        `Certifications: ${applyCerts?.name || 'Not attached'}`,
-        `Other Documents: ${applyOther?.name || 'Not attached'}`,
-      ].join('\n')
-      window.location.href = `mailto:recruitment@optimumscs.com?subject=${encodeURIComponent(`Job Application – ${role} – OptimumSCS`)}&body=${encodeURIComponent(body)}`
+    const payload = {
+      'Full Name': name,
+      Email: email,
+      Phone: phone || '',
+      'Role Applied For': role,
+      Message: message || '',
+      CV: applyCV?.name || 'Not attached',
+      Certifications: applyCerts?.name || 'Not attached',
+      'Supporting Documents': applyOther?.name || 'Not attached',
     }
 
-    if (!key || key === 'REPLACE_ME') {
+    const openMailto = () => {
+      const body = Object.entries(payload).map(([k, v]) => `${k}: ${v || ''}`).join('\n')
+      window.location.href = `mailto:info@optimumscs.com?subject=${encodeURIComponent(`Job Application - ${role} - OptimumSCS`)}&body=${encodeURIComponent(body)}`
+    }
+
+    const result = await submitForm('application', payload, applyCaptcha.payload)
+    if (result === 'success') {
+      setApplyStatus('success')
+      setApplyFields({ name: '', email: '', phone: '', role: '', message: '' })
+      setApplyCV(null); setApplyCerts(null); setApplyOther(null)
+      applyCaptcha.reset()
+      return
+    }
+    if (result === 'captcha') {
+      applyCaptcha.reset()
+      setApplyStatus('idle')
+      return
+    }
+    if (result === 'no-key') {
       openMailto()
       setApplyStatus('idle')
       setApplyOpen(false)
       return
     }
-
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: key,
-          subject: `Job Application – ${role} – OptimumSCS`,
-          'Full Name': name, 'Email': email, 'Phone': phone || '',
-          'Role Applied For': role, 'Message': message || '',
-          'CV': applyCV?.name || 'Not attached',
-          'Certifications': applyCerts?.name || 'Not attached',
-          'Supporting Documents': applyOther?.name || 'Not attached',
-        }),
-      })
-      const data = await res.json()
-      if (data.success) {
-        setApplyStatus('success')
-        setApplyFields({ name: '', email: '', phone: '', role: '', message: '' })
-        setApplyCV(null); setApplyCerts(null); setApplyOther(null)
-      } else {
-        openMailto()
-        setApplyStatus('idle')
-        setApplyOpen(false)
-      }
-    } catch {
-      openMailto()
-      setApplyStatus('idle')
-      setApplyOpen(false)
-    }
+    setApplyStatus('error')
   }
 
   const sectionRefs = useRef({})
@@ -233,10 +226,10 @@ export default function CareersPage() {
   /* ── Submit profile ──────────────────── */
   const handleSubmit = async e => {
     e.preventDefault()
+    if (!profileCaptcha.validate()) return
     setStatus('loading')
 
     const selectedSkills = Object.entries(skills).filter(([, v]) => v).map(([k]) => k)
-    const key = import.meta.env.VITE_WEB3FORMS_RECRUIT_KEY
 
     const payload = {
       'Full Name':             fields.fullName,
@@ -266,37 +259,33 @@ export default function CareersPage() {
     }
 
     const openMailto = () => {
-      const body = Object.entries(payload).map(([k, v]) => `${k}: ${v || '–'}`).join('\n')
-      window.open(`mailto:recruitment@optimumscs.com?subject=${encodeURIComponent('Talent Network Registration – OptimumSCS')}&body=${encodeURIComponent(body)}`, '_blank')
+      const body = Object.entries(payload).map(([k, v]) => `${k}: ${v || '-'}`).join('\n')
+      window.open(`mailto:info@optimumscs.com?subject=${encodeURIComponent('Talent Network Registration - OptimumSCS')}&body=${encodeURIComponent(body)}`, '_blank')
     }
 
-    if (!key || key === 'REPLACE_ME') {
-      openMailto()
+    const result = await submitForm('career', payload, profileCaptcha.payload)
+    if (result === 'success') {
       setStatus('success')
       resetForm()
+      profileCaptcha.reset()
       return
     }
 
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ access_key: key, subject: `Talent Network Registration – ${fields.fullName} – OptimumSCS`, ...payload }),
-      })
-      const data = await res.json()
-      if (data.success) {
-        setStatus('success')
-        resetForm()
-      } else {
-        openMailto()
-        setStatus('success')
-        resetForm()
-      }
-    } catch {
+    if (result === 'captcha') {
+      profileCaptcha.reset()
+      setStatus('idle')
+      return
+    }
+
+    if (result === 'no-key') {
       openMailto()
       setStatus('success')
       resetForm()
+      profileCaptcha.reset()
+      return
     }
+
+    setStatus('error')
   }
 
   /* ── Chevron SVG ──────────────────────── */
@@ -505,7 +494,7 @@ export default function CareersPage() {
               <p className="careers-opp-footer-note">
                 <Info size={15} />
                 Interested or know someone? Send your CV directly to{' '}
-                <strong>recruitment@optimumscs.com</strong>
+                <strong>info@optimumscs.com</strong>
               </p>
               <div className="careers-opp-actions">
                 <button
@@ -601,8 +590,8 @@ export default function CareersPage() {
               {status === 'error' && (
                 <div className="form-error-msg" style={{ marginBottom: 24 }}>
                   Submission failed. Please email your CV and profile directly to{' '}
-                  <a href="mailto:recruitment@optimumscs.com" style={{ color: '#f87171', textDecoration: 'underline' }}>
-                    recruitment@optimumscs.com
+                  <a href="mailto:info@optimumscs.com" style={{ color: '#f87171', textDecoration: 'underline' }}>
+                    info@optimumscs.com
                   </a>
                 </div>
               )}
@@ -837,6 +826,8 @@ export default function CareersPage() {
               </div>
 
               {/* ── SUBMIT ──────────────────── */}
+              <HumanCaptcha captcha={profileCaptcha} />
+
               <div className="careers-form-footer">
                 <div className="careers-form-privacy">
                   <Shield size={16} />
@@ -920,7 +911,7 @@ export default function CareersPage() {
             )}
             {applyStatus === 'error' && (
               <div className="form-error-msg" style={{ marginBottom: 20 }}>
-                Submission failed — please email us directly at recruitment@optimumscs.com
+                Submission failed. Please email us directly at info@optimumscs.com
               </div>
             )}
 
@@ -998,10 +989,12 @@ export default function CareersPage() {
                   </label>
                 </div>
 
+                <HumanCaptcha captcha={applyCaptcha} />
+
                 <div className="qa-footer">
                   <span className="qa-note">
                     <Shield size={14} />
-                    Sent to recruitment@optimumscs.com
+                    Sent to info@optimumscs.com
                   </span>
                   <button type="submit" className="btn btn-primary"
                     disabled={applyStatus === 'loading'}

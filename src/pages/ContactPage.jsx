@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { contactDetails } from '../components/data'
 import { submitForm } from '../lib/submitFormClient'
+import HumanCaptcha, { useHumanCaptcha } from '../components/HumanCaptcha'
 import {
   CalendarMini,
   ChevronDownMini,
@@ -33,9 +34,11 @@ function buildMailto(fields) {
 
 export default function ContactPage() {
   const [status, setStatus] = useState('idle')
+  const captcha = useHumanCaptcha()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (!captcha.validate()) return
     setStatus('loading')
     const formData = new FormData(e.target)
     const fields = {
@@ -51,10 +54,17 @@ export default function ContactPage() {
       window.location.href = buildMailto(fields)
     }
 
-    const result = await submitForm('contact', fields)
+    const result = await submitForm('contact', fields, captcha.payload)
     if (result === 'success') {
       setStatus('success')
       e.target.reset()
+      captcha.reset()
+      return
+    }
+
+    if (result === 'captcha') {
+      captcha.reset()
+      setStatus('idle')
       return
     }
 
@@ -209,6 +219,8 @@ export default function ContactPage() {
                   <textarea name="Project Brief" rows="6" placeholder="Describe the challenge you want to solve" required />
                 </label>
               </div>
+
+              <HumanCaptcha captcha={captcha} />
 
               <div className="contact-form-footer">
                 <button
